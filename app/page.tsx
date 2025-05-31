@@ -13,6 +13,7 @@ import {
   FileSignature,
   Bell,
   PawPrint,
+  ShieldCheck,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -20,18 +21,17 @@ import { useState, useEffect } from "react"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
       <NavBar />
       <HeroSection />
-      <BenefitsSection />
-      <FeaturesSection />
-      <FaqSection />
-      <CtaSection />
+      <div className="relative z-10 space-y-8 pb-20">
+        <UnifiedBenefitsFeaturesSection />
+        <IPhoneShowcaseSection />
+        <FaqSection />
+        <CtaSection />
+      </div>
       <Footer />
       <FloatingElements />
-
-      {/* White gradient fade at the bottom */}
-      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none"></div>
     </div>
   )
 }
@@ -68,7 +68,7 @@ function NavBar() {
     >
       <div className="px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center group">
-          <h1 className="text-2xl font-bold tracking-tighter relative font-horizon text-white">
+          <h1 className="text-2xl font-bold tracking-tighter relative text-white font-horizon">
             ADULTING
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
           </h1>
@@ -92,7 +92,7 @@ function NavBar() {
             </Link>
           ))}
           <Button className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-full relative overflow-hidden group">
-            <span className="relative z-10">Get the App</span>
+            <span className="relative z-10">Download Now</span>
             <span className="absolute inset-0 bg-emerald-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Button>
         </nav>
@@ -116,7 +116,7 @@ function NavBar() {
                 className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-full w-full relative overflow-hidden group"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="relative z-10">Get the App</span>
+                <span className="relative z-10">Download Now</span>
                 <span className="absolute inset-0 bg-emerald-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </Button>
             </div>
@@ -129,10 +129,7 @@ function NavBar() {
 
 function HeroSection() {
   return (
-    <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-32 text-white relative overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-80"></div>
-
+    <section id="home" className="pt-2 pb-2 md:pt-4 md:pb-4 text-white relative z-30">
       {/* Animated dots pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -145,8 +142,8 @@ function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-1/2 space-y-6 animate-fade-in-up">
+        <div className="flex flex-col md:flex-row items-center gap-2">
+          <div className="md:w-1/2 space-y-6 animate-fade-in-up text-center -mt-20 md:-mt-16">
             <div className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium text-emerald-300 mb-2">
               Simplify your life
             </div>
@@ -156,56 +153,50 @@ function HeroSection() {
                 Sorted.
               </span>
             </h1>
-            <p className="text-lg text-gray-300 max-w-md">
+            <p className="text-lg text-gray-300 max-w-md mx-auto">
               Being an adult is hard enough — and being organized feels amazing. That's why we built ADULTING: the one
               app that simplifies your daily adult admin.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button className="bg-white hover:bg-gray-200 text-black rounded-full h-14 px-6 border-2 border-emerald-400 relative overflow-hidden group">
-                <span className="relative z-10 flex items-center">
-                  <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.5,12A5.5,5.5 0 0,1 12,17.5A5.5,5.5 0 0,1 6.5,12A5.5,5.5 0 0,1 12,6.5A5.5,5.5 0 0,1 17.5,12M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
+              {/* Modern App Store Button */}
+              <a href="#" className="app-store-button mx-auto sm:mx-0">
+                <div className="icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                   </svg>
-                  Download on the App Store
-                </span>
-                <span className="absolute inset-0 bg-emerald-400/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-              </Button>
-              <Button className="bg-white hover:bg-gray-200 text-black rounded-full h-14 px-6 border-2 border-emerald-400 relative overflow-hidden group">
-                <span className="relative z-10 flex items-center">
-                  <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                </div>
+                <div className="text">
+                  <span className="text-small">Download on the</span>
+                  <span className="text-large">App Store</span>
+                </div>
+              </a>
+              
+              {/* Modern Google Play Button */}
+              <a href="#" className="app-store-button mx-auto sm:mx-0">
+                <div className="icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                   </svg>
-                  Get it on Google Play
-                </span>
-                <span className="absolute inset-0 bg-emerald-400/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-              </Button>
+                </div>
+                <div className="text">
+                  <span className="text-small">Get it on</span>
+                  <span className="text-large">Google Play</span>
+                </div>
+              </a>
             </div>
           </div>
-          <div className="md:w-1/2 flex justify-center animate-fade-in">
-            <div className="relative w-[320px] h-[640px] transform hover:rotate-1 transition-transform duration-500">
-              {/* Glow effect behind the phone */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-emerald-300/20 rounded-[70px] blur-xl opacity-70 animate-pulse-slow"></div>
-
-              {/* iPhone frame */}
-              <div className="absolute inset-0 bg-gray-800 rounded-[60px] shadow-2xl overflow-hidden border-8 border-gray-700 transform transition-all duration-500">
-                {/* Inner bezel */}
-                <div className="absolute inset-0 rounded-[52px] border-4 border-gray-600 overflow-hidden">
-                  {/* Screen content */}
-                  <div className="absolute inset-0 bg-black">
-                    <Image
-                      src="/images/adulting-app.png"
-                      alt="ADULTING app interface"
-                      width={280}
-                      height={560}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
-                {/* Notch */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-gray-800 rounded-b-2xl z-10"></div>
-
-                {/* Reflection overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 pointer-events-none"></div>
+          <div className="md:w-1/2 flex justify-center animate-fade-in relative z-40">
+            <div className="relative w-[512px] h-full transform hover:rotate-1 transition-transform duration-500 mb-12">
+              {/* iPhone mockup with reduced size (20% smaller: 640->512, 1280->1024) */}
+              <div className="relative w-full h-full">
+                <Image
+                  src="/images/iPhone-Vectors-1.png"
+                  alt="ADULTING app interface mockup"
+                  width={512}
+                  height={1024}
+                  className="object-contain w-full h-full drop-shadow-2xl"
+                  priority
+                />
               </div>
             </div>
           </div>
@@ -215,13 +206,26 @@ function HeroSection() {
   )
 }
 
-function BenefitsSection() {
+function UnifiedBenefitsFeaturesSection() {
+  const [expandedFeature, setExpandedFeature] = useState<number | null>(null)
+  const [scrollY, setScrollY] = useState(0)
+  const [carouselIndices, setCarouselIndices] = useState<{[key: string]: number}>({
+    mealprep: 0,
+    travel: 0
+  })
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   const benefits = [
     {
       icon: (
         <svg
-          width="32"
-          height="32"
+          width="28"
+          height="28"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -233,13 +237,13 @@ function BenefitsSection() {
         </svg>
       ),
       title: "Simple & Intuitive Design",
-      description: "Designed with calm, clarity, and clean UI — so you actually enjoy using it.",
+      description: "Designed with intuitive, clear and clean UI — so you actually enjoy using it.",
     },
     {
       icon: (
         <svg
-          width="32"
-          height="32"
+          width="28"
+          height="28"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -253,13 +257,13 @@ function BenefitsSection() {
         </svg>
       ),
       title: "One Solution for Everyday Hassles",
-      description: "No more apps for pets, papers, trips and to-do lists — it's all in one place.",
+      description: "No more slips of paper, to-do lists scattered in your notes app, or separate apps for everything— it's all in one place.",
     },
     {
       icon: (
         <svg
-          width="32"
-          height="32"
+          width="28"
+          height="28"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -272,65 +276,19 @@ function BenefitsSection() {
         </svg>
       ),
       title: "Stay on Top of Life",
-      description: "Never forget a reminder, document, or deadline again.",
+      description: "Keep everything organized and never forget important tasks, documents, travel plans, grocery lists or emergency contacts again.",
     },
   ]
 
-  return (
-    <section id="benefits" className="bg-gray-100 rounded-t-[40px] relative z-10 -mt-10 overflow-hidden">
-      {/* Subtle pattern background */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-        }}
-      ></div>
-
-      <div className="container mx-auto px-4 py-20">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 animate-fade-in">
-          Why You'll{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">Love</span>{" "}
-          Using ADULTING
-        </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16 animate-fade-in">
-          We've designed ADULTING to make your life easier, more organized, and less stressful.
-        </p>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group animate-fade-in-up"
-              style={{ animationDelay: `${index * 150}ms` }}
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-6 transform group-hover:rotate-3 transition-transform duration-300">
-                <span className="text-black">{benefit.icon}</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-semibold mb-3 group-hover:text-emerald-600 transition-colors duration-300">
-                {benefit.title}
-              </h3>
-              <p className="text-gray-600">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function FeaturesSection() {
-  const [expandedFeature, setExpandedFeature] = useState<number | null>(null)
-
   const features = [
     {
-      icon: <AlertCircle size={28} className="text-white" />,
+      icon: <ShieldCheck size={28} className="text-white" />,
       title: "emergency & safety",
       description: "Store emergency contacts, insurance info, and medical details — ready when it matters.",
       expandedContent: {
         description:
           "Quick access to all your emergency information when you need it most. Store important contacts, medical information, insurance details, and emergency procedures all in one secure place.",
-        screenshot: "/placeholder.svg?height=300&width=800",
+        images: ["/images/app-screenshots/emergency-safety.png"],
         bulletPoints: [
           "One-tap emergency contacts",
           "Medical information card for first responders",
@@ -346,7 +304,7 @@ function FeaturesSection() {
       expandedContent: {
         description:
           "Plan your meals for the week, save your favorite recipes, and generate shopping lists automatically. MealPrep makes cooking at home easier and more organized.",
-        screenshot: "/placeholder.svg?height=300&width=800",
+        images: ["/images/app-screenshots/mealprep.png", "/images/app-screenshots/grocery-list.png"],
         bulletPoints: [
           "Weekly meal planning calendar",
           "Recipe collection with search functionality",
@@ -362,7 +320,7 @@ function FeaturesSection() {
       expandedContent: {
         description:
           "Keep all your important documents in one secure, easily accessible place. Never search through stacks of paper or multiple digital folders again.",
-        screenshot: "/placeholder.svg?height=300&width=800",
+        images: ["/images/app-screenshots/documents.png"],
         bulletPoints: [
           "Document scanner with OCR technology",
           "Categorized storage system",
@@ -378,7 +336,12 @@ function FeaturesSection() {
       expandedContent: {
         description:
           "Make travel planning stress-free with our comprehensive travel assistant. Store all your bookings, create packing lists, and get timely reminders for check-ins and departures.",
-        screenshot: "/placeholder.svg?height=300&width=800",
+        images: [
+          "/images/app-screenshots/travel-assistant.png",
+          "/images/app-screenshots/travel-documents.png",
+          "/images/app-screenshots/trip-details.png",
+          "/images/app-screenshots/packing-list.png"
+        ],
         bulletPoints: [
           "Trip itinerary builder",
           "Booking confirmation storage",
@@ -394,7 +357,7 @@ function FeaturesSection() {
       expandedContent: {
         description:
           "Ensure your loved ones have access to important information if something happens to you. Create a comprehensive digital will that can be securely shared when needed.",
-        screenshot: "/placeholder.svg?height=300&width=800",
+        images: ["/images/app-screenshots/digital-will.png"],
         bulletPoints: [
           "Guided will creation process",
           "Secure storage of sensitive information",
@@ -410,7 +373,7 @@ function FeaturesSection() {
       expandedContent: {
         description:
           "Never miss an important deadline or appointment again. Set up custom reminders for everything from annual car registrations to quarterly dental checkups.",
-        screenshot: "/placeholder.svg?height=300&width=800",
+        images: ["/images/app-screenshots/reminders.png"],
         bulletPoints: [
           "Custom recurring reminder schedules",
           "Priority-based notification system",
@@ -426,12 +389,28 @@ function FeaturesSection() {
       expandedContent: {
         description:
           "Keep track of all your pet's health information in one place. Monitor vaccinations, medications, vet visits, and more to ensure your furry friends stay healthy.",
-        screenshot: "/placeholder.svg?height=300&width=800",
+        images: ["/images/app-screenshots/pet-tracker.png"],
         bulletPoints: [
           "Vaccination schedule and history",
           "Medication tracker with reminders",
           "Vet visit records and upcoming appointments",
           "Diet and exercise logs",
+        ],
+      },
+    },
+    {
+      icon: <FileText size={28} className="text-white" />,
+      title: "vault",
+      description: "Securely store passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
+      expandedContent: {
+        description:
+          "Behind an extra layer of security, you can safely store sensitive bits of information such as Account Passwords, Banking Login/payment details, app/card pincodes, tax numbers etc.",
+        images: ["/images/app-screenshots/documents.png"],
+        bulletPoints: [
+          "Secure encryption of content with pincode access",
+          "Categorized storage system",
+          "Secure encryption for sensitive documents",
+          "Quick search functionality",
         ],
       },
     },
@@ -445,81 +424,258 @@ function FeaturesSection() {
     }
   }
 
+  const handleCarouselNav = (featureKey: string, direction: 'prev' | 'next', totalImages: number) => {
+    setCarouselIndices(prev => {
+      const currentIndex = prev[featureKey] || 0
+      let newIndex
+      if (direction === 'prev') {
+        newIndex = (currentIndex - 1 + totalImages) % totalImages
+      } else {
+        newIndex = (currentIndex + 1) % totalImages
+      }
+      return { ...prev, [featureKey]: newIndex }
+    })
+  }
+
+  const setCarouselIndex = (featureKey: string, index: number) => {
+    setCarouselIndices(prev => ({ ...prev, [featureKey]: index }))
+  }
+
   return (
-    <section id="features" className="py-20 bg-gray-100 relative overflow-hidden">
-      {/* Gradient accent */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-300 via-emerald-500 to-emerald-300"></div>
+    <section className="container mx-auto px-4 relative z-10 -mt-48">
+      <div className="bg-white/98 backdrop-blur-sm rounded-3xl shadow-2xl shadow-black/20 animate-fade-in relative overflow-hidden">
+        {/* Gradient accent border */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-300 via-emerald-500 to-emerald-300 rounded-t-3xl"></div>
+        
+        {/* Subtle pattern background */}
+        <div 
+          className="absolute inset-0 opacity-3 rounded-3xl" 
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
+          }}
+        ></div>
 
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 animate-fade-in">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">
-            7 Core Modules
-          </span>{" "}
-          to Cover Your Most Essential Needs
-        </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16 animate-fade-in">
-          ADULTING brings together all the tools you need to manage your adult responsibilities in one simple app.
-        </p>
+        {/* ========== BENEFITS SECTION ========== */}
+        <div className="p-8 md:p-12 relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-left mb-6 animate-fade-in text-white relative z-10 max-w-2xl">
+            Why You'll{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">Love</span>{" "}
+            Using ADULTING
+          </h2>
+          <p className="text-gray-300 text-left max-w-2xl mb-16 animate-fade-in relative z-10">
+            We've designed ADULTING to make your life easier, more organized, and less stressful.
+          </p>
 
-        <div className="space-y-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`bg-[#79777a] text-white p-6 rounded-2xl transition-all duration-500 ${
-                expandedFeature === index
-                  ? "mb-8 shadow-2xl shadow-emerald-500/50"
-                  : "transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/50"
-              } animate-fade-in-up`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex-shrink-0">{feature.icon}</div>
-                <div className="flex-grow">
-                  <h3 className="text-2xl font-semibold">{feature.title}</h3>
-                  <p className="text-gray-300">{feature.description}</p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-[80%] mx-auto mb-20">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group animate-fade-in-up text-center"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-6 transform group-hover:rotate-3 transition-transform duration-300 mx-auto">
+                  <span className="text-black">{benefit.icon}</span>
                 </div>
-                <Button
-                  onClick={() => toggleExpand(index)}
-                  variant="outline"
-                  className="border-gray-500 text-gray-300 hover:text-white hover:bg-gray-600 flex-shrink-0 relative overflow-hidden group"
-                >
-                  <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
-                  <span className="absolute inset-0 bg-emerald-500/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </Button>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 group-hover:text-emerald-600 transition-colors duration-300 text-gray-900">
+                  {benefit.title}
+                </h3>
+                <p className="text-gray-600">{benefit.description}</p>
               </div>
+            ))}
+          </div>
+        </div>
 
-              {expandedFeature === index && (
-                <div className="mt-6 pt-6 border-t border-gray-600 animate-fade-in">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="relative overflow-hidden rounded-lg group">
-                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <Image
-                        src={feature.expandedContent.screenshot || "/placeholder.svg"}
-                        alt={`${feature.title} screenshot`}
-                        width={800}
-                        height={300}
-                        className="rounded-lg w-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-gray-300 mb-4">{feature.expandedContent.description}</p>
-                      <h4 className="font-semibold mb-2">Key Features:</h4>
-                      <ul className="space-y-2 text-gray-300">
-                        {feature.expandedContent.bulletPoints.map((point, i) => (
-                          <li key={i} className="flex items-start">
-                            <span className="inline-flex items-center justify-center w-5 h-5 bg-emerald-500/20 rounded-full mr-2 mt-1 text-emerald-300 text-xs">
-                              ✓
-                            </span>
-                            {point}
-                          </li>
-                        ))}
-                      </ul>
+        {/* ========== FEATURES SECTION ========== */}
+        <div className="p-8 md:p-12 relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 animate-fade-in text-white">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">
+              8 Core Modules
+            </span>{" "}
+            to Cover Your Most Essential Needs
+          </h2>
+          <p className="text-gray-300 text-center max-w-2xl mx-auto mb-16 animate-fade-in">
+            ADULTING brings together all the tools you need to manage your adult responsibilities in one simple app.
+          </p>
+
+          {/* Feature Cards - reduced width from 90% to 60% */}
+          <div className="space-y-6 max-w-[60%] mx-auto">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className={`bg-gradient-to-r from-gray-800 to-gray-700 text-white p-6 rounded-2xl transition-all duration-500 hover:from-gray-700 hover:to-gray-600 ${
+                  expandedFeature === index
+                    ? "mb-8 shadow-2xl shadow-emerald-500/30 ring-2 ring-emerald-500/50"
+                    : "transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/20"
+                } animate-fade-in-up`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <div className="flex-shrink-0 p-3 bg-emerald-500/20 rounded-xl">{feature.icon}</div>
+                  <div className="flex-grow">
+                    <h3 className="text-xl sm:text-2xl font-semibold text-white">{feature.title}</h3>
+                    <p className="text-gray-200">{feature.description}</p>
+                  </div>
+                  <Button
+                    onClick={() => toggleExpand(index)}
+                    variant="outline"
+                    className="border-emerald-500/50 text-emerald-300 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-400 flex-shrink-0 relative overflow-hidden group"
+                  >
+                    <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
+                    <span className="absolute inset-0 bg-emerald-500/30 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  </Button>
+                </div>
+
+                {expandedFeature === index && (
+                  <div className="mt-6 pt-6 border-t border-gray-500 animate-fade-in">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Image/Carousel Section */}
+                      <div className="relative">
+                        {feature.expandedContent.images.length > 1 ? (
+                          // Carousel for multiple images
+                          <div className="relative overflow-hidden rounded-3xl">
+                            <div 
+                              className="flex transition-transform duration-500 ease-in-out"
+                              style={{ 
+                                transform: `translateX(-${(carouselIndices[feature.title.split(' ')[0]] || 0) * 100}%)` 
+                              }}
+                            >
+                              {feature.expandedContent.images.map((image, imgIndex) => (
+                                <div key={imgIndex} className="min-w-full">
+                                  <Image
+                                    src={image}
+                                    alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                    width={800}
+                                    height={300}
+                                    className="rounded-3xl w-full h-[300px] object-contain transform hover:scale-105 transition-transform duration-700"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                            
+                            {/* Carousel Controls */}
+                            <button
+                              onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'prev', feature.expandedContent.images.length)}
+                              className="absolute top-1/2 left-2 transform -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="m15 18-6-6 6-6"></path>
+                              </svg>
+                            </button>
+                            <button
+                              onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'next', feature.expandedContent.images.length)}
+                              className="absolute top-1/2 right-2 transform -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="m9 18 6-6-6-6"></path>
+                              </svg>
+                            </button>
+                            
+                            {/* Carousel Indicators */}
+                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
+                              {feature.expandedContent.images.map((_, imgIndex) => (
+                                <button
+                                  key={imgIndex}
+                                  onClick={() => setCarouselIndex(feature.title.split(' ')[0], imgIndex)}
+                                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                                    (carouselIndices[feature.title.split(' ')[0]] || 0) === imgIndex 
+                                      ? 'bg-white' 
+                                      : 'bg-white/50 hover:bg-white/75'
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          // Single image
+                          <div className="relative overflow-hidden rounded-3xl group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <Image
+                              src={feature.expandedContent.images[0]}
+                              alt={`${feature.title} screenshot`}
+                              width={800}
+                              height={300}
+                              className="rounded-3xl w-full h-[300px] object-contain transform group-hover:scale-105 transition-transform duration-700"
+                            />
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* Content Section */}
+                      <div>
+                          <p className="text-gray-200 mb-4">{feature.expandedContent.description}</p>
+                          <h4 className="font-semibold mb-2 text-emerald-300">Key Features:</h4>
+                          <ul className="space-y-2 text-gray-200">
+                          {feature.expandedContent.bulletPoints.map((point, i) => (
+                            <li key={i} className="flex items-start">
+                              <span className="inline-flex items-center justify-center w-5 h-5 bg-emerald-500/20 rounded-full mr-2 mt-1 text-emerald-300 text-xs">
+                                ✓
+                              </span>
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function IPhoneShowcaseSection() {
+  return (
+    <section className="container mx-auto px-4 relative z-10">
+      <div className="bg-white/98 backdrop-blur-sm rounded-3xl shadow-2xl shadow-black/20 animate-fade-in relative overflow-hidden">
+        {/* Gradient accent border */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-300 via-emerald-500 to-emerald-300 rounded-t-3xl"></div>
+        
+        {/* Subtle pattern background */}
+        <div 
+          className="absolute inset-0 opacity-3 rounded-3xl" 
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
+          }}
+        ></div>
+
+        {/* ========== IPHONE SHOWCASE SECTION ========== */}
+        <div className="p-8 md:p-12 relative z-10">
+          {/* iPhone Showcase - scaled to match Features Cards width */}
+          <div className="relative z-10 flex justify-center max-w-[90%] mx-auto">
+            <div className="relative group w-full">
+              {/* Subtle glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-emerald-300/5 to-emerald-500/10 rounded-3xl blur-3xl transform group-hover:scale-110 transition-transform duration-700"></div>
+              
+              {/* iPhone Frame with rounded corners - increased scale */}
+              <Image
+                src="/images/iphone-frame-x3.png"
+                alt="ADULTING App Showcase"
+                width={700}
+                height={1400}
+                className="relative z-10 object-contain w-full h-auto transform group-hover:scale-105 transition-all duration-700 drop-shadow-2xl rounded-3xl"
+                priority
+              />
+              
+              {/* Floating elements around the phone */}
+              <div className="absolute top-1/4 -left-20 w-4 h-4 bg-emerald-400/30 rounded-full animate-pulse"></div>
+              <div className="absolute top-1/3 -right-16 w-3 h-3 bg-emerald-500/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute bottom-1/3 -left-12 w-2 h-2 bg-emerald-600/50 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute bottom-1/4 -right-20 w-5 h-5 bg-emerald-300/20 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             </div>
-          ))}
+          </div>
+
+          {/* Decorative text overlay */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="text-center opacity-5">
+              <h3 className="text-6xl md:text-8xl font-bold text-emerald-500/10 tracking-wider">
+                ADULTING
+              </h3>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -541,7 +697,7 @@ function FaqSection() {
     {
       question: "Is ADULTING free?",
       answer:
-        "ADULTING offers a free version with core tools, and a premium version with extra features and advanced functionality.",
+        "ADULTING offers a free trial with all the features for a limited time upon downloading, after this period a monthly subscription fee will allow full functionality.",
     },
     {
       question: "Can I use ADULTING on multiple devices?",
@@ -555,33 +711,33 @@ function FaqSection() {
   ]
 
   return (
-    <section id="faq" className="py-20 bg-gray-100 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-300/5 to-emerald-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-emerald-300/5 to-emerald-500/5 rounded-full blur-3xl"></div>
+    <section id="faq" className="container mx-auto px-4 relative z-10">
+      <div className="bg-white/95 backdrop-blur-sm p-8 md:p-12 rounded-3xl shadow-2xl shadow-black/20 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-300/5 to-emerald-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-emerald-300/5 to-emerald-500/5 rounded-full blur-3xl"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 animate-fade-in">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 animate-fade-in text-gray-900 relative z-10">
           Questions?{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">
             We've Got Answers.
           </span>
         </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16 animate-fade-in">
+        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16 animate-fade-in relative z-10">
           Find answers to the most common questions about ADULTING.
         </p>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto relative z-10">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up"
+                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up border border-gray-100"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <AccordionTrigger className="px-6 py-4 text-left font-medium hover:no-underline group">
-                  <span className="group-hover:text-emerald-600 transition-colors duration-300">{faq.question}</span>
+                  <span className="group-hover:text-emerald-600 transition-colors duration-300 text-gray-900">{faq.question}</span>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-4 text-gray-600 animate-fade-in">{faq.answer}</AccordionContent>
               </AccordionItem>
@@ -595,27 +751,27 @@ function FaqSection() {
 
 function CtaSection() {
   return (
-    <section className="py-20 bg-gray-100 relative overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-gray-100"></div>
+    <section className="container mx-auto px-4 relative z-10">
+      <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl shadow-black/20 text-center relative overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-gray-100 rounded-3xl"></div>
 
-      {/* Animated dots */}
-      <div className="absolute inset-0 opacity-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(16,185,129,0.2) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
-          }}
-        ></div>
-      </div>
+        {/* Animated dots */}
+        <div className="absolute inset-0 opacity-20 rounded-3xl">
+          <div 
+            className="absolute inset-0" 
+            style={{
+              backgroundImage: "radial-gradient(circle, rgba(16,185,129,0.2) 1px, transparent 1px)",
+              backgroundSize: "20px 20px"
+            }}
+          ></div>
+        </div>
 
-      <div className="container mx-auto px-4 text-center relative z-10">
-        <div className="max-w-3xl mx-auto bg-white p-10 rounded-3xl shadow-xl transform hover:scale-[1.01] transition-all duration-500 animate-fade-in">
+        <div className="relative z-10">
           <div className="inline-block px-4 py-1 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-4">
             Get Started Today
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900">
             Ready to finally feel{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">
               organized
@@ -627,24 +783,31 @@ function CtaSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-            <Button className="bg-black hover:bg-gray-800 text-white rounded-full h-14 px-6 relative overflow-hidden group">
-              <span className="relative z-10 flex items-center">
-                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.5,12A5.5,5.5 0 0,1 12,17.5A5.5,5.5 0 0,1 6.5,12A5.5,5.5 0 0,1 12,6.5A5.5,5.5 0 0,1 17.5,12M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+            {/* Modern App Store Button */}
+            <a href="#" className="app-store-button mx-auto sm:mx-0">
+              <div className="icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                 </svg>
-                Download on the App Store
-              </span>
-              <span className="absolute inset-0 bg-emerald-500/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-            </Button>
-            <Button className="bg-black hover:bg-gray-800 text-white rounded-full h-14 px-6 relative overflow-hidden group">
-              <span className="relative z-10 flex items-center">
-                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+              </div>
+              <div className="text">
+                <span className="text-small">Download on the</span>
+                <span className="text-large">App Store</span>
+              </div>
+            </a>
+            
+            {/* Modern Google Play Button */}
+            <a href="#" className="app-store-button mx-auto sm:mx-0">
+              <div className="icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                 </svg>
-                Get it on Google Play
-              </span>
-              <span className="absolute inset-0 bg-emerald-500/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-            </Button>
+              </div>
+              <div className="text">
+                <span className="text-small">Get it on</span>
+                <span className="text-large">Google Play</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -654,10 +817,7 @@ function CtaSection() {
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12 relative overflow-hidden">
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black opacity-50"></div>
-
+    <footer className="bg-black/90 text-white py-12 relative overflow-hidden mt-20">
       {/* Subtle pattern */}
       <div
         className="absolute inset-0 opacity-5"

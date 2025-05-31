@@ -5,47 +5,58 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 142.1 76.2% 36.3%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 142.1 76.2% 36.3%;
-    --radius: 1rem;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --font-plus-jakarta-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 142.1 70.6% 45.3%;
-    --primary-foreground: 144.9 80.4% 10%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 142.4 71.8% 29.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
@@ -55,40 +66,50 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-  .font-horizon {
-    font-family: var(--font-horizon), sans-serif;
+    font-family: var(--font-plus-jakarta-sans);
   }
 }
 
-@layer utilities {
-  .animate-float-slow {
-    animation: float 8s ease-in-out infinite;
-  }
+/* Custom font definition for Horizon */
+@font-face {
+  font-family: 'Horizon';
+  src: url('/assets/fonts/horizon.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-  .animate-float-medium {
-    animation: float 6s ease-in-out infinite;
-  }
+.font-horizon {
+  font-family: 'Horizon', 'Arial Black', 'Helvetica Neue', sans-serif;
+}
 
-  .animate-float-fast {
-    animation: float 4s ease-in-out infinite;
-  }
+/* Custom animations */
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
 
-  .animate-pulse-slow {
-    animation: pulse 4s ease-in-out infinite;
-  }
+.animate-float-medium {
+  animation: float 6s ease-in-out infinite;
+}
 
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
+.animate-float-fast {
+  animation: float 4s ease-in-out infinite;
+}
 
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
+.animate-pulse-slow {
+  animation: pulse 4s ease-in-out infinite;
+}
 
-  .animate-slide-down {
-    animation: slideDown 0.3s ease-out forwards;
-  }
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out forwards;
 }
 
 @keyframes float {
@@ -146,6 +167,98 @@
   }
 }
 
+/* App store button styles */
+.app-store-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #000;
+  color: white;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 220px;
+  text-decoration: none;
+  font-family: var(--font-plus-jakarta-sans);
+}
+
+.app-store-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background: #111;
+}
+
+.app-store-button .icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.app-store-button .text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.app-store-button .text-small {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.app-store-button .text-large {
+  font-size: 16px;
+  font-weight: 600;
+}
+
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Parallax and scroll effects */
+.parallax-container {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth section transitions */
+section {
+  transition: all 0.3s ease-out;
+}
+
+/* Enhanced floating animations for particles */
+@keyframes float-particle {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+/* Radial gradient utility for corner fades */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
 }
