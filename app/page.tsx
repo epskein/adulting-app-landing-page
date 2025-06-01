@@ -32,6 +32,8 @@ export default function Home() {
       </div>
       <Footer />
       <FloatingElements />
+      {/* White gradient fade at the bottom */}
+      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-50 pointer-events-none"></div>
     </div>
   )
 }
@@ -187,8 +189,11 @@ function HeroSection() {
           </div>
           <div className="md:w-1/2 flex justify-center animate-fade-in relative z-40">
             <div className="relative w-[512px] h-full transform hover:rotate-1 transition-transform duration-500 mb-12">
+              {/* Green gradient background for accentuation */}
+              <div className="absolute -inset-8 bg-gradient-to-br from-emerald-500/20 via-emerald-400/15 to-emerald-600/20 rounded-[100px] blur-2xl opacity-60 animate-pulse-slow"></div>
+              
               {/* iPhone mockup with reduced size (20% smaller: 640->512, 1280->1024) */}
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full z-10">
                 <Image
                   src="/images/iPhone-Vectors-1.png"
                   alt="ADULTING app interface mockup"
@@ -282,57 +287,74 @@ function UnifiedBenefitsFeaturesSection() {
 
   const features = [
     {
-      icon: <ShieldCheck size={28} className="text-white" />,
-      title: "emergency & safety",
-      description: "Store emergency contacts, insurance info, and medical details — ready when it matters.",
-      expandedContent: {
-        description:
-          "Quick access to all your emergency information when you need it most. Store important contacts, medical information, insurance details, and emergency procedures all in one secure place.",
-        images: ["/images/app-screenshots/emergency-safety.png"],
-        bulletPoints: [
-          "One-tap emergency contacts",
-          "Medical information card for first responders",
-          "Insurance policy details and contact numbers",
-          "Emergency procedures and checklists",
-        ],
-      },
-    },
-    {
-      icon: <Utensils size={28} className="text-white" />,
-      title: "mealprep",
-      description: "Save your favorite recipes, create grocery lists, and plan meals with ease.",
-      expandedContent: {
-        description:
-          "Plan your meals for the week, save your favorite recipes, and generate shopping lists automatically. MealPrep makes cooking at home easier and more organized.",
-        images: ["/images/app-screenshots/mealprep.png", "/images/app-screenshots/grocery-list.png"],
-        bulletPoints: [
-          "Weekly meal planning calendar",
-          "Recipe collection with search functionality",
-          "Automatic grocery list generation",
-          "Dietary preferences and restrictions tracking",
-        ],
-      },
-    },
-    {
       icon: <FileText size={28} className="text-white" />,
       title: "my documents",
       description: "Securely store important docs (lease, ID, medical aid card) for quick access anytime.",
       expandedContent: {
         description:
-          "Keep all your important documents in one secure, easily accessible place. Never search through stacks of paper or multiple digital folders again.",
+          "Keep all your important documents in one secure, easily accessible place. Never search through multiple digital folders, stacks of paper or store files in your emails again.",
         images: ["/images/app-screenshots/documents.png"],
         bulletPoints: [
-          "Document scanner with OCR technology",
           "Categorized storage system",
           "Secure encryption for sensitive documents",
           "Quick search functionality",
+          "Easily share documents with anyone via any app",
         ],
       },
     },
     {
-      icon: <Plane size={28} className="text-white" />,
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <rect width="16" height="16" x="4" y="4" rx="2"></rect>
+          <path d="M9 10h6"></path>
+          <path d="M12 7v6"></path>
+          <path d="M9 17v4"></path>
+          <path d="M15 17v4"></path>
+          <path d="M12 21v-4"></path>
+        </svg>
+      ),
+      title: "emergency & safety",
+      description: "Store emergency contacts details — ready when it matters.",
+      expandedContent: {
+        description:
+          "Quick access to all your critical emergency contacts when you need it most. Store the contact details and additional information of your local Fire Services, Police, Ambulance or family all in one secure place.",
+        images: ["/images/app-screenshots/emergency-safety.png"],
+        bulletPoints: [
+          "One-tap emergency contacts - just the press of a button away!",
+          "Store additional information for each contact",
+        ],
+      },
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <path d="M3 11v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3"></path>
+          <path d="M12 19H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-3.83"></path>
+          <path d="m3 11 7.77-6.04a2 2 0 0 1 2.46 0L21 11H3Z"></path>
+          <path d="M12.97 19.77 7 15h12.5l-3.75 4.5a2 2 0 0 1-2.78.27Z"></path>
+        </svg>
+      ),
+      title: "mealprep, recipes and grocery list",
+      description: "Plan meals with ease - Save your favorite recipes and create your grocery list in one dedicated place.",
+      expandedContent: {
+        description:
+          "Stop wondering what to make for dinner - Save your favorite recipes, add recipe ingredients to your shopping list, and share your grocery list with anyone. MealPrep makes cooking at home easier and more organized.",
+        images: ["/images/app-screenshots/mealprep.png", "/images/app-screenshots/grocery-list.png" , "/images/app-screenshots/recipe-details.png"],
+        bulletPoints: [
+          "Recipe collection with categorisation & search functionality",
+          "Automatically add ingredients to your grocery list",
+          "One dedicated space for your grocery list - no more loose pieces of paper or keeping track in your notes app",
+        ],
+      },
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
+        </svg>
+      ),
       title: "travel assistant",
-      description: "Organize your trips with itineraries, tickets, bookings, packing lists, and travel reminders.",
+      description: "Organize your trips with itineraries, tickets, bookings, packing lists, and travel reminders",
       expandedContent: {
         description:
           "Make travel planning stress-free with our comprehensive travel assistant. Store all your bookings, create packing lists, and get timely reminders for check-ins and departures.",
@@ -343,47 +365,65 @@ function UnifiedBenefitsFeaturesSection() {
           "/images/app-screenshots/packing-list.png"
         ],
         bulletPoints: [
-          "Trip itinerary builder",
-          "Booking confirmation storage",
-          "Customizable packing lists",
-          "Travel document organizer with offline access",
+          "Keep track of all your upcoming trips",
+          "Create a simple trip or a full itinerary with several locations and travel arrangements",
+          "Booking confirmation storage - store all your trip bookings and tickets in one place, no more printouts and screenshots",
+          "Customizable packing lists - plan what to pack for each trip and check off as you go",
         ],
       },
     },
     {
-      icon: <FileSignature size={28} className="text-white" />,
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <path d="M20 11.08V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h6"></path>
+          <path d="M14 3v5h5"></path>
+          <circle cx="16" cy="16" r="6"></circle>
+          <path d="M16 14v4"></path>
+          <path d="M16 22v-1"></path>
+        </svg>
+      ),
       title: "digital will",
       description: "Leave critical info for your loved ones in case of emergencies — easily editable.",
       expandedContent: {
         description:
-          "Ensure your loved ones have access to important information if something happens to you. Create a comprehensive digital will that can be securely shared when needed.",
+          "Ensure your loved ones have access to important information if something happens to you. Create a comprehensive digital will that can be accessed in the event of an emergency.",
         images: ["/images/app-screenshots/digital-will.png"],
         bulletPoints: [
-          "Guided will creation process",
           "Secure storage of sensitive information",
-          "Emergency access protocols",
+          "Leave emergency instructions with ease",
           "Regular update reminders",
         ],
       },
     },
     {
-      icon: <Bell size={28} className="text-white" />,
-      title: "smart reminders",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+      ),
+      title: "smart reminders/alerts",
       description: "Set custom recurring reminders — like car registration, dentist visits, and more.",
       expandedContent: {
         description:
-          "Never miss an important deadline or appointment again. Set up custom reminders for everything from annual car registrations to quarterly dental checkups.",
+          "Never miss an important chore or neglect critical recurring appointments again. Set up custom reminders for everything from annual car registrations to quarterly dental checkups.",
         images: ["/images/app-screenshots/reminders.png"],
         bulletPoints: [
           "Custom recurring reminder schedules",
-          "Priority-based notification system",
           "Calendar integration",
-          "Location-based reminders",
+          "Control when you are notified about upcoming reminders",
         ],
       },
     },
     {
-      icon: <PawPrint size={28} className="text-white" />,
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <circle cx="11" cy="4" r="2"></circle>
+          <circle cx="18" cy="8" r="2"></circle>
+          <circle cx="20" cy="16" r="2"></circle>
+          <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"></path>
+        </svg>
+      ),
       title: "pet tracker",
       description: "Add your pets, track vaccines, vet visits, active treatments, and more.",
       expandedContent: {
@@ -391,15 +431,19 @@ function UnifiedBenefitsFeaturesSection() {
           "Keep track of all your pet's health information in one place. Monitor vaccinations, medications, vet visits, and more to ensure your furry friends stay healthy.",
         images: ["/images/app-screenshots/pet-tracker.png"],
         bulletPoints: [
-          "Vaccination schedule and history",
-          "Medication tracker with reminders",
-          "Vet visit records and upcoming appointments",
-          "Diet and exercise logs",
+          "All your pets information in one place - Vaccination history, age, birthday etc.",
+          "View active treatments",
+          "Keep track of vet visits",
         ],
       },
     },
     {
-      icon: <FileText size={28} className="text-white" />,
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      ),
       title: "vault",
       description: "Securely store passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
       expandedContent: {
@@ -407,7 +451,7 @@ function UnifiedBenefitsFeaturesSection() {
           "Behind an extra layer of security, you can safely store sensitive bits of information such as Account Passwords, Banking Login/payment details, app/card pincodes, tax numbers etc.",
         images: ["/images/app-screenshots/documents.png"],
         bulletPoints: [
-          "Secure encryption of content with pincode access",
+          "Secure encryption of content with pincode access.",
           "Categorized storage system",
           "Secure encryption for sensitive documents",
           "Quick search functionality",
@@ -527,9 +571,9 @@ function UnifiedBenefitsFeaturesSection() {
 
                 {expandedFeature === index && (
                   <div className="mt-6 pt-6 border-t border-gray-500 animate-fade-in">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Image/Carousel Section */}
-                      <div className="relative">
+                    <div className="flex gap-4">
+                      {/* Image/Carousel Section - Left Side */}
+                      <div className="flex-shrink-0 w-48">
                         {feature.expandedContent.images.length > 1 ? (
                           // Carousel for multiple images
                           <div className="relative overflow-hidden rounded-3xl">
@@ -544,9 +588,9 @@ function UnifiedBenefitsFeaturesSection() {
                                   <Image
                                     src={image}
                                     alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                    width={800}
-                                    height={300}
-                                    className="rounded-3xl w-full h-[300px] object-contain transform hover:scale-105 transition-transform duration-700"
+                                    width={300}
+                                    height={600}
+                                    className="rounded-3xl w-full h-auto object-contain"
                                   />
                                 </div>
                               ))}
@@ -555,28 +599,28 @@ function UnifiedBenefitsFeaturesSection() {
                             {/* Carousel Controls */}
                             <button
                               onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'prev', feature.expandedContent.images.length)}
-                              className="absolute top-1/2 left-2 transform -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                              className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
                             >
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="m15 18-6-6 6-6"></path>
                               </svg>
                             </button>
                             <button
                               onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'next', feature.expandedContent.images.length)}
-                              className="absolute top-1/2 right-2 transform -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                              className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
                             >
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="m9 18 6-6-6-6"></path>
                               </svg>
                             </button>
                             
                             {/* Carousel Indicators */}
-                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
+                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
                               {feature.expandedContent.images.map((_, imgIndex) => (
                                 <button
                                   key={imgIndex}
                                   onClick={() => setCarouselIndex(feature.title.split(' ')[0], imgIndex)}
-                                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                                     (carouselIndices[feature.title.split(' ')[0]] || 0) === imgIndex 
                                       ? 'bg-white' 
                                       : 'bg-white/50 hover:bg-white/75'
@@ -587,30 +631,29 @@ function UnifiedBenefitsFeaturesSection() {
                           </div>
                         ) : (
                           // Single image
-                          <div className="relative overflow-hidden rounded-3xl group">
-                            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-emerald-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          <div className="relative overflow-hidden rounded-3xl">
                             <Image
                               src={feature.expandedContent.images[0]}
                               alt={`${feature.title} screenshot`}
-                              width={800}
-                              height={300}
-                              className="rounded-3xl w-full h-[300px] object-contain transform group-hover:scale-105 transition-transform duration-700"
+                              width={300}
+                              height={600}
+                              className="rounded-3xl w-full h-auto object-contain"
                             />
                           </div>
                         )}
                       </div>
                       
-                      {/* Content Section */}
-                      <div>
-                          <p className="text-gray-200 mb-4">{feature.expandedContent.description}</p>
-                          <h4 className="font-semibold mb-2 text-emerald-300">Key Features:</h4>
-                          <ul className="space-y-2 text-gray-200">
+                      {/* Content Section - Right Side */}
+                      <div className="flex-1 pl-2">
+                        <p className="text-gray-200 mb-4 text-sm leading-relaxed">{feature.expandedContent.description}</p>
+                        <h4 className="font-semibold mb-3 text-emerald-300 text-sm">Key Features:</h4>
+                        <ul className="space-y-2 text-gray-200">
                           {feature.expandedContent.bulletPoints.map((point, i) => (
-                            <li key={i} className="flex items-start">
-                              <span className="inline-flex items-center justify-center w-5 h-5 bg-emerald-500/20 rounded-full mr-2 mt-1 text-emerald-300 text-xs">
+                            <li key={i} className="flex items-start text-sm">
+                              <span className="inline-flex items-center justify-center w-4 h-4 bg-emerald-500/20 rounded-full mr-3 mt-0.5 text-emerald-300 text-xs flex-shrink-0">
                                 ✓
                               </span>
-                              {point}
+                              <span className="leading-relaxed">{point}</span>
                             </li>
                           ))}
                         </ul>
@@ -706,7 +749,7 @@ function FaqSection() {
     },
     {
       question: "How do I suggest new features?",
-      answer: "We love feedback! Use the in-app suggestion box or email us directly at feedback@adultingapp.com.",
+      answer: "We love feedback! Use the in-app suggestion box or email us directly at support@adultingapp.com.",
     },
   ]
 
@@ -752,7 +795,7 @@ function FaqSection() {
 function CtaSection() {
   return (
     <section className="container mx-auto px-4 relative z-10">
-      <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl shadow-black/20 text-center relative overflow-hidden">
+      <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl shadow-black/20 text-center relative overflow-hidden max-w-4xl mx-auto">
         {/* Gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-gray-100 rounded-3xl"></div>
 
@@ -771,7 +814,7 @@ function CtaSection() {
           <div className="inline-block px-4 py-1 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-4">
             Get Started Today
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 whitespace-nowrap sm:whitespace-normal">
             Ready to finally feel{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">
               organized
