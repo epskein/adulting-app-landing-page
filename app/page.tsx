@@ -749,7 +749,7 @@ function FaqSection() {
     },
     {
       question: "How do I suggest new features?",
-      answer: "We love feedback! Use the in-app suggestion box or email us directly at support@adultingapp.com.",
+      answer: "We love feedback! Use the in-app suggestion box or email us directly at feedback@adulting-app.co",
     },
   ]
 
