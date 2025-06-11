@@ -21,10 +21,10 @@ import { useState, useEffect } from "react"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       <NavBar />
       <HeroSection />
-      <div className="relative z-10 space-y-8 pb-20">
+      <div className="relative z-10 space-y-32 pb-20">
         <UnifiedBenefitsFeaturesSection />
         <IPhoneShowcaseSection />
         <FaqSection />
@@ -32,8 +32,6 @@ export default function Home() {
       </div>
       <Footer />
       <FloatingElements />
-      {/* White gradient fade at the bottom */}
-      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-50 pointer-events-none"></div>
     </div>
   )
 }
@@ -43,9 +41,10 @@ function FloatingElements() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {/* Gradient orbs that float around */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-emerald-300/10 to-emerald-500/10 blur-3xl animate-float-slow"></div>
-      <div className="absolute top-3/4 right-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-gray-400/10 to-gray-600/10 blur-3xl animate-float-medium"></div>
-      <div className="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-gradient-to-r from-emerald-400/5 to-gray-500/5 blur-3xl animate-float-fast"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/5 to-purple-500/5 blur-3xl animate-float-slow"></div>
+      <div className="absolute top-3/4 right-1/4 w-[32rem] h-[32rem] rounded-full bg-gradient-to-r from-indigo-500/8 to-blue-500/8 blur-3xl animate-float-medium"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-gradient-to-r from-purple-400/6 to-indigo-500/6 blur-3xl animate-float-fast"></div>
+      <div className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-gradient-to-r from-slate-400/3 to-blue-400/3 blur-3xl animate-float-slow"></div>
     </div>
   )
 }
@@ -65,14 +64,14 @@ function NavBar() {
   return (
     <header
       className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300 rounded-full ${
-        scrolled ? "bg-black/95 shadow-lg" : "bg-black/90"
-      } shadow-xl shadow-black/50`}
+        scrolled ? "bg-slate-900/95 shadow-lg" : "bg-slate-900/90"
+      } shadow-xl shadow-black/50 border border-slate-700/50`}
     >
       <div className="px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center group">
           <h1 className="text-2xl font-bold tracking-tighter relative text-white font-horizon">
             ADULTING
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></span>
           </h1>
         </Link>
 
@@ -82,44 +81,44 @@ function NavBar() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <div className="relative z-10">{isMenuOpen ? <X size={24} /> : <Menu size={24} />}</div>
-          <span className="absolute inset-0 bg-gray-800 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+          <span className="absolute inset-0 bg-slate-700 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
         </button>
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {["Home", "Benefits", "Features", "FAQ"].map((item) => (
-            <Link key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium relative group text-white">
+            <Link key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium relative group text-slate-300 hover:text-white transition-colors">
               {item}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
           ))}
-          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-full relative overflow-hidden group">
+          <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full relative overflow-hidden group border-0">
             <span className="relative z-10">Download Now</span>
-            <span className="absolute inset-0 bg-emerald-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Button>
         </nav>
 
         {/* Mobile navigation */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-black rounded-2xl shadow-lg md:hidden animate-slide-down">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 rounded-2xl shadow-lg md:hidden animate-slide-down border border-slate-700/50">
             <div className="flex flex-col p-4 space-y-4">
               {["Home", "Benefits", "Features", "FAQ"].map((item) => (
                 <Link
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-sm font-medium text-white hover:text-emerald-500 transition-colors duration-300 flex items-center"
+                  className="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300 flex items-center group"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <ChevronRight size={16} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <ChevronRight size={16} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-blue-500" />
                   {item}
                 </Link>
               ))}
               <Button
-                className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-full w-full relative overflow-hidden group"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full w-full relative overflow-hidden group border-0"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="relative z-10">Download Now</span>
-                <span className="absolute inset-0 bg-emerald-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </Button>
             </div>
           </div>
@@ -131,37 +130,37 @@ function NavBar() {
 
 function HeroSection() {
   return (
-    <section id="home" className="pt-2 pb-2 md:pt-4 md:pb-4 text-white relative z-30">
-      {/* Animated dots pattern */}
-      <div className="absolute inset-0 opacity-10">
+    <section id="home" className="pt-2 pb-2 md:pt-4 md:pb-4 text-white relative z-30 min-h-screen flex items-center">
+      {/* Subtle dot pattern overlay */}
+      <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "30px 30px",
+            backgroundImage: "radial-gradient(circle, rgba(99,102,241,0.3) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
           }}
         ></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row items-center gap-2">
-          <div className="md:w-1/2 space-y-6 animate-fade-in-up text-center -mt-20 md:-mt-16">
-            <div className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium text-emerald-300 mb-2">
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="md:w-1/2 space-y-8 animate-fade-in-up text-center md:text-left">
+            <div className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm text-sm font-medium text-blue-300 mb-4 border border-blue-500/20">
               Simplify your life
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight">
               Your Daily Admin.{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-emerald-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
                 Sorted.
               </span>
             </h1>
-            <p className="text-lg text-gray-300 max-w-md mx-auto">
+            <p className="text-xl text-slate-300 max-w-lg leading-relaxed">
               Being an adult is hard enough — and being organized feels amazing. That's why we built ADULTING: the one
               app that simplifies your daily adult admin.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center md:justify-start">
               {/* Modern App Store Button */}
-              <a href="#" className="app-store-button mx-auto sm:mx-0">
+              <a href="#" className="app-store-button-new mx-auto sm:mx-0">
                 <div className="icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
@@ -174,7 +173,7 @@ function HeroSection() {
               </a>
               
               {/* Modern Google Play Button */}
-              <a href="#" className="app-store-button mx-auto sm:mx-0">
+              <a href="#" className="app-store-button-new mx-auto sm:mx-0">
                 <div className="icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
@@ -188,18 +187,18 @@ function HeroSection() {
             </div>
           </div>
           <div className="md:w-1/2 flex justify-center animate-fade-in relative z-40">
-            <div className="relative w-[512px] h-full transform hover:rotate-1 transition-transform duration-500 mb-12">
-              {/* Green gradient background for accentuation */}
-              <div className="absolute -inset-8 bg-gradient-to-br from-emerald-500/20 via-emerald-400/15 to-emerald-600/20 rounded-[100px] blur-2xl opacity-60 animate-pulse-slow"></div>
+            <div className="relative w-[400px] h-full transform hover:scale-105 transition-all duration-700 mb-12">
+              {/* Blue-purple gradient background for accentuation - smaller and more contained */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-indigo-500/15 rounded-[60px] blur-xl opacity-80 animate-pulse-slow"></div>
               
-              {/* iPhone mockup with reduced size (20% smaller: 640->512, 1280->1024) */}
+              {/* iPhone mockup */}
               <div className="relative w-full h-full z-10">
                 <Image
                   src="/images/iPhone-Vectors-1.png"
                   alt="ADULTING app interface mockup"
-                  width={512}
-                  height={1024}
-                  className="object-contain w-full h-full drop-shadow-2xl"
+                  width={400}
+                  height={800}
+                  className="w-full h-auto drop-shadow-2xl"
                   priority
                 />
               </div>
@@ -486,181 +485,193 @@ function UnifiedBenefitsFeaturesSection() {
   }
 
   return (
-    <section className="container mx-auto px-4 relative z-10 -mt-48">
-      <div className="bg-white/98 backdrop-blur-sm rounded-3xl shadow-2xl shadow-black/20 animate-fade-in relative overflow-hidden">
-        {/* Gradient accent border */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-300 via-emerald-500 to-emerald-300 rounded-t-3xl"></div>
+    <section className="container mx-auto px-4 relative z-10">
+      {/* Benefits Section with Gradient Box Background */}
+      <div className="relative mb-32">
+        {/* Gradient background box */}
+        <div className="absolute -inset-8 bg-gradient-to-br from-blue-600/15 via-purple-600/10 to-indigo-600/15 rounded-[3rem] blur-xl opacity-60"></div>
         
-        {/* Subtle pattern background */}
-        <div 
-          className="absolute inset-0 opacity-3 rounded-3xl" 
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
-          }}
-        ></div>
+        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+              Why You'll{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">Love</span>{" "}
+              Using ADULTING
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              We've designed ADULTING to make your life easier, more organized, and less stressful.
+            </p>
+          </div>
 
-        {/* ========== BENEFITS SECTION ========== */}
-        <div className="p-8 md:p-12 relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-left mb-6 animate-fade-in text-white relative z-10 max-w-2xl">
-            Why You'll{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">Love</span>{" "}
-            Using ADULTING
-          </h2>
-          <p className="text-gray-300 text-left max-w-2xl mb-16 animate-fade-in relative z-10">
-            We've designed ADULTING to make your life easier, more organized, and less stressful.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-[80%] mx-auto mb-20">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group animate-fade-in-up text-center"
+                className="group relative"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-6 transform group-hover:rotate-3 transition-transform duration-300 mx-auto">
-                  <span className="text-black">{benefit.icon}</span>
+                {/* Card gradient background */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 p-8 rounded-2xl hover:bg-slate-900/90 transition-all duration-500 transform hover:-translate-y-2">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-blue-400">{benefit.icon}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-300 transition-colors duration-300">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed">{benefit.description}</p>
                 </div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 group-hover:text-emerald-600 transition-colors duration-300 text-gray-900">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* ========== FEATURES SECTION ========== */}
-        <div className="p-8 md:p-12 relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 animate-fade-in text-white">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">
-              8 Core Modules
-            </span>{" "}
-            to Cover Your Most Essential Needs
-          </h2>
-          <p className="text-gray-300 text-center max-w-2xl mx-auto mb-16 animate-fade-in">
-            ADULTING brings together all the tools you need to manage your adult responsibilities in one simple app.
-          </p>
+      {/* Features Section with Gradient Box Background */}
+      <div className="relative">
+        {/* Gradient background box */}
+        <div className="absolute -inset-8 bg-gradient-to-br from-purple-600/15 via-indigo-600/10 to-blue-600/15 rounded-[3rem] blur-xl opacity-60"></div>
+        
+        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400">
+                8 Core Modules
+              </span>{" "}
+              to Cover Your Most Essential Needs
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              ADULTING brings together all the tools you need to manage your adult responsibilities in one simple app.
+            </p>
+          </div>
 
-          {/* Feature Cards - reduced width from 90% to 60% */}
-          <div className="space-y-6 max-w-[60%] mx-auto">
+          {/* Feature Cards */}
+          <div className="space-y-6 max-w-5xl mx-auto">
             {features.map((feature, index) => (
-              <div
-                key={index}
-                className={`bg-gradient-to-r from-gray-800 to-gray-700 text-white p-6 rounded-2xl transition-all duration-500 hover:from-gray-700 hover:to-gray-600 ${
-                  expandedFeature === index
-                    ? "mb-8 shadow-2xl shadow-emerald-500/30 ring-2 ring-emerald-500/50"
-                    : "transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/20"
-                } animate-fade-in-up`}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <div className="flex-shrink-0 p-3 bg-emerald-500/20 rounded-xl">{feature.icon}</div>
-                  <div className="flex-grow">
-                    <h3 className="text-xl sm:text-2xl font-semibold text-white">{feature.title}</h3>
-                    <p className="text-gray-200">{feature.description}</p>
+              <div key={index} className="group relative">
+                {/* Card gradient background */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div
+                  className={`relative bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 p-8 rounded-2xl transition-all duration-500 ${
+                    expandedFeature === index
+                      ? "bg-slate-900/90 shadow-2xl shadow-blue-500/20 ring-2 ring-blue-500/30"
+                      : "hover:bg-slate-900/90 hover:-translate-y-1"
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div className="flex-shrink-0 p-4 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl">
+                      {feature.icon}
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="text-2xl font-bold text-white mb-2">{feature.title}</h3>
+                      <p className="text-slate-300 leading-relaxed">{feature.description}</p>
+                    </div>
+                    <Button
+                      onClick={() => toggleExpand(index)}
+                      variant="outline"
+                      className="border-blue-500/50 text-blue-300 hover:text-white hover:bg-blue-500/20 hover:border-blue-400 flex-shrink-0 relative overflow-hidden group bg-transparent"
+                    >
+                      <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
+                      <span className="absolute inset-0 bg-blue-500/30 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </Button>
                   </div>
-                  <Button
-                    onClick={() => toggleExpand(index)}
-                    variant="outline"
-                    className="border-emerald-500/50 text-emerald-300 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-400 flex-shrink-0 relative overflow-hidden group"
-                  >
-                    <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
-                    <span className="absolute inset-0 bg-emerald-500/30 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                  </Button>
-                </div>
 
-                {expandedFeature === index && (
-                  <div className="mt-6 pt-6 border-t border-gray-500 animate-fade-in">
-                    <div className="flex gap-4">
-                      {/* Image/Carousel Section - Left Side */}
-                      <div className="flex-shrink-0 w-48">
-                        {feature.expandedContent.images.length > 1 ? (
-                          // Carousel for multiple images
-                          <div className="relative overflow-hidden rounded-3xl">
-                            <div 
-                              className="flex transition-transform duration-500 ease-in-out"
-                              style={{ 
-                                transform: `translateX(-${(carouselIndices[feature.title.split(' ')[0]] || 0) * 100}%)` 
-                              }}
-                            >
-                              {feature.expandedContent.images.map((image, imgIndex) => (
-                                <div key={imgIndex} className="min-w-full">
-                                  <Image
-                                    src={image}
-                                    alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                    width={300}
-                                    height={600}
-                                    className="rounded-3xl w-full h-auto object-contain"
+                  {expandedFeature === index && (
+                    <div className="mt-8 pt-8 border-t border-slate-600 animate-fade-in">
+                      <div className="flex gap-8">
+                        {/* Image/Carousel Section - Left Side */}
+                        <div className="flex-shrink-0 w-56">
+                          {feature.expandedContent.images.length > 1 ? (
+                            // Carousel for multiple images
+                            <div className="relative overflow-hidden rounded-3xl">
+                              <div 
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{ 
+                                  transform: `translateX(-${(carouselIndices[feature.title.split(' ')[0]] || 0) * 100}%)` 
+                                }}
+                              >
+                                {feature.expandedContent.images.map((image, imgIndex) => (
+                                  <div key={imgIndex} className="min-w-full">
+                                    <Image
+                                      src={image}
+                                      alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                      width={300}
+                                      height={600}
+                                      className="rounded-3xl w-full h-auto object-contain"
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                              
+                              {/* Carousel Controls */}
+                              <button
+                                onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'prev', feature.expandedContent.images.length)}
+                                className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="m15 18-6-6 6-6"></path>
+                                </svg>
+                              </button>
+                              <button
+                                onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'next', feature.expandedContent.images.length)}
+                                className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="m9 18 6-6-6-6"></path>
+                                </svg>
+                              </button>
+                              
+                              {/* Carousel Indicators */}
+                              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                                {feature.expandedContent.images.map((_, imgIndex) => (
+                                  <button
+                                    key={imgIndex}
+                                    onClick={() => setCarouselIndex(feature.title.split(' ')[0], imgIndex)}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                      (carouselIndices[feature.title.split(' ')[0]] || 0) === imgIndex 
+                                        ? 'bg-white' 
+                                        : 'bg-white/50 hover:bg-white/75'
+                                    }`}
                                   />
-                                </div>
-                              ))}
+                                ))}
+                              </div>
                             </div>
-                            
-                            {/* Carousel Controls */}
-                            <button
-                              onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'prev', feature.expandedContent.images.length)}
-                              className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="m15 18-6-6 6-6"></path>
-                              </svg>
-                            </button>
-                            <button
-                              onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'next', feature.expandedContent.images.length)}
-                              className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="m9 18 6-6-6-6"></path>
-                              </svg>
-                            </button>
-                            
-                            {/* Carousel Indicators */}
-                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
-                              {feature.expandedContent.images.map((_, imgIndex) => (
-                                <button
-                                  key={imgIndex}
-                                  onClick={() => setCarouselIndex(feature.title.split(' ')[0], imgIndex)}
-                                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                    (carouselIndices[feature.title.split(' ')[0]] || 0) === imgIndex 
-                                      ? 'bg-white' 
-                                      : 'bg-white/50 hover:bg-white/75'
-                                  }`}
-                                />
-                              ))}
+                          ) : (
+                            // Single image
+                            <div className="relative overflow-hidden rounded-3xl">
+                              <Image
+                                src={feature.expandedContent.images[0]}
+                                alt={`${feature.title} screenshot`}
+                                width={300}
+                                height={600}
+                                className="rounded-3xl w-full h-auto object-contain"
+                              />
                             </div>
-                          </div>
-                        ) : (
-                          // Single image
-                          <div className="relative overflow-hidden rounded-3xl">
-                            <Image
-                              src={feature.expandedContent.images[0]}
-                              alt={`${feature.title} screenshot`}
-                              width={300}
-                              height={600}
-                              className="rounded-3xl w-full h-auto object-contain"
-                            />
-                          </div>
-                        )}
-                      </div>
-                      
-                      {/* Content Section - Right Side */}
-                      <div className="flex-1 pl-2">
-                        <p className="text-gray-200 mb-4 text-sm leading-relaxed">{feature.expandedContent.description}</p>
-                        <h4 className="font-semibold mb-3 text-emerald-300 text-sm">Key Features:</h4>
-                        <ul className="space-y-2 text-gray-200">
-                          {feature.expandedContent.bulletPoints.map((point, i) => (
-                            <li key={i} className="flex items-start text-sm">
-                              <span className="inline-flex items-center justify-center w-4 h-4 bg-emerald-500/20 rounded-full mr-3 mt-0.5 text-emerald-300 text-xs flex-shrink-0">
-                                ✓
-                              </span>
-                              <span className="leading-relaxed">{point}</span>
-                            </li>
-                          ))}
-                        </ul>
+                          )}
+                        </div>
+                        
+                        {/* Content Section - Right Side */}
+                        <div className="flex-1">
+                          <p className="text-slate-300 mb-6 leading-relaxed">{feature.expandedContent.description}</p>
+                          <h4 className="font-bold mb-4 text-blue-300">Key Features:</h4>
+                          <ul className="space-y-3 text-slate-300">
+                            {feature.expandedContent.bulletPoints.map((point, i) => (
+                              <li key={i} className="flex items-start">
+                                <span className="inline-flex items-center justify-center w-5 h-5 bg-blue-500/20 rounded-full mr-3 mt-0.5 text-blue-300 text-xs flex-shrink-0">
+                                  ✓
+                                </span>
+                                <span className="leading-relaxed">{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -673,48 +684,39 @@ function UnifiedBenefitsFeaturesSection() {
 function IPhoneShowcaseSection() {
   return (
     <section className="container mx-auto px-4 relative z-10">
-      <div className="bg-white/98 backdrop-blur-sm rounded-3xl shadow-2xl shadow-black/20 animate-fade-in relative overflow-hidden">
-        {/* Gradient accent border */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-300 via-emerald-500 to-emerald-300 rounded-t-3xl"></div>
+      <div className="relative">
+        {/* Gradient background box */}
+        <div className="absolute -inset-8 bg-gradient-to-br from-indigo-600/15 via-blue-600/10 to-purple-600/15 rounded-[3rem] blur-xl opacity-60"></div>
         
-        {/* Subtle pattern background */}
-        <div 
-          className="absolute inset-0 opacity-3 rounded-3xl" 
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
-          }}
-        ></div>
-
-        {/* ========== IPHONE SHOWCASE SECTION ========== */}
-        <div className="p-8 md:p-12 relative z-10">
-          {/* iPhone Showcase - scaled to match Features Cards width */}
-          <div className="relative z-10 flex justify-center max-w-[90%] mx-auto">
-            <div className="relative group w-full">
+        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16">
+          {/* iPhone Showcase */}
+          <div className="relative z-10 flex justify-center max-w-4xl mx-auto">
+            <div className="relative group">
               {/* Subtle glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-emerald-300/5 to-emerald-500/10 rounded-3xl blur-3xl transform group-hover:scale-110 transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-indigo-500/10 rounded-3xl blur-3xl transform group-hover:scale-110 transition-transform duration-700"></div>
               
-              {/* iPhone Frame with rounded corners - increased scale */}
+              {/* iPhone Frame */}
               <Image
                 src="/images/iphone-frame-x3.png"
                 alt="ADULTING App Showcase"
-                width={700}
-                height={1400}
-                className="relative z-10 object-contain w-full h-auto transform group-hover:scale-105 transition-all duration-700 drop-shadow-2xl rounded-3xl"
+                width={600}
+                height={1200}
+                className="relative z-10 object-contain w-full h-auto transform group-hover:scale-105 transition-all duration-700 drop-shadow-2xl"
                 priority
               />
               
               {/* Floating elements around the phone */}
-              <div className="absolute top-1/4 -left-20 w-4 h-4 bg-emerald-400/30 rounded-full animate-pulse"></div>
-              <div className="absolute top-1/3 -right-16 w-3 h-3 bg-emerald-500/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute bottom-1/3 -left-12 w-2 h-2 bg-emerald-600/50 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-              <div className="absolute bottom-1/4 -right-20 w-5 h-5 bg-emerald-300/20 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute top-1/4 -left-16 w-4 h-4 bg-blue-400/40 rounded-full animate-pulse"></div>
+              <div className="absolute top-1/3 -right-12 w-3 h-3 bg-purple-500/50 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute bottom-1/3 -left-8 w-2 h-2 bg-indigo-600/60 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute bottom-1/4 -right-16 w-5 h-5 bg-blue-300/30 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             </div>
           </div>
 
           {/* Decorative text overlay */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center opacity-5">
-              <h3 className="text-6xl md:text-8xl font-bold text-emerald-500/10 tracking-wider">
+            <div className="text-center opacity-3">
+              <h3 className="text-6xl md:text-8xl font-bold text-blue-500/10 tracking-wider">
                 ADULTING
               </h3>
             </div>
@@ -755,37 +757,40 @@ function FaqSection() {
 
   return (
     <section id="faq" className="container mx-auto px-4 relative z-10">
-      <div className="bg-white/95 backdrop-blur-sm p-8 md:p-12 rounded-3xl shadow-2xl shadow-black/20 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-300/5 to-emerald-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-emerald-300/5 to-emerald-500/5 rounded-full blur-3xl"></div>
+      <div className="relative">
+        {/* Gradient background box */}
+        <div className="absolute -inset-8 bg-gradient-to-br from-blue-600/15 via-indigo-600/10 to-purple-600/15 rounded-[3rem] blur-xl opacity-60"></div>
+        
+        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+              Questions?{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
+                We've Got Answers.
+              </span>
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              Find answers to the most common questions about ADULTING.
+            </p>
+          </div>
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 animate-fade-in text-gray-900 relative z-10">
-          Questions?{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">
-            We've Got Answers.
-          </span>
-        </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16 animate-fade-in relative z-10">
-          Find answers to the most common questions about ADULTING.
-        </p>
-
-        <div className="max-w-3xl mx-auto relative z-10">
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up border border-gray-100"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <AccordionTrigger className="px-6 py-4 text-left font-medium hover:no-underline group">
-                  <span className="group-hover:text-emerald-600 transition-colors duration-300 text-gray-900">{faq.question}</span>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4 text-gray-600 animate-fade-in">{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 hover:bg-slate-900/80 transition-all duration-300 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <AccordionTrigger className="px-8 py-6 text-left font-semibold hover:no-underline group">
+                    <span className="group-hover:text-blue-300 transition-colors duration-300 text-white text-lg">{faq.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-8 pb-6 text-slate-300 leading-relaxed animate-fade-in">{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </section>
@@ -795,39 +800,30 @@ function FaqSection() {
 function CtaSection() {
   return (
     <section className="container mx-auto px-4 relative z-10">
-      <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl shadow-black/20 text-center relative overflow-hidden max-w-4xl mx-auto">
-        {/* Gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-gray-100 rounded-3xl"></div>
-
-        {/* Animated dots */}
-        <div className="absolute inset-0 opacity-20 rounded-3xl">
-          <div 
-            className="absolute inset-0" 
-            style={{
-              backgroundImage: "radial-gradient(circle, rgba(16,185,129,0.2) 1px, transparent 1px)",
-              backgroundSize: "20px 20px"
-            }}
-          ></div>
-        </div>
-
-        <div className="relative z-10">
-          <div className="inline-block px-4 py-1 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-4">
+      <div className="relative max-w-5xl mx-auto">
+        {/* Gradient background box */}
+        <div className="absolute -inset-8 bg-gradient-to-br from-purple-600/15 via-blue-600/10 to-indigo-600/15 rounded-[3rem] blur-xl opacity-60"></div>
+        
+        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16 text-center">
+          <div className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 text-sm font-semibold mb-6 border border-blue-500/20">
             Get Started Today
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 whitespace-nowrap sm:whitespace-normal">
+          
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
             Ready to finally feel{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
               organized
             </span>
             ?
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+          
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed">
             Download ADULTING today and take control of your grown-up life.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-lg mx-auto">
             {/* Modern App Store Button */}
-            <a href="#" className="app-store-button mx-auto sm:mx-0">
+            <a href="#" className="app-store-button-new mx-auto sm:mx-0">
               <div className="icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
@@ -840,7 +836,7 @@ function CtaSection() {
             </a>
             
             {/* Modern Google Play Button */}
-            <a href="#" className="app-store-button mx-auto sm:mx-0">
+            <a href="#" className="app-store-button-new mx-auto sm:mx-0">
               <div className="icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
@@ -860,42 +856,42 @@ function CtaSection() {
 
 function Footer() {
   return (
-    <footer className="bg-black/90 text-white py-12 relative overflow-hidden mt-20">
+    <footer className="bg-slate-900/90 text-white py-16 relative overflow-hidden mt-20">
       {/* Subtle pattern */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-3"
         style={{
           backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%236366f1' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
         }}
       ></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div className="grid md:grid-cols-2 gap-12 mb-12">
           <div className="animate-fade-in-up">
-            <h2 className="text-2xl font-bold mb-4 relative inline-block font-horizon">
+            <h2 className="text-3xl font-bold mb-6 relative inline-block font-horizon">
               ADULTING
-              <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-emerald-500"></span>
+              <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></span>
             </h2>
-            <p className="text-gray-400 max-w-md">
+            <p className="text-slate-300 max-w-md text-lg leading-relaxed">
               ADULTING is your everyday admin assistant — built to help grown-ups stay sane.
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-8">
             <div className="animate-fade-in-up" style={{ animationDelay: "100ms" }}>
-              <h3 className="text-lg font-semibold mb-4 relative inline-block">
+              <h3 className="text-xl font-semibold mb-6 relative inline-block">
                 Links
-                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-emerald-500"></span>
+                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></span>
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {["Home", "Benefits", "Features", "FAQ"].map((item, i) => (
                   <li key={i}>
                     <Link
                       href={`#${item.toLowerCase()}`}
-                      className="text-gray-400 hover:text-white transition-colors duration-300 group flex items-center"
+                      className="text-slate-300 hover:text-white transition-colors duration-300 group flex items-center text-lg"
                     >
-                      <span className="w-0 h-0.5 bg-emerald-500 mr-0 group-hover:w-2 group-hover:mr-2 transition-all duration-300"></span>
+                      <span className="w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
                       {item}
                     </Link>
                   </li>
@@ -904,18 +900,18 @@ function Footer() {
             </div>
 
             <div className="animate-fade-in-up" style={{ animationDelay: "200ms" }}>
-              <h3 className="text-lg font-semibold mb-4 relative inline-block">
+              <h3 className="text-xl font-semibold mb-6 relative inline-block">
                 Legal
-                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-emerald-500"></span>
+                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></span>
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {["Privacy Policy", "Terms of Use", "Contact"].map((item, i) => (
                   <li key={i}>
                     <Link
                       href="#"
-                      className="text-gray-400 hover:text-white transition-colors duration-300 group flex items-center"
+                      className="text-slate-300 hover:text-white transition-colors duration-300 group flex items-center text-lg"
                     >
-                      <span className="w-0 h-0.5 bg-emerald-500 mr-0 group-hover:w-2 group-hover:mr-2 transition-all duration-300"></span>
+                      <span className="w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
                       {item}
                     </Link>
                   </li>
@@ -925,20 +921,20 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} ADULTING. All rights reserved.</p>
+        <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-slate-400 text-base">&copy; {new Date().getFullYear()} ADULTING. All rights reserved.</p>
 
-          <div className="flex space-x-4 mt-4 md:mt-0">
+          <div className="flex space-x-6 mt-6 md:mt-0">
             {["linkedin", "instagram", "twitter"].map((social, i) => (
               <Link
                 key={i}
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110"
+                className="text-slate-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="28"
+                  height="28"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"

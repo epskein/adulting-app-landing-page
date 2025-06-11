@@ -193,6 +193,34 @@
   background: #111;
 }
 
+/* New app store button styles for the redesigned theme */
+.app-store-button-new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(139, 92, 246, 0.9));
+  color: white;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 24px -4px rgba(59, 130, 246, 0.3), 0 4px 8px -2px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 240px;
+  text-decoration: none;
+  font-family: var(--font-plus-jakarta-sans);
+  backdrop-filter: blur(16px);
+}
+
+.app-store-button-new:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 32px -4px rgba(59, 130, 246, 0.4), 0 8px 16px -2px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(139, 92, 246, 1));
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
 .app-store-button .icon {
   font-size: 24px;
   flex-shrink: 0;
