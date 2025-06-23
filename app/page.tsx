@@ -144,7 +144,7 @@ function HeroSection() {
 
       <div className="container mx-auto px-4 relative z-10 min-h-[90vh] flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">
-          <div className="space-y-8 animate-fade-in-up text-center lg:text-left order-2 lg:order-1">
+          <div className="space-y-8 animate-fade-in-up text-center lg:text-center order-2 lg:order-1">
             <div className="inline-block px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-medium text-gray-600 mb-4 border border-gray-200 shadow-sm">
               Simplify your life
             </div>
@@ -154,11 +154,11 @@ function HeroSection() {
                 Sorted.
               </span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+            <p className="text-xl text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-auto">
               Being an adult is hard enough — and being organized feels amazing. That's why we built ADULTING: the one
               app that simplifies your daily adult admin.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center">
               {/* Modern App Store Button */}
               <a href="#" className="app-store-button-mono mx-auto sm:mx-0">
                 <div className="icon">
@@ -339,7 +339,7 @@ function UnifiedBenefitsFeaturesSection() {
           <path d="M16 22v-1"></path>
         </svg>
       ),
-      title: "Digital Will",
+      title: "Digital Will/Emergency Instructions",
       description: "Leave critical info for your loved ones in case of emergencies — easily editable.",
       expandedContent: {
         description:
@@ -406,7 +406,7 @@ function UnifiedBenefitsFeaturesSection() {
       expandedContent: {
         description:
           "Behind an extra layer of security, you can safely store sensitive bits of information such as Account Passwords, Banking Login/payment details, app/card pincodes, tax numbers etc.",
-        images: ["/images/app-screenshots/documents.png"],
+        images: ["/images/app-screenshots/vault.png"],
         bulletPoints: [
           "Secure encryption of content with pincode access.",
           "Categorized storage system",
@@ -715,7 +715,7 @@ function FaqSection() {
     },
     {
       question: "How do I suggest new features?",
-      answer: "We love feedback! Use the in-app suggestion box or email us directly at support@adultingapp.com.",
+      answer: "We love feedback! Use the in-app suggestion box or email us directly at support@adulting-app.co",
     },
   ]
 
