@@ -21,7 +21,7 @@ import { useState, useEffect } from "react"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gray-50 relative overflow-hidden">
       <NavBar />
       <HeroSection />
       <div className="relative z-10 space-y-32 pb-20">
@@ -40,11 +40,11 @@ export default function Home() {
 function FloatingElements() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Gradient orbs that float around */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/5 to-purple-500/5 blur-3xl animate-float-slow"></div>
-      <div className="absolute top-3/4 right-1/4 w-[32rem] h-[32rem] rounded-full bg-gradient-to-r from-indigo-500/8 to-blue-500/8 blur-3xl animate-float-medium"></div>
-      <div className="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-gradient-to-r from-purple-400/6 to-indigo-500/6 blur-3xl animate-float-fast"></div>
-      <div className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-gradient-to-r from-slate-400/3 to-blue-400/3 blur-3xl animate-float-slow"></div>
+      {/* Subtle floating elements */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-blue-200/20 blur-3xl animate-float-slow"></div>
+      <div className="absolute top-3/4 right-1/4 w-[32rem] h-[32rem] rounded-full bg-purple-200/15 blur-3xl animate-float-medium"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-cyan-200/20 blur-3xl animate-float-fast"></div>
+      <div className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-indigo-200/15 blur-3xl animate-float-slow"></div>
     </div>
   )
 }
@@ -64,8 +64,8 @@ function NavBar() {
   return (
     <header
       className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300 rounded-full ${
-        scrolled ? "bg-slate-900/95 shadow-lg" : "bg-slate-900/90"
-      } shadow-xl shadow-black/50 border border-slate-700/50`}
+        scrolled ? "bg-black/95 shadow-lg" : "bg-black/90"
+      } shadow-xl shadow-black/20 border border-gray-800/50`}
     >
       <div className="px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center group">
@@ -81,44 +81,44 @@ function NavBar() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <div className="relative z-10">{isMenuOpen ? <X size={24} /> : <Menu size={24} />}</div>
-          <span className="absolute inset-0 bg-slate-700 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+          <span className="absolute inset-0 bg-gray-700 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
         </button>
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {["Home", "Benefits", "Features", "FAQ"].map((item) => (
-            <Link key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium relative group text-slate-300 hover:text-white transition-colors">
+            <Link key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium relative group text-gray-300 hover:text-white transition-colors">
               {item}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
           ))}
-          <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full relative overflow-hidden group border-0">
-            <span className="relative z-10">Download Now</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+          <Button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 rounded-full relative overflow-hidden group border-0 font-semibold shadow-lg">
+            <span className="relative z-10">Coming Soon</span>
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Button>
         </nav>
 
         {/* Mobile navigation */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 rounded-2xl shadow-lg md:hidden animate-slide-down border border-slate-700/50">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg md:hidden animate-slide-down border border-gray-200">
             <div className="flex flex-col p-4 space-y-4">
               {["Home", "Benefits", "Features", "FAQ"].map((item) => (
                 <Link
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300 flex items-center group"
+                  className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-300 flex items-center group"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <ChevronRight size={16} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-blue-500" />
+                  <ChevronRight size={16} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-gray-400" />
                   {item}
                 </Link>
               ))}
               <Button
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full w-full relative overflow-hidden group border-0"
+                className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 rounded-full w-full relative overflow-hidden group border-0 font-semibold shadow-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="relative z-10">Download Now</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </Button>
             </div>
           </div>
@@ -130,74 +130,74 @@ function NavBar() {
 
 function HeroSection() {
   return (
-    <section id="home" className="pt-2 pb-2 md:pt-4 md:pb-4 text-white relative z-30 min-h-screen flex items-center">
+    <section id="home" className="pt-2 pb-2 md:pt-4 md:pb-4 text-gray-900 relative z-30 min-h-screen flex items-center">
       {/* Subtle dot pattern overlay */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-3">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "radial-gradient(circle, rgba(99,102,241,0.3) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)",
             backgroundSize: "40px 40px",
           }}
         ></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-1/2 space-y-8 animate-fade-in-up text-center md:text-left">
-            <div className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm text-sm font-medium text-blue-300 mb-4 border border-blue-500/20">
+      <div className="container mx-auto px-4 relative z-10 min-h-[90vh] flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">
+          <div className="space-y-8 animate-fade-in-up text-center lg:text-left order-2 lg:order-1">
+            <div className="inline-block px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-medium text-gray-600 mb-4 border border-gray-200 shadow-sm">
               Simplify your life
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
               Your Daily Admin.{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">
                 Sorted.
               </span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-lg leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
               Being an adult is hard enough — and being organized feels amazing. That's why we built ADULTING: the one
               app that simplifies your daily adult admin.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start">
               {/* Modern App Store Button */}
-              <a href="#" className="app-store-button-new mx-auto sm:mx-0">
+              <a href="#" className="app-store-button-mono mx-auto sm:mx-0">
                 <div className="icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                   </svg>
                 </div>
                 <div className="text">
-                  <span className="text-small">Download on the</span>
+                  <span className="text-small">Download on the </span>
                   <span className="text-large">App Store</span>
                 </div>
               </a>
               
               {/* Modern Google Play Button */}
-              <a href="#" className="app-store-button-new mx-auto sm:mx-0">
+              <a href="#" className="app-store-button-mono mx-auto sm:mx-0">
                 <div className="icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                   </svg>
                 </div>
                 <div className="text">
-                  <span className="text-small">Get it on</span>
-                  <span className="text-large">Google Play</span>
+                  <span className="text-small">Get it on </span>
+                  <span className="text-large">Google Play </span>
                 </div>
               </a>
             </div>
           </div>
-          <div className="md:w-1/2 flex justify-center animate-fade-in relative z-40">
-            <div className="relative w-[400px] h-full transform hover:scale-105 transition-all duration-700 mb-12">
-              {/* Blue-purple gradient background for accentuation - smaller and more contained */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-indigo-500/15 rounded-[60px] blur-xl opacity-80 animate-pulse-slow"></div>
+          <div className="flex justify-center animate-fade-in relative z-40 order-1 lg:order-2">
+            <div className="relative w-[350px] lg:w-[450px] h-full transform hover:scale-105 transition-all duration-700">
+              {/* Subtle gradient background for iPhone */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-blue-100/30 via-purple-100/20 to-cyan-100/30 rounded-[40px] blur-xl opacity-60 animate-pulse-slow"></div>
               
               {/* iPhone mockup */}
               <div className="relative w-full h-full z-10">
                 <Image
                   src="/images/iPhone-Vectors-1.png"
                   alt="ADULTING app interface mockup"
-                  width={400}
-                  height={800}
+                  width={450}
+                  height={900}
                   className="w-full h-auto drop-shadow-2xl"
                   priority
                 />
@@ -226,59 +226,17 @@ function UnifiedBenefitsFeaturesSection() {
 
   const benefits = [
     {
-      icon: (
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M20 6 9 17l-5-5" />
-        </svg>
-      ),
+      icon: "/images/Benefits-Icon-1.png",
       title: "Simple & Intuitive Design",
       description: "Designed with intuitive, clear and clean UI — so you actually enjoy using it.",
     },
     {
-      icon: (
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 16v-4" />
-          <path d="M12 8h.01" />
-        </svg>
-      ),
+      icon: "/images/Benefits-Icon-2.png",
       title: "One Solution for Everyday Hassles",
       description: "No more slips of paper, to-do lists scattered in your notes app, or separate apps for everything— it's all in one place.",
     },
     {
-      icon: (
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-        </svg>
-      ),
+      icon: "/images/Benefits-Icon-3.png",
       title: "Stay on Top of Life",
       description: "Keep everything organized and never forget important tasks, documents, travel plans, grocery lists or emergency contacts again.",
     },
@@ -486,19 +444,19 @@ function UnifiedBenefitsFeaturesSection() {
 
   return (
     <section className="container mx-auto px-4 relative z-10">
-      {/* Benefits Section with Gradient Box Background */}
+      {/* Benefits Section */}
       <div className="relative mb-32">
-        {/* Gradient background box */}
-        <div className="absolute -inset-8 bg-gradient-to-br from-blue-600/15 via-purple-600/10 to-indigo-600/15 rounded-[3rem] blur-xl opacity-60"></div>
+        {/* Soft gradient overlay */}
+        <div className="absolute -inset-4 bg-gradient-to-br from-blue-100/30 via-purple-100/20 to-cyan-100/30 rounded-[2rem] blur-sm opacity-60"></div>
         
-        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16">
+        <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
               Why You'll{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">Love</span>{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">Love</span>{" "}
               Using ADULTING
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               We've designed ADULTING to make your life easier, more organized, and less stressful.
             </p>
           </div>
@@ -510,17 +468,23 @@ function UnifiedBenefitsFeaturesSection() {
                 className="group relative"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                {/* Card gradient background */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {/* Subtle hover effect */}
+                <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                <div className="relative bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 p-8 rounded-2xl hover:bg-slate-900/90 transition-all duration-500 transform hover:-translate-y-2">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-blue-400">{benefit.icon}</span>
+                <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
+                  <div className="mb-6 flex justify-center">
+                    <Image
+                      src={benefit.icon}
+                      alt={benefit.title}
+                      width={256}
+                      height={256}
+                      className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                    />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-300 transition-colors duration-300">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
                     {benefit.title}
                   </h3>
-                  <p className="text-slate-300 leading-relaxed">{benefit.description}</p>
+                  <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                 </div>
               </div>
             ))}
@@ -528,20 +492,20 @@ function UnifiedBenefitsFeaturesSection() {
         </div>
       </div>
 
-      {/* Features Section with Gradient Box Background */}
+      {/* Features Section */}
       <div className="relative">
-        {/* Gradient background box */}
-        <div className="absolute -inset-8 bg-gradient-to-br from-purple-600/15 via-indigo-600/10 to-blue-600/15 rounded-[3rem] blur-xl opacity-60"></div>
+        {/* Soft gradient overlay */}
+        <div className="absolute -inset-4 bg-gradient-to-br from-purple-100/25 via-blue-100/30 to-indigo-100/25 rounded-[2rem] blur-sm opacity-60"></div>
         
-        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16">
+        <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">
                 8 Core Modules
               </span>{" "}
               to Cover Your Most Essential Needs
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               ADULTING brings together all the tools you need to manage your adult responsibilities in one simple app.
             </p>
           </div>
@@ -550,37 +514,37 @@ function UnifiedBenefitsFeaturesSection() {
           <div className="space-y-6 max-w-5xl mx-auto">
             {features.map((feature, index) => (
               <div key={index} className="group relative">
-                {/* Card gradient background */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {/* Subtle hover effect */}
+                <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div
-                  className={`relative bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 p-8 rounded-2xl transition-all duration-500 ${
+                  className={`relative bg-gray-600/90 backdrop-blur-sm border border-gray-500/30 p-8 rounded-2xl transition-all duration-500 shadow-lg ${
                     expandedFeature === index
-                      ? "bg-slate-900/90 shadow-2xl shadow-blue-500/20 ring-2 ring-blue-500/30"
-                      : "hover:bg-slate-900/90 hover:-translate-y-1"
+                      ? "bg-gray-600 shadow-2xl ring-2 ring-blue-500/30"
+                      : "hover:bg-gray-600 hover:-translate-y-1 hover:shadow-xl"
                   }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                    <div className="flex-shrink-0 p-4 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl">
+                    <div className="flex-shrink-0 p-4 bg-gray-700/60 rounded-xl group-hover:bg-gray-700/80 transition-colors duration-300">
                       {feature.icon}
                     </div>
                     <div className="flex-grow">
                       <h3 className="text-2xl font-bold text-white mb-2">{feature.title}</h3>
-                      <p className="text-slate-300 leading-relaxed">{feature.description}</p>
+                      <p className="text-gray-200 leading-relaxed">{feature.description}</p>
                     </div>
                     <Button
                       onClick={() => toggleExpand(index)}
                       variant="outline"
-                      className="border-blue-500/50 text-blue-300 hover:text-white hover:bg-blue-500/20 hover:border-blue-400 flex-shrink-0 relative overflow-hidden group bg-transparent"
+                      className="border-gray-400/50 text-gray-200 hover:text-white hover:bg-gray-700/50 hover:border-gray-300 flex-shrink-0 relative overflow-hidden group bg-transparent"
                     >
                       <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
-                      <span className="absolute inset-0 bg-blue-500/30 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                      <span className="absolute inset-0 bg-gray-700/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                     </Button>
                   </div>
 
                   {expandedFeature === index && (
-                    <div className="mt-8 pt-8 border-t border-slate-600 animate-fade-in">
+                    <div className="mt-8 pt-8 border-t border-gray-200 animate-fade-in">
                       <div className="flex gap-8">
                         {/* Image/Carousel Section - Left Side */}
                         <div className="flex-shrink-0 w-56">
@@ -609,7 +573,7 @@ function UnifiedBenefitsFeaturesSection() {
                               {/* Carousel Controls */}
                               <button
                                 onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'prev', feature.expandedContent.images.length)}
-                                className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                                className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
                               >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                   <path d="m15 18-6-6 6-6"></path>
@@ -617,7 +581,7 @@ function UnifiedBenefitsFeaturesSection() {
                               </button>
                               <button
                                 onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'next', feature.expandedContent.images.length)}
-                                className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                                className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
                               >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                   <path d="m9 18 6-6-6-6"></path>
@@ -655,12 +619,12 @@ function UnifiedBenefitsFeaturesSection() {
                         
                         {/* Content Section - Right Side */}
                         <div className="flex-1">
-                          <p className="text-slate-300 mb-6 leading-relaxed">{feature.expandedContent.description}</p>
-                          <h4 className="font-bold mb-4 text-blue-300">Key Features:</h4>
-                          <ul className="space-y-3 text-slate-300">
+                          <p className="text-gray-200 mb-6 leading-relaxed">{feature.expandedContent.description}</p>
+                          <h4 className="font-bold mb-4 text-white">Key Features:</h4>
+                          <ul className="space-y-3 text-gray-200">
                             {feature.expandedContent.bulletPoints.map((point, i) => (
                               <li key={i} className="flex items-start">
-                                <span className="inline-flex items-center justify-center w-5 h-5 bg-blue-500/20 rounded-full mr-3 mt-0.5 text-blue-300 text-xs flex-shrink-0">
+                                <span className="inline-flex items-center justify-center w-5 h-5 bg-gray-700/60 rounded-full mr-3 mt-0.5 text-white text-xs flex-shrink-0">
                                   ✓
                                 </span>
                                 <span className="leading-relaxed">{point}</span>
@@ -685,15 +649,15 @@ function IPhoneShowcaseSection() {
   return (
     <section className="container mx-auto px-4 relative z-10">
       <div className="relative">
-        {/* Gradient background box */}
-        <div className="absolute -inset-8 bg-gradient-to-br from-indigo-600/15 via-blue-600/10 to-purple-600/15 rounded-[3rem] blur-xl opacity-60"></div>
+        {/* Soft gradient overlay */}
+        <div className="absolute -inset-4 bg-gradient-to-br from-cyan-100/30 via-blue-100/25 to-purple-100/30 rounded-[2rem] blur-sm opacity-60"></div>
         
-        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16">
+        <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
           {/* iPhone Showcase */}
           <div className="relative z-10 flex justify-center max-w-4xl mx-auto">
             <div className="relative group">
-              {/* Subtle glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-indigo-500/10 rounded-3xl blur-3xl transform group-hover:scale-110 transition-transform duration-700"></div>
+              {/* Subtle gradient glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/40 via-purple-100/30 to-cyan-100/40 rounded-3xl blur-2xl transform group-hover:scale-110 transition-transform duration-700"></div>
               
               {/* iPhone Frame */}
               <Image
@@ -705,18 +669,18 @@ function IPhoneShowcaseSection() {
                 priority
               />
               
-              {/* Floating elements around the phone */}
-              <div className="absolute top-1/4 -left-16 w-4 h-4 bg-blue-400/40 rounded-full animate-pulse"></div>
-              <div className="absolute top-1/3 -right-12 w-3 h-3 bg-purple-500/50 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute bottom-1/3 -left-8 w-2 h-2 bg-indigo-600/60 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-              <div className="absolute bottom-1/4 -right-16 w-5 h-5 bg-blue-300/30 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              {/* Floating elements around the phone - subtle grey dots */}
+              <div className="absolute top-1/4 -left-16 w-3 h-3 bg-gray-500/20 rounded-full animate-pulse"></div>
+              <div className="absolute top-1/3 -right-12 w-2 h-2 bg-gray-400/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute bottom-1/3 -left-8 w-2 h-2 bg-gray-600/25 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute bottom-1/4 -right-16 w-3 h-3 bg-gray-300/15 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             </div>
           </div>
 
           {/* Decorative text overlay */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center opacity-3">
-              <h3 className="text-6xl md:text-8xl font-bold text-blue-500/10 tracking-wider">
+            <div className="text-center opacity-2">
+              <h3 className="text-6xl md:text-8xl font-bold text-gray-500/5 tracking-wider">
                 ADULTING
               </h3>
             </div>
@@ -758,18 +722,18 @@ function FaqSection() {
   return (
     <section id="faq" className="container mx-auto px-4 relative z-10">
       <div className="relative">
-        {/* Gradient background box */}
-        <div className="absolute -inset-8 bg-gradient-to-br from-blue-600/15 via-indigo-600/10 to-purple-600/15 rounded-[3rem] blur-xl opacity-60"></div>
+        {/* Soft gradient overlay */}
+        <div className="absolute -inset-4 bg-gradient-to-br from-blue-100/25 via-indigo-100/30 to-purple-100/25 rounded-[2rem] blur-sm opacity-60"></div>
         
-        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16">
+        <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
               Questions?{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">
                 We've Got Answers.
               </span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Find answers to the most common questions about ADULTING.
             </p>
           </div>
@@ -780,13 +744,13 @@ function FaqSection() {
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-slate-700/50 hover:bg-slate-900/80 transition-all duration-300 animate-fade-in-up"
+                  className="bg-gray-600/90 backdrop-blur-sm rounded-2xl border border-gray-500/30 hover:bg-gray-600 transition-all duration-300 animate-fade-in-up shadow-lg hover:shadow-xl"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <AccordionTrigger className="px-8 py-6 text-left font-semibold hover:no-underline group">
-                    <span className="group-hover:text-blue-300 transition-colors duration-300 text-white text-lg">{faq.question}</span>
+                    <span className="group-hover:text-white transition-colors duration-300 text-gray-100 text-lg">{faq.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="px-8 pb-6 text-slate-300 leading-relaxed animate-fade-in">{faq.answer}</AccordionContent>
+                  <AccordionContent className="px-8 pb-6 text-gray-200 leading-relaxed animate-fade-in">{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -801,49 +765,49 @@ function CtaSection() {
   return (
     <section className="container mx-auto px-4 relative z-10">
       <div className="relative max-w-5xl mx-auto">
-        {/* Gradient background box */}
-        <div className="absolute -inset-8 bg-gradient-to-br from-purple-600/15 via-blue-600/10 to-indigo-600/15 rounded-[3rem] blur-xl opacity-60"></div>
+        {/* Soft gradient overlay */}
+        <div className="absolute -inset-4 bg-gradient-to-br from-purple-100/30 via-cyan-100/25 to-blue-100/30 rounded-[2rem] blur-sm opacity-60"></div>
         
-        <div className="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 md:p-16 text-center">
-          <div className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 text-sm font-semibold mb-6 border border-blue-500/20">
+        <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 text-center shadow-xl">
+          <div className="inline-block px-6 py-2 rounded-full bg-white/80 text-gray-600 text-sm font-semibold mb-6 border border-gray-200 shadow-sm">
             Get Started Today
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
             Ready to finally feel{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">
               organized
             </span>
             ?
           </h2>
           
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
             Download ADULTING today and take control of your grown-up life.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-lg mx-auto">
             {/* Modern App Store Button */}
-            <a href="#" className="app-store-button-new mx-auto sm:mx-0">
+            <a href="#" className="app-store-button-mono mx-auto sm:mx-0">
               <div className="icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                 </svg>
               </div>
               <div className="text">
-                <span className="text-small">Download on the</span>
+                <span className="text-small">Download on the </span>
                 <span className="text-large">App Store</span>
               </div>
             </a>
             
             {/* Modern Google Play Button */}
-            <a href="#" className="app-store-button-new mx-auto sm:mx-0">
+            <a href="#" className="app-store-button-mono mx-auto sm:mx-0">
               <div className="icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                 </svg>
               </div>
               <div className="text">
-                <span className="text-small">Get it on</span>
+                <span className="text-small">Get it on </span>
                 <span className="text-large">Google Play</span>
               </div>
             </a>
@@ -856,13 +820,13 @@ function CtaSection() {
 
 function Footer() {
   return (
-    <footer className="bg-slate-900/90 text-white py-16 relative overflow-hidden mt-20">
+    <footer className="bg-black/90 text-white py-16 relative overflow-hidden mt-20">
       {/* Subtle pattern */}
       <div
-        className="absolute inset-0 opacity-3"
+        className="absolute inset-0 opacity-2"
         style={{
           backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%236366f1' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
         }}
       ></div>
 
@@ -871,9 +835,9 @@ function Footer() {
           <div className="animate-fade-in-up">
             <h2 className="text-3xl font-bold mb-6 relative inline-block font-horizon">
               ADULTING
-              <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></span>
+              <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500"></span>
             </h2>
-            <p className="text-slate-300 max-w-md text-lg leading-relaxed">
+            <p className="text-gray-300 max-w-md text-lg leading-relaxed">
               ADULTING is your everyday admin assistant — built to help grown-ups stay sane.
             </p>
           </div>
@@ -882,16 +846,16 @@ function Footer() {
             <div className="animate-fade-in-up" style={{ animationDelay: "100ms" }}>
               <h3 className="text-xl font-semibold mb-6 relative inline-block">
                 Links
-                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></span>
+                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gray-400"></span>
               </h3>
               <ul className="space-y-3">
                 {["Home", "Benefits", "Features", "FAQ"].map((item, i) => (
                   <li key={i}>
                     <Link
                       href={`#${item.toLowerCase()}`}
-                      className="text-slate-300 hover:text-white transition-colors duration-300 group flex items-center text-lg"
+                      className="text-gray-300 hover:text-white transition-colors duration-300 group flex items-center text-lg"
                     >
-                      <span className="w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
+                      <span className="w-0 h-0.5 bg-gray-400 mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
                       {item}
                     </Link>
                   </li>
@@ -902,16 +866,16 @@ function Footer() {
             <div className="animate-fade-in-up" style={{ animationDelay: "200ms" }}>
               <h3 className="text-xl font-semibold mb-6 relative inline-block">
                 Legal
-                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></span>
+                <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gray-400"></span>
               </h3>
               <ul className="space-y-3">
                 {["Privacy Policy", "Terms of Use", "Contact"].map((item, i) => (
                   <li key={i}>
                     <Link
                       href="#"
-                      className="text-slate-300 hover:text-white transition-colors duration-300 group flex items-center text-lg"
+                      className="text-gray-300 hover:text-white transition-colors duration-300 group flex items-center text-lg"
                     >
-                      <span className="w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
+                      <span className="w-0 h-0.5 bg-gray-400 mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
                       {item}
                     </Link>
                   </li>
@@ -921,15 +885,15 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-400 text-base">&copy; {new Date().getFullYear()} ADULTING. All rights reserved.</p>
+        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-base">&copy; {new Date().getFullYear()} ADULTING. All rights reserved.</p>
 
           <div className="flex space-x-6 mt-6 md:mt-0">
             {["linkedin", "instagram", "twitter"].map((social, i) => (
               <Link
                 key={i}
                 href="#"
-                className="text-slate-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
+                className="text-gray-400 hover:text-gray-200 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
