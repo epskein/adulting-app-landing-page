@@ -245,7 +245,7 @@ function UnifiedBenefitsFeaturesSection() {
   const features = [
     {
       icon: <FileText size={28} className="text-white" />,
-      title: "my documents",
+      title: "My Documents",
       description: "Securely store important docs (lease, ID, medical aid card) for quick access anytime.",
       expandedContent: {
         description:
@@ -270,7 +270,7 @@ function UnifiedBenefitsFeaturesSection() {
           <path d="M12 21v-4"></path>
         </svg>
       ),
-      title: "emergency & safety",
+      title: "Emergency & Safety",
       description: "Store emergency contacts details — ready when it matters.",
       expandedContent: {
         description:
@@ -291,7 +291,7 @@ function UnifiedBenefitsFeaturesSection() {
           <path d="M12.97 19.77 7 15h12.5l-3.75 4.5a2 2 0 0 1-2.78.27Z"></path>
         </svg>
       ),
-      title: "mealprep, recipes and grocery list",
+      title: "Mealprep, Recipes and Grocery List",
       description: "Plan meals with ease - Save your favorite recipes and create your grocery list in one dedicated place.",
       expandedContent: {
         description:
@@ -310,7 +310,7 @@ function UnifiedBenefitsFeaturesSection() {
           <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
         </svg>
       ),
-      title: "travel assistant",
+      title: "Travel Assistant",
       description: "Organize your trips with itineraries, tickets, bookings, packing lists, and travel reminders",
       expandedContent: {
         description:
@@ -339,7 +339,7 @@ function UnifiedBenefitsFeaturesSection() {
           <path d="M16 22v-1"></path>
         </svg>
       ),
-      title: "digital will",
+      title: "Digital Will",
       description: "Leave critical info for your loved ones in case of emergencies — easily editable.",
       expandedContent: {
         description:
@@ -359,7 +359,7 @@ function UnifiedBenefitsFeaturesSection() {
           <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
         </svg>
       ),
-      title: "smart reminders/alerts",
+      title: "Smart Reminders",
       description: "Set custom recurring reminders — like car registration, dentist visits, and more.",
       expandedContent: {
         description:
@@ -381,7 +381,7 @@ function UnifiedBenefitsFeaturesSection() {
           <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"></path>
         </svg>
       ),
-      title: "pet tracker",
+      title: "Pet Tracker",
       description: "Add your pets, track vaccines, vet visits, active treatments, and more.",
       expandedContent: {
         description:
@@ -401,7 +401,7 @@ function UnifiedBenefitsFeaturesSection() {
           <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
         </svg>
       ),
-      title: "vault",
+      title: "Vault",
       description: "Securely store passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
       expandedContent: {
         description:
@@ -821,15 +821,6 @@ function CtaSection() {
 function Footer() {
   return (
     <footer className="bg-black/90 text-white py-16 relative overflow-hidden mt-20">
-      {/* Subtle pattern */}
-      <div
-        className="absolute inset-0 opacity-2"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-        }}
-      ></div>
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 mb-12">
           <div className="animate-fade-in-up">
