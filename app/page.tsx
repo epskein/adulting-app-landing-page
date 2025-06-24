@@ -5,6 +5,7 @@ import Link from "next/link"
 import {
   Menu,
   X,
+  ChevronLeft,
   ChevronRight,
   AlertCircle,
   FileText,
@@ -18,6 +19,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useState, useEffect } from "react"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function Home() {
   return (
@@ -166,7 +168,7 @@ function HeroSection() {
             <div className="inline-block px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-medium text-gray-600 mb-4 border border-gray-200 shadow-sm">
               Simplify your life
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
               Your Daily Admin.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">
                 Sorted.
@@ -231,9 +233,12 @@ function HeroSection() {
 function UnifiedBenefitsFeaturesSection() {
   const [expandedFeature, setExpandedFeature] = useState<number | null>(null)
   const [scrollY, setScrollY] = useState(0)
-  const [carouselIndices, setCarouselIndices] = useState<{[key: string]: number}>({
+  const [activeBenefit, setActiveBenefit] = useState(0)
+  const isMobile = useIsMobile()
+
+  const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({
     mealprep: 0,
-    travel: 0
+    travel: 0,
   })
 
   useEffect(() => {
@@ -435,6 +440,14 @@ function UnifiedBenefitsFeaturesSection() {
     },
   ]
 
+  const handleBenefitChange = (direction: "next" | "prev") => {
+    if (direction === "next") {
+      setActiveBenefit((prev) => (prev + 1) % benefits.length)
+    } else {
+      setActiveBenefit((prev) => (prev - 1 + benefits.length) % benefits.length)
+    }
+  }
+
   const toggleExpand = (index: number) => {
     if (expandedFeature === index) {
       setExpandedFeature(null)
@@ -469,9 +482,11 @@ function UnifiedBenefitsFeaturesSection() {
         
         <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
               Why You'll{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">Love</span>{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">
+                Love
+              </span>{" "}
               Using ADULTING
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -479,34 +494,77 @@ function UnifiedBenefitsFeaturesSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="group relative"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                {/* Subtle hover effect */}
-                <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
-                  <div className="mb-6 flex justify-center">
-                    <Image
-                      src={benefit.icon}
-                      alt={benefit.title}
-                      width={256}
-                      height={256}
-                      className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
-                    />
+          {isMobile ? (
+            <div className="relative max-w-md mx-auto">
+              <div className="relative min-h-[620px] flex items-center justify-center">
+                <div key={activeBenefit} className="w-full animate-fade-in">
+                  <div className="group relative">
+                    <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
+                      <div className="mb-6 flex justify-center">
+                        <Image
+                          src={benefits[activeBenefit].icon}
+                          alt={benefits[activeBenefit].title}
+                          width={256}
+                          height={256}
+                          className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
+                        {benefits[activeBenefit].title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">{benefits[activeBenefit].description}</p>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                 </div>
               </div>
-            ))}
-          </div>
+              <div className="flex justify-center items-center gap-6 mt-8">
+                <Button onClick={() => handleBenefitChange("prev")} variant="outline" size="icon" className="rounded-full shadow-md">
+                  <ChevronLeft className="h-5 w-5" />
+                </Button>
+                <div className="flex gap-3">
+                  {benefits.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveBenefit(i)}
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                        i === activeBenefit ? "bg-blue-500 scale-125" : "bg-gray-300 hover:bg-gray-400"
+                      }`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+                <Button onClick={() => handleBenefitChange("next")} variant="outline" size="icon" className="rounded-full shadow-md">
+                  <ChevronRight className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="group relative" style={{ animationDelay: `${index * 150}ms` }}>
+                  {/* Subtle hover effect */}
+                  <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
+                    <div className="mb-6 flex justify-center">
+                      <Image
+                        src={benefit.icon}
+                        alt={benefit.title}
+                        width={256}
+                        height={256}
+                        className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -531,129 +589,134 @@ function UnifiedBenefitsFeaturesSection() {
           {/* Feature Cards */}
           <div className="space-y-6 max-w-5xl mx-auto">
             {features.map((feature, index) => (
-              <div key={index} className="group relative">
-                {/* Subtle hover effect */}
-                <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div
-                  className={`relative bg-gray-600/90 backdrop-blur-sm border border-gray-500/30 p-8 rounded-2xl transition-all duration-500 shadow-lg ${
-                    expandedFeature === index
-                      ? "bg-gray-600 shadow-2xl ring-2 ring-blue-500/30"
-                      : "hover:bg-gray-600 hover:-translate-y-1 hover:shadow-xl"
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                    <div className="flex-shrink-0 p-4 bg-gray-700/60 rounded-xl group-hover:bg-gray-700/80 transition-colors duration-300">
-                      {feature.icon}
-                    </div>
-                    <div className="flex-grow">
-                      <h3 className="text-2xl font-bold text-white mb-2">{feature.title}</h3>
-                      <p className="text-gray-200 leading-relaxed">{feature.description}</p>
-                    </div>
-                    <Button
-                      onClick={() => toggleExpand(index)}
-                      variant="outline"
-                      className="border-gray-400/50 text-gray-200 hover:text-white hover:bg-gray-700/50 hover:border-gray-300 flex-shrink-0 relative overflow-hidden group bg-transparent"
-                    >
-                      <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
-                      <span className="absolute inset-0 bg-gray-700/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                    </Button>
+              <div
+                key={index}
+                className="bg-gray-700/40 rounded-2xl p-6 transition-all duration-300 hover:bg-gray-700/60 border border-gray-600/80 animate-fade-in-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                  <div className="flex-shrink-0 p-4 bg-gray-700/60 rounded-xl group-hover:bg-gray-700/80 transition-colors duration-300">
+                    {feature.icon}
                   </div>
+                  <div className="flex-grow">
+                    <h3 className="text-2xl font-bold text-white mb-2">{feature.title}</h3>
+                    <p className="text-gray-200 leading-relaxed">{feature.description}</p>
+                  </div>
+                  <Button
+                    onClick={() => toggleExpand(index)}
+                    variant="outline"
+                    className="border-gray-400/50 text-gray-200 hover:text-white hover:bg-gray-700/50 hover:border-gray-300 flex-shrink-0 relative overflow-hidden group bg-transparent"
+                  >
+                    <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
+                    <span className="absolute inset-0 bg-gray-700/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  </Button>
+                </div>
 
-                  {expandedFeature === index && (
-                    <div className="mt-8 pt-8 border-t border-gray-200 animate-fade-in">
-                      <div className="flex gap-8">
-                        {/* Image/Carousel Section - Left Side */}
-                        <div className="flex-shrink-0 w-56">
-                          {feature.expandedContent.images.length > 1 ? (
-                            // Carousel for multiple images
-                            <div className="relative overflow-hidden rounded-3xl">
-                              <div 
-                                className="flex transition-transform duration-500 ease-in-out"
-                                style={{ 
-                                  transform: `translateX(-${(carouselIndices[feature.title.split(' ')[0]] || 0) * 100}%)` 
-                                }}
-                              >
-                                {feature.expandedContent.images.map((image, imgIndex) => (
-                                  <div key={imgIndex} className="min-w-full">
+                {expandedFeature === index && (
+                  <div className="mt-6 p-6 bg-gray-800/80 rounded-2xl animate-fade-in border border-gray-700/60">
+                    <div className="flex flex-col md:flex-row gap-8 items-start">
+                      {/* Image Section - Left Side */}
+                      <div className="relative order-2 md:order-1 md:w-1/2">
+                        {feature.expandedContent.images.length > 1 ? (
+                          // Carousel for multiple images
+                          <div className="relative rounded-3xl overflow-hidden">
+                            <div
+                              className="flex transition-transform duration-500 ease-in-out"
+                              style={{
+                                transform: `translateX(-${
+                                  carouselIndices[feature.title.split(" ")[0]] * 100
+                                }%)`,
+                              }}
+                            >
+                              {feature.expandedContent.images.map((img, imgIndex) => (
+                                <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
+                                  <div className="rounded-image-container">
                                     <Image
-                                      src={image}
+                                      src={img}
                                       alt={`${feature.title} screenshot ${imgIndex + 1}`}
                                       width={300}
                                       height={600}
-                                      className="rounded-3xl w-full h-auto object-contain"
+                                      className="w-full h-auto object-contain md:max-h-[480px]"
                                     />
                                   </div>
-                                ))}
-                              </div>
-                              
-                              {/* Carousel Controls */}
-                              <button
-                                onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'prev', feature.expandedContent.images.length)}
-                                className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
-                              >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                  <path d="m15 18-6-6 6-6"></path>
-                                </svg>
-                              </button>
-                              <button
-                                onClick={() => handleCarouselNav(feature.title.split(' ')[0], 'next', feature.expandedContent.images.length)}
-                                className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
-                              >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                  <path d="m9 18 6-6-6-6"></path>
-                                </svg>
-                              </button>
-                              
-                              {/* Carousel Indicators */}
-                              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
-                                {feature.expandedContent.images.map((_, imgIndex) => (
-                                  <button
-                                    key={imgIndex}
-                                    onClick={() => setCarouselIndex(feature.title.split(' ')[0], imgIndex)}
-                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                      (carouselIndices[feature.title.split(' ')[0]] || 0) === imgIndex 
-                                        ? 'bg-white' 
-                                        : 'bg-white/50 hover:bg-white/75'
-                                    }`}
-                                  />
-                                ))}
-                              </div>
+                                </div>
+                              ))}
                             </div>
-                          ) : (
-                            // Single image
-                            <div className="relative overflow-hidden rounded-3xl">
+                            {/* Carousel Controls */}
+                            <button
+                              onClick={() =>
+                                handleCarouselNav(
+                                  feature.title.split(" ")[0],
+                                  "prev",
+                                  feature.expandedContent.images.length
+                                )
+                              }
+                              className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                            >
+                              <ChevronLeft className="h-5 w-5" />
+                            </button>
+                            <button
+                              onClick={() =>
+                                handleCarouselNav(
+                                  feature.title.split(" ")[0],
+                                  "next",
+                                  feature.expandedContent.images.length
+                                )
+                              }
+                              className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                            >
+                              <ChevronRight className="h-5 w-5" />
+                            </button>
+
+                            {/* Carousel Indicators */}
+                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                              {feature.expandedContent.images.map((_, imgIndex) => (
+                                <button
+                                  key={imgIndex}
+                                  onClick={() => setCarouselIndex(feature.title.split(" ")[0], imgIndex)}
+                                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                    (carouselIndices[feature.title.split(" ")[0]] || 0) === imgIndex
+                                      ? "bg-white"
+                                      : "bg-white/50 hover:bg-white/75"
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          // Single image
+                          <div className="overflow-hidden text-center">
+                            <div className="rounded-image-container">
                               <Image
                                 src={feature.expandedContent.images[0]}
                                 alt={`${feature.title} screenshot`}
                                 width={300}
                                 height={600}
-                                className="rounded-3xl w-full h-auto object-contain"
+                                className="w-full h-auto object-contain md:max-h-[480px]"
                               />
                             </div>
-                          )}
-                        </div>
-                        
-                        {/* Content Section - Right Side */}
-                        <div className="flex-1">
-                          <p className="text-gray-200 mb-6 leading-relaxed">{feature.expandedContent.description}</p>
-                          <h4 className="font-bold mb-4 text-white">Key Features:</h4>
-                          <ul className="space-y-3 text-gray-200">
-                            {feature.expandedContent.bulletPoints.map((point, i) => (
-                              <li key={i} className="flex items-start">
-                                <span className="inline-flex items-center justify-center w-5 h-5 bg-gray-700/60 rounded-full mr-3 mt-0.5 text-white text-xs flex-shrink-0">
-                                  ✓
-                                </span>
-                                <span className="leading-relaxed">{point}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* Content Section - Right Side */}
+                      <div className="flex-1 order-1 md:order-2 md:w-1/2">
+                        <p className="text-gray-200 mb-6 leading-relaxed break-words">{feature.expandedContent.description}</p>
+                        <h4 className="font-bold mb-4 text-white">Key Features:</h4>
+                        <ul className="space-y-3 text-gray-200">
+                          {feature.expandedContent.bulletPoints.map((point, i) => (
+                            <li key={i} className="flex items-start">
+                              <span className="inline-flex items-center justify-center w-5 h-5 bg-gray-700/60 rounded-full mr-3 mt-0.5 text-white text-xs flex-shrink-0">
+                                ✓
+                              </span>
+                              <span className="leading-relaxed break-words">{point}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -745,7 +808,7 @@ function FaqSection() {
         
         <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
               Questions?{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">
                 We've Got Answers.
@@ -785,12 +848,12 @@ function CtaSection() {
       <div className="relative max-w-5xl mx-auto">
         {/* Soft gradient overlay */}
         <div className="absolute -inset-4 bg-gradient-to-br from-purple-100/30 via-cyan-100/25 to-blue-100/30 rounded-[2rem] blur-sm opacity-60"></div>
-        
+
         <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 text-center shadow-xl">
           <div className="inline-block px-6 py-2 rounded-full bg-white/80 text-gray-600 text-sm font-semibold mb-6 border border-gray-200 shadow-sm">
             Get Started Today
           </div>
-          
+
           <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
             Ready to finally feel{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600">
@@ -798,12 +861,12 @@ function CtaSection() {
             </span>
             ?
           </h2>
-          
+
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
             Download ADULTING today and take control of your grown-up life.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-lg mx-auto">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {/* Modern App Store Button */}
             <a href="#" className="app-store-button-mono mx-auto sm:mx-0">
               <div className="icon">
@@ -814,19 +877,6 @@ function CtaSection() {
               <div className="text">
                 <span className="text-small">Download on the </span>
                 <span className="text-large">App Store</span>
-              </div>
-            </a>
-            
-            {/* Modern Google Play Button */}
-            <a href="#" className="app-store-button-mono mx-auto sm:mx-0">
-              <div className="icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                </svg>
-              </div>
-              <div className="text">
-                <span className="text-small">Get it on </span>
-                <span className="text-large">Google Play</span>
               </div>
             </a>
           </div>

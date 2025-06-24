@@ -70,10 +70,13 @@
   }
 }
 
-/* Custom font definition for Horizon */
+/* Horizon font removed due to corrupted font file */
+
+/* Custom font definition for Horizon - ESSENTIAL FOR ADULTING BRANDING */
 @font-face {
   font-family: 'Horizon';
-  src: url('/assets/fonts/horizon.ttf') format('truetype');
+  /* src: url('/assets/fonts/horizon.ttf') format('truetype'); */
+  /* TODO: Replace with proper Horizon font file */
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -81,6 +84,22 @@
 
 .font-horizon {
   font-family: 'Horizon', 'Arial Black', 'Helvetica Neue', sans-serif;
+}
+
+.force-gpu-render {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.rounded-image-container {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.rounded-image-container img {
+  display: block;
 }
 
 /* Custom animations */
@@ -317,4 +336,17 @@ section {
 /* Radial gradient utility for corner fades */
 .bg-gradient-radial {
   background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Subtle pattern background */
+.pattern-bg {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 25%),
+    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 25%);
+  background-size: 100px 100px, 150px 150px, 200px 200px;
+  background-position: 0 0, 50px 50px, 100px 100px;
+  background-repeat: repeat;
+  mask: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
 }
