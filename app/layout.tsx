@@ -24,6 +24,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={plusJakartaSans.variable} suppressHydrationWarning>
+      <head>
+        <link
+          rel="preload"
+          href="/assets/fonts/horizon.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/assets/fonts/horizon.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={plusJakartaSans.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
