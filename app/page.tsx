@@ -17,6 +17,7 @@ import {
   ShieldCheck,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useState, useEffect } from "react"
 import { useIsMobile } from "@/hooks/use-mobile"
@@ -26,6 +27,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 relative overflow-hidden">
       <NavBar />
       <HeroSection />
+      <EmailSignupSection />
       <div className="relative z-10 pb-20">
         <div className="relative">
           <div
@@ -221,6 +223,35 @@ function HeroSection() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function EmailSignupSection() {
+  return (
+    <section className="relative z-20 mt-8 md:mt-0 md:-mt-24 pb-16">
+      <div className="container mx-auto px-4">
+        <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl border-4 border-black p-8 md:p-12 shadow-xl max-w-4xl mx-auto">
+          <div className="text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
+              Want us to notify you when the app is released?
+            </h2>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+              Enter your email here and we'll send you a message as soon as it's available!
+            </p>
+            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-grow text-center sm:text-left"
+              />
+              <Button type="submit" className="bg-gradient-to-r from-[#3c9aec] to-[#b37bef] text-white font-semibold">
+                Notify Me
+              </Button>
+            </form>
           </div>
         </div>
       </div>
