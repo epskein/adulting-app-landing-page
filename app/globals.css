@@ -236,25 +236,24 @@
 
 .app-store-button-new:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 32px -4px rgba(59, 130, 246, 0.4), 0 8px 16px -2px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(139, 92, 246, 1));
+  box-shadow: 0 16px 32px -4px rgba(47, 119, 228, 0.4), 0 8px 16px -2px rgba(47, 119, 228, 0.15);
+  background: linear-gradient(135deg, #2f77e4, #5894f5);
   border-color: rgba(99, 102, 241, 0.5);
 }
 
 /* Gradient app store button styles */
-.app-store-button-mono {
+.app-store-button-apple, .app-store-button-google {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   color: white;
   border-radius: 16px;
   padding: 12px 24px;
   font-weight: 600;
   transition: all 0.4s ease;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  box-shadow: 0 8px 24px -4px rgba(59, 130, 246, 0.3), 0 4px 8px -2px rgba(139, 92, 246, 0.2);
+  border: none;
+  box-shadow: 0 8px 24px -4px rgba(60, 154, 236, 0.3), 0 4px 8px -2px rgba(60, 154, 236, 0.2);
   width: 100%;
   max-width: 240px;
   text-decoration: none;
@@ -262,11 +261,29 @@
   backdrop-filter: blur(16px);
 }
 
-.app-store-button-mono:hover {
+.app-store-button-apple {
+  background: radial-gradient(circle at 100% 100%, #b37bef 0%, #3c9aec 40%);
+}
+
+.app-store-button-google {
+  background: radial-gradient(circle at 100% 100%, #b37bef 5%, #3c9aec 50%);
+}
+
+.app-store-button-apple:hover, .app-store-button-google:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 32px -4px rgba(59, 130, 246, 0.4), 0 8px 16px -2px rgba(139, 92, 246, 0.3);
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 16px 32px -4px rgba(60, 154, 236, 0.4), 0 8px 16px -2px rgba(119, 89, 238, 0.3);
+}
+
+.app-store-button-apple:hover {
+  background: radial-gradient(circle at 100% 100%, #b37bef 0%, #3c9aec 50%);
+}
+
+.app-store-button-google:hover {
+  background: radial-gradient(circle at 100% 100%, #b37bef 5%, #3c9aec 60%);
+}
+
+.app-store-button-apple .icon, .app-store-button-google .icon {
+  background-color: transparent;
 }
 
 .app-store-button .icon {
@@ -350,4 +367,22 @@ section {
   background-repeat: repeat;
   mask: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
   -webkit-mask: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.bg-pattern-soft {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(60, 154, 236, 0.05) 0%, transparent 25%),
+    radial-gradient(circle at 75% 75%, rgba(119, 89, 238, 0.05) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 25%);
+}
+
+.section-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
