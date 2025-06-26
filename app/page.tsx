@@ -168,8 +168,10 @@ export default function Home() {
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          <circle cx="11" cy="4" r="2"></circle>
+          <circle cx="18" cy="8" r="2"></circle>
+          <circle cx="20" cy="16" r="2"></circle>
+          <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"></path>
         </svg>
       ),
       title: "Smart Reminders",
@@ -230,6 +232,10 @@ export default function Home() {
     },
   ]
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 relative overflow-hidden">
       <Head>
@@ -258,7 +264,7 @@ export default function Home() {
             <div
               className="absolute inset-0 opacity-[0.03]"
               style={{
-                backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
               }}
             ></div>
           </div>
@@ -653,17 +659,15 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                 }}
                               >
                                 {feature.expandedContent.images.map((img, imgIndex) => (
-                                  <div key={imgIndex} className="min-w-full flex-shrink-0">
-                                    <div className="overflow-hidden text-center">
-                                      <div className="rounded-image-container w-full">
-                                        <Image
-                                          src={img}
-                                          alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                          width={300}
-                                          height={600}
-                                          className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
-                                        />
-                                      </div>
+                                  <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
+                                    <div className="rounded-image-container">
+                                      <Image
+                                        src={img}
+                                        alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                        width={300}
+                                        height={600}
+                                        className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                                      />
                                     </div>
                                   </div>
                                 ))}
@@ -712,7 +716,7 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                           ) : (
                             // Single image
                             <div className="overflow-hidden text-center">
-                              <div className="rounded-image-container w-full">
+                              <div className="rounded-image-container">
                                 <Image
                                   src={feature.expandedContent.images[0]}
                                   alt={`${feature.title} screenshot`}
@@ -748,11 +752,11 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
             </div>
 
             {/* New Subheading Section */}
-            <div className="text-center mt-16">
+            <div className="text-center mt-16 max-w-3xl mx-auto">
               <h3 className="text-3xl font-bold text-gray-900 mb-4">
                 Full Control/Customizability
               </h3>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600">
                 Don't want to use/see modules? Simply hide them in Settings!
               </p>
             </div>
