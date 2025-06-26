@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useState, useEffect } from "react"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { toast } from "sonner"
 
 export default function Home() {
   return (
@@ -231,6 +232,39 @@ function HeroSection() {
 }
 
 function EmailSignupSection() {
+  const [email, setEmail] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!email) {
+      toast.error("Please enter a valid email address.")
+      return
+    }
+    setLoading(true)
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      if (response.ok) {
+        toast.success("Thank you! We'll notify you upon release.")
+        setEmail("")
+      } else {
+        const data = await response.json()
+        toast.error(data.error || "Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      toast.error("An unexpected error occurred. Please try again.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <section className="relative z-20 mt-8 md:mt-0 md:-mt-24 pb-16">
       <div className="container mx-auto px-4">
@@ -242,14 +276,18 @@ function EmailSignupSection() {
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
               Enter your email here and we'll send you a message as soon as it's available!
             </p>
-            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input
                 type="email"
                 placeholder="Enter your email"
                 className="flex-grow text-center sm:text-left"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
+                required
               />
-              <Button type="submit" className="bg-gradient-to-r from-[#3c9aec] to-[#b37bef] text-white font-semibold">
-                Notify Me
+              <Button type="submit" className="bg-black text-white hover:bg-gray-800" disabled={loading}>
+                {loading ? "Submitting..." : "Notify Me"}
               </Button>
             </form>
           </div>
