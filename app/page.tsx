@@ -26,9 +26,224 @@ import Head from "next/head"
 import { NavBar } from "@/components/layout/NavBar"
 import { Footer } from "@/components/layout/Footer"
 
+type Benefit = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+type Feature = {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  expandedContent: {
+    description: string;
+    images: string[];
+    bulletPoints: string[];
+  };
+};
+
 export default function Home() {
+  const benefits: Benefit[] = [
+    {
+      icon: "/images/Benefits-Icon-1.png",
+      title: "Simple & Intuitive Design",
+      description: "Designed with intuitive, clear and clean UI — so you actually enjoy using it.",
+    },
+    {
+      icon: "/images/Benefits-Icon-2.png",
+      title: "One Solution for Everyday Hassles",
+      description: "No more slips of paper, to-do lists scattered in your notes app, or separate apps for everything— it's all in one place.",
+    },
+    {
+      icon: "/images/Benefits-Icon-3.png",
+      title: "Stay on Top of Life",
+      description: "Keep everything organized and never forget important tasks, documents, travel plans, grocery lists or emergency contacts again.",
+    },
+  ]
+
+  const features: Feature[] = [
+    {
+      icon: <FileText size={28} className="text-white" />,
+      title: "My Documents",
+      description: "Securely store important docs (lease, ID, medical aid card) for quick access anytime.",
+      expandedContent: {
+        description:
+          "Keep all your important documents in one secure, easily accessible place. Never search through multiple digital folders, stacks of paper or store files in your emails again.",
+        images: ["/images/app-screenshots/documents.png"],
+        bulletPoints: [
+          "Categorized storage system",
+          "Secure encryption for sensitive documents",
+          "Quick search functionality",
+          "Easily share documents with anyone via any app",
+        ],
+      },
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <rect width="16" height="16" x="4" y="4" rx="2"></rect>
+          <path d="M9 10h6"></path>
+          <path d="M12 7v6"></path>
+          <path d="M9 17v4"></path>
+          <path d="M15 17v4"></path>
+          <path d="M12 21v-4"></path>
+        </svg>
+      ),
+      title: "Emergency & Safety",
+      description: "Store emergency contacts details — ready when it matters.",
+      expandedContent: {
+        description:
+          "Quick access to all your critical emergency contacts when you need it most. Store the contact details and additional information of your local Fire Services, Police, Ambulance or family all in one secure place.",
+        images: ["/images/app-screenshots/emergency-safety.png"],
+        bulletPoints: [
+          "One-tap emergency contacts - just the press of a button away!",
+          "Store additional information for each contact",
+        ],
+      },
+    },
+    {
+      icon: <Utensils size={28} className="text-white" />,
+      title: "Mealprep, Recipes and Grocery List",
+      description: "Plan meals with ease - Save your favorite recipes and create your grocery list in one dedicated place.",
+      expandedContent: {
+        description:
+          "Stop wondering what to make for dinner - Save your favorite recipes, add recipe ingredients to your shopping list, and share your grocery list with anyone. MealPrep makes cooking at home easier and more organized.",
+        images: ["/images/app-screenshots/mealprep.png", "/images/app-screenshots/grocery-list.png" , "/images/app-screenshots/recipe-details.png"],
+        bulletPoints: [
+          "Recipe collection with categorisation & search functionality",
+          "Automatically add ingredients to your grocery list",
+          "One dedicated space for your grocery list - no more loose pieces of paper or keeping track in your notes app",
+        ],
+      },
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
+        </svg>
+      ),
+      title: "Travel Assistant",
+      description: "Organize your trips with itineraries, tickets, bookings, packing lists, and travel reminders",
+      expandedContent: {
+        description:
+          "Make travel planning stress-free with our comprehensive travel assistant. Store all your bookings, create packing lists, and get timely reminders for check-ins and departures.",
+        images: [
+          "/images/app-screenshots/travel-assistant.png",
+          "/images/app-screenshots/travel-documents.png",
+          "/images/app-screenshots/trip-details.png",
+          "/images/app-screenshots/packing-list.png"
+        ],
+        bulletPoints: [
+          "Keep track of all your upcoming trips",
+          "Create a simple trip or a full itinerary with several locations and travel arrangements",
+          "Booking confirmation storage - store all your trip bookings and tickets in one place, no more printouts and screenshots",
+          "Customizable packing lists - plan what to pack for each trip and check off as you go",
+        ],
+      },
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <path d="M20 11.08V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h6"></path>
+          <path d="M14 3v5h5"></path>
+          <circle cx="16" cy="16" r="6"></circle>
+          <path d="M16 14v4"></path>
+          <path d="M16 22v-1"></path>
+        </svg>
+      ),
+      title: "Digital Will/Emergency Instructions",
+      description: "Leave critical info for your loved ones in case of emergencies — easily editable.",
+      expandedContent: {
+        description:
+          "Ensure your loved ones have access to important information if something happens to you. Create a comprehensive digital will that can be accessed in the event of an emergency.",
+        images: ["/images/app-screenshots/digital-will.png"],
+        bulletPoints: [
+          "Secure storage of sensitive information",
+          "Leave emergency instructions with ease",
+          "Regular update reminders",
+        ],
+      },
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+      ),
+      title: "Smart Reminders",
+      description: "Set custom recurring reminders — like car registration, dentist visits, and more.",
+      expandedContent: {
+        description:
+          "Never miss an important chore or neglect critical recurring appointments again. Set up custom reminders for everything from annual car registrations to quarterly dental checkups.",
+        images: ["/images/app-screenshots/reminders.png"],
+        bulletPoints: [
+          "Custom recurring reminder schedules",
+          "Calendar integration",
+          "Control when you are notified about upcoming reminders",
+        ],
+      },
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <circle cx="11" cy="4" r="2"></circle>
+          <circle cx="18" cy="8" r="2"></circle>
+          <circle cx="20" cy="16" r="2"></circle>
+          <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"></path>
+        </svg>
+      ),
+      title: "Pet Tracker",
+      description: "Add your pets, track vaccines, vet visits, active treatments, and more.",
+      expandedContent: {
+        description:
+          "Keep track of all your pet's health information in one place. Monitor vaccinations, medications, vet visits, and more to ensure your furry friends stay healthy.",
+        images: ["/images/app-screenshots/pet-tracker.png"],
+        bulletPoints: [
+          "All your pets information in one place - Vaccination history, age, birthday etc.",
+          "View active treatments",
+          "Keep track of vet visits",
+        ],
+      },
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      ),
+      title: "Vault",
+      description: "Securely store passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
+      expandedContent: {
+        description:
+          "Behind an extra layer of security, you can safely store sensitive bits of information such as Account Passwords, Banking Login/payment details, app/card pincodes, tax numbers etc.",
+        images: ["/images/app-screenshots/vault.png"],
+        bulletPoints: [
+          "Secure encryption of content with pincode access.",
+          "Categorized storage system",
+          "Secure encryption for sensitive documents",
+          "Quick search functionality",
+        ],
+      },
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-gray-50 relative overflow-hidden">
+      <Head>
+        <link rel="preload" as="image" href="/images/iPhone-Vectors-1.png" />
+        <link rel="preload" as="image" href="/images/iphone-frame-x3.png" />
+        {benefits.map((benefit) => (
+          <link key={`preload-benefit-${benefit.title}`} rel="preload" as="image" href={benefit.icon} />
+        ))}
+        {features.flatMap((feature) =>
+          feature.expandedContent.images.map((image) => (
+            <link key={`preload-feature-${image}`} rel="preload" as="image" href={image} />
+          ))
+        )}
+      </Head>
       <NavBar />
       <HeroSection />
       <EmailSignupSection />
@@ -49,7 +264,7 @@ export default function Home() {
           </div>
           
           <div className="space-y-32">
-             <UnifiedBenefitsFeaturesSection />
+             <UnifiedBenefitsFeaturesSection benefits={benefits} features={features} />
              <IPhoneShowcaseSection />
              <div id="faq">
                 <FaqSection />
@@ -225,7 +440,7 @@ function EmailSignupSection() {
   )
 }
 
-function UnifiedBenefitsFeaturesSection() {
+function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Benefit[], features: Feature[] }) {
   const [expandedFeature, setExpandedFeature] = useState<number | null>(null)
   const [scrollY, setScrollY] = useState(0)
   const [activeBenefit, setActiveBenefit] = useState(0)
@@ -241,192 +456,6 @@ function UnifiedBenefitsFeaturesSection() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  const benefits = [
-    {
-      icon: "/images/Benefits-Icon-1.png",
-      title: "Simple & Intuitive Design",
-      description: "Designed with intuitive, clear and clean UI — so you actually enjoy using it.",
-    },
-    {
-      icon: "/images/Benefits-Icon-2.png",
-      title: "One Solution for Everyday Hassles",
-      description: "No more slips of paper, to-do lists scattered in your notes app, or separate apps for everything— it's all in one place.",
-    },
-    {
-      icon: "/images/Benefits-Icon-3.png",
-      title: "Stay on Top of Life",
-      description: "Keep everything organized and never forget important tasks, documents, travel plans, grocery lists or emergency contacts again.",
-    },
-  ]
-
-  const features = [
-    {
-      icon: <FileText size={28} className="text-white" />,
-      title: "My Documents",
-      description: "Securely store important docs (lease, ID, medical aid card) for quick access anytime.",
-      expandedContent: {
-        description:
-          "Keep all your important documents in one secure, easily accessible place. Never search through multiple digital folders, stacks of paper or store files in your emails again.",
-        images: ["/images/app-screenshots/documents.png"],
-        bulletPoints: [
-          "Categorized storage system",
-          "Secure encryption for sensitive documents",
-          "Quick search functionality",
-          "Easily share documents with anyone via any app",
-        ],
-      },
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <rect width="16" height="16" x="4" y="4" rx="2"></rect>
-          <path d="M9 10h6"></path>
-          <path d="M12 7v6"></path>
-          <path d="M9 17v4"></path>
-          <path d="M15 17v4"></path>
-          <path d="M12 21v-4"></path>
-        </svg>
-      ),
-      title: "Emergency & Safety",
-      description: "Store emergency contacts details — ready when it matters.",
-      expandedContent: {
-        description:
-          "Quick access to all your critical emergency contacts when you need it most. Store the contact details and additional information of your local Fire Services, Police, Ambulance or family all in one secure place.",
-        images: ["/images/app-screenshots/emergency-safety.png"],
-        bulletPoints: [
-          "One-tap emergency contacts - just the press of a button away!",
-          "Store additional information for each contact",
-        ],
-      },
-    },
-    {
-      icon: <Utensils size={28} className="text-white" />,
-      title: "Mealprep, Recipes and Grocery List",
-      description: "Plan meals with ease - Save your favorite recipes and create your grocery list in one dedicated place.",
-      expandedContent: {
-        description:
-          "Stop wondering what to make for dinner - Save your favorite recipes, add recipe ingredients to your shopping list, and share your grocery list with anyone. MealPrep makes cooking at home easier and more organized.",
-        images: ["/images/app-screenshots/mealprep.png", "/images/app-screenshots/grocery-list.png" , "/images/app-screenshots/recipe-details.png"],
-        bulletPoints: [
-          "Recipe collection with categorisation & search functionality",
-          "Automatically add ingredients to your grocery list",
-          "One dedicated space for your grocery list - no more loose pieces of paper or keeping track in your notes app",
-        ],
-      },
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
-        </svg>
-      ),
-      title: "Travel Assistant",
-      description: "Organize your trips with itineraries, tickets, bookings, packing lists, and travel reminders",
-      expandedContent: {
-        description:
-          "Make travel planning stress-free with our comprehensive travel assistant. Store all your bookings, create packing lists, and get timely reminders for check-ins and departures.",
-        images: [
-          "/images/app-screenshots/travel-assistant.png",
-          "/images/app-screenshots/travel-documents.png",
-          "/images/app-screenshots/trip-details.png",
-          "/images/app-screenshots/packing-list.png"
-        ],
-        bulletPoints: [
-          "Keep track of all your upcoming trips",
-          "Create a simple trip or a full itinerary with several locations and travel arrangements",
-          "Booking confirmation storage - store all your trip bookings and tickets in one place, no more printouts and screenshots",
-          "Customizable packing lists - plan what to pack for each trip and check off as you go",
-        ],
-      },
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <path d="M20 11.08V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h6"></path>
-          <path d="M14 3v5h5"></path>
-          <circle cx="16" cy="16" r="6"></circle>
-          <path d="M16 14v4"></path>
-          <path d="M16 22v-1"></path>
-        </svg>
-      ),
-      title: "Digital Will/Emergency Instructions",
-      description: "Leave critical info for your loved ones in case of emergencies — easily editable.",
-      expandedContent: {
-        description:
-          "Ensure your loved ones have access to important information if something happens to you. Create a comprehensive digital will that can be accessed in the event of an emergency.",
-        images: ["/images/app-screenshots/digital-will.png"],
-        bulletPoints: [
-          "Secure storage of sensitive information",
-          "Leave emergency instructions with ease",
-          "Regular update reminders",
-        ],
-      },
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-        </svg>
-      ),
-      title: "Smart Reminders",
-      description: "Set custom recurring reminders — like car registration, dentist visits, and more.",
-      expandedContent: {
-        description:
-          "Never miss an important chore or neglect critical recurring appointments again. Set up custom reminders for everything from annual car registrations to quarterly dental checkups.",
-        images: ["/images/app-screenshots/reminders.png"],
-        bulletPoints: [
-          "Custom recurring reminder schedules",
-          "Calendar integration",
-          "Control when you are notified about upcoming reminders",
-        ],
-      },
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <circle cx="11" cy="4" r="2"></circle>
-          <circle cx="18" cy="8" r="2"></circle>
-          <circle cx="20" cy="16" r="2"></circle>
-          <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"></path>
-        </svg>
-      ),
-      title: "Pet Tracker",
-      description: "Add your pets, track vaccines, vet visits, active treatments, and more.",
-      expandedContent: {
-        description:
-          "Keep track of all your pet's health information in one place. Monitor vaccinations, medications, vet visits, and more to ensure your furry friends stay healthy.",
-        images: ["/images/app-screenshots/pet-tracker.png"],
-        bulletPoints: [
-          "All your pets information in one place - Vaccination history, age, birthday etc.",
-          "View active treatments",
-          "Keep track of vet visits",
-        ],
-      },
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-        </svg>
-      ),
-      title: "Vault",
-      description: "Securely store passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
-      expandedContent: {
-        description:
-          "Behind an extra layer of security, you can safely store sensitive bits of information such as Account Passwords, Banking Login/payment details, app/card pincodes, tax numbers etc.",
-        images: ["/images/app-screenshots/vault.png"],
-        bulletPoints: [
-          "Secure encryption of content with pincode access.",
-          "Categorized storage system",
-          "Secure encryption for sensitive documents",
-          "Quick search functionality",
-        ],
-      },
-    },
-  ]
 
   const handleBenefitChange = (direction: "next" | "prev") => {
     if (direction === "next") {
@@ -463,18 +492,6 @@ function UnifiedBenefitsFeaturesSection() {
 
   return (
     <section className="py-20 bg-gray-50/50">
-      <Head>
-        {features.map((feature) =>
-          feature.expandedContent.images && feature.expandedContent.images.length > 0 ? (
-            <link
-              key={`preload-${feature.title}`}
-              rel="preload"
-              as="image"
-              href={feature.expandedContent.images[0]}
-            />
-          ) : null
-        )}
-      </Head>
       <div className="container mx-auto px-4">
         
         {/* Benefits Section */}
@@ -883,18 +900,18 @@ function CtaSection() {
               </div>
             </a>
             
-{/* Modern Google Play Button */}
-<a href="#" className="app-store-button-google mx-auto sm:mx-0">
-                <div className="icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                  </svg>
-                </div>
-                <div className="text">
-                  <span className="text-small">Get it on </span>
-                  <span className="text-large">Google Play </span>
-                </div>
-              </a>
+            {/* Modern Google Play Button */}
+            <a href="#" className="app-store-button-google mx-auto sm:mx-0">
+              <div className="icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                </svg>
+              </div>
+              <div className="text">
+                <span className="text-small">Get it on </span>
+                <span className="text-large">Google Play </span>
+              </div>
+            </a>
             
           </div>
         </div>
