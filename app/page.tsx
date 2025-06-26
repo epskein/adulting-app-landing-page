@@ -653,15 +653,17 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                 }}
                               >
                                 {feature.expandedContent.images.map((img, imgIndex) => (
-                                  <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
-                                    <div className="rounded-image-container w-full">
-                                      <Image
-                                        src={img}
-                                        alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                        width={300}
-                                        height={600}
-                                        className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
-                                      />
+                                  <div key={imgIndex} className="min-w-full flex-shrink-0">
+                                    <div className="overflow-hidden text-center">
+                                      <div className="rounded-image-container w-full">
+                                        <Image
+                                          src={img}
+                                          alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                          width={300}
+                                          height={600}
+                                          className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                                        />
+                                      </div>
                                     </div>
                                   </div>
                                 ))}
