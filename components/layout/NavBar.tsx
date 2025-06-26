@@ -17,6 +17,15 @@ export function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const handleMobileLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault()
+    const targetElement = document.querySelector(targetId)
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" })
+    }
+    setIsMenuOpen(false)
+  }
+
   return (
     <header
       className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300 rounded-full ${
@@ -62,7 +71,7 @@ export function NavBar() {
                   key={item}
                   href={`/#${item.toLowerCase()}`}
                   className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-300 flex items-center group"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => handleMobileLinkClick(e, `#${item.toLowerCase()}`)}
                 >
                   <ChevronRight size={16} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-gray-400" />
                   {item}

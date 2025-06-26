@@ -51,7 +51,9 @@ export default function Home() {
           <div className="space-y-32">
              <UnifiedBenefitsFeaturesSection />
              <IPhoneShowcaseSection />
-             <FaqSection />
+             <div id="faq">
+                <FaqSection />
+             </div>
              <CtaSection />
           </div>
         </div>
@@ -460,7 +462,7 @@ function UnifiedBenefitsFeaturesSection() {
   }
 
   return (
-    <section id="features" className="py-20 bg-gray-50/50">
+    <section className="py-20 bg-gray-50/50">
       <Head>
         {features.map((feature) =>
           feature.expandedContent.images && feature.expandedContent.images.length > 0 ? (
@@ -476,7 +478,7 @@ function UnifiedBenefitsFeaturesSection() {
       <div className="container mx-auto px-4">
         
         {/* Benefits Section */}
-        <div className="relative mb-32">
+        <div id="benefits" className="relative mb-32">
           {/* Soft gradient overlay */}
           <div className="absolute -inset-4 bg-gradient-to-br from-[#3c9aec]/40 via-[#b37bef]/20 to-indigo-200/20 rounded-[2rem] blur-sm opacity-60"></div>
           
@@ -569,7 +571,7 @@ function UnifiedBenefitsFeaturesSection() {
         </div>
 
         {/* Features Section */}
-        <div className="relative">
+        <div id="features" className="relative">
           {/* Soft gradient overlay */}
           <div className="absolute -inset-4 bg-gradient-to-br from-indigo-200/20 via-[#3c9aec]/40 to-[#b37bef]/20 rounded-[2rem] blur-sm opacity-60"></div>
           
