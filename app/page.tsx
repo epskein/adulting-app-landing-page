@@ -653,7 +653,7 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                 }}
                               >
                                 {feature.expandedContent.images.map((img, imgIndex) => (
-                                  <div key={imgIndex} className="min-w-full flex-shrink-0">
+                                  <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
                                     <div className="rounded-image-container w-full">
                                       <Image
                                         src={img}
