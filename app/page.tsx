@@ -749,18 +749,17 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                   )}
                 </div>
               ))}
-            </div>
 
-            {/* New Subheading Section */}
-            <div className="text-center mt-16 max-w-3xl mx-auto">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                Full Control/Customizability
-              </h3>
-              <p className="text-lg text-gray-600">
-                Don't want to use/see modules? Simply hide them in Settings!
-              </p>
+              {/* New Subheading Section */}
+              <div className="text-center pt-10">
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                  Full Control/Customizability
+                </h3>
+                <p className="text-lg text-gray-600">
+                  Don't want to use/see modules? Simply hide them in Settings!
+                </p>
+              </div>
             </div>
-            
           </div>
         </div>
       </div>
