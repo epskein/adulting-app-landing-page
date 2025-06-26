@@ -514,28 +514,33 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
             </div>
 
             {isMobile ? (
-              <div className="relative max-w-md mx-auto">
-                <div className="relative min-h-[620px] flex items-center justify-center">
-                  <div key={activeBenefit} className="w-full animate-fade-in">
-                    <div className="group relative">
-                      <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
-                        <div className="mb-6 flex justify-center">
-                          <Image
-                            src={benefits[activeBenefit].icon}
-                            alt={benefits[activeBenefit].title}
-                            width={256}
-                            height={256}
-                            className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
-                          />
+              <div className="relative max-w-md mx-auto overflow-hidden">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${activeBenefit * 100}%)` }}
+                >
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="w-full flex-shrink-0">
+                      <div className="group relative">
+                        <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full min-h-[620px] flex flex-col items-center justify-center">
+                          <div className="mb-6 flex justify-center">
+                            <Image
+                              src={benefit.icon}
+                              alt={benefit.title}
+                              width={256}
+                              height={256}
+                              className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                            />
+                          </div>
+                          <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
+                            {benefit.title}
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
-                          {benefits[activeBenefit].title}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">{benefits[activeBenefit].description}</p>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
                 <div className="flex justify-center items-center gap-6 mt-8">
                   <Button onClick={() => handleBenefitChange("prev")} variant="outline" size="icon" className="rounded-full shadow-md">
@@ -643,13 +648,13 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                 className="flex transition-transform duration-500 ease-in-out"
                                 style={{
                                   transform: `translateX(-${
-                                    carouselIndices[feature.title.split(" ")[0]] * 100
+                                    (carouselIndices[feature.title.split(" ")[0]] || 0) * 100
                                   }%)`,
                                 }}
                               >
                                 {feature.expandedContent.images.map((img, imgIndex) => (
-                                  <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
-                                    <div className="rounded-image-container">
+                                  <div key={imgIndex} className="min-w-full flex-shrink-0">
+                                    <div className="rounded-image-container w-full">
                                       <Image
                                         src={img}
                                         alt={`${feature.title} screenshot ${imgIndex + 1}`}
@@ -705,7 +710,7 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                           ) : (
                             // Single image
                             <div className="overflow-hidden text-center">
-                              <div className="rounded-image-container">
+                              <div className="rounded-image-container w-full">
                                 <Image
                                   src={feature.expandedContent.images[0]}
                                   alt={`${feature.title} screenshot`}
@@ -739,6 +744,17 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                 </div>
               ))}
             </div>
+
+            {/* New Subheading Section */}
+            <div className="text-center mt-16">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                Full Control/Customizability
+              </h3>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Don't want to use/see modules? Simply hide them in Settings!
+              </p>
+            </div>
+            
           </div>
         </div>
       </div>
