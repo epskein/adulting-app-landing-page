@@ -2,7 +2,7 @@ import React from "react";
 
 const TermsAndConditionsContent: React.FC = () => (
   <section className="prose prose-blue max-w-none mx-auto text-gray-700">
-    <h1 className="text-4xl font-bold mb-2">TERMS OF USE</h1>
+    
     <p className="text-sm text-gray-500 mb-8"><strong>Last updated</strong> June 02, 2025</p>
 
     <h2 className="mt-8">AGREEMENT TO OUR LEGAL TERMS</h2>
