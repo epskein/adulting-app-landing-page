@@ -22,6 +22,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useState, useEffect } from "react"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { toast } from "sonner"
+import Head from "next/head"
 
 export default function Home() {
   return (
@@ -534,251 +535,268 @@ function UnifiedBenefitsFeaturesSection() {
   }
 
   return (
-    <section className="container mx-auto px-4 relative z-10">
-      {/* Benefits Section */}
-      <div className="relative mb-32">
-        {/* Soft gradient overlay */}
-        <div className="absolute -inset-4 bg-gradient-to-br from-[#3c9aec]/40 via-[#b37bef]/20 to-indigo-200/20 rounded-[2rem] blur-sm opacity-60"></div>
-        
-        <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
-              Why You'll{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3c9aec] to-[#b37bef]">
-                Love
-              </span>{" "}
-              Using ADULTING
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We've designed ADULTING to make your life easier, more organized, and less stressful.
-            </p>
-          </div>
+    <section id="features" className="py-20 bg-gray-50/50">
+      <Head>
+        {features.map((feature) =>
+          feature.expandedContent.images && feature.expandedContent.images.length > 0 ? (
+            <link
+              key={`preload-${feature.title}`}
+              rel="preload"
+              as="image"
+              href={feature.expandedContent.images[0]}
+            />
+          ) : null
+        )}
+      </Head>
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <span className="text-sm font-bold tracking-widest text-gray-500 uppercase">FEATURES</span>
+        </div>
+        {/* Benefits Section */}
+        <div className="relative mb-32">
+          {/* Soft gradient overlay */}
+          <div className="absolute -inset-4 bg-gradient-to-br from-[#3c9aec]/40 via-[#b37bef]/20 to-indigo-200/20 rounded-[2rem] blur-sm opacity-60"></div>
+          
+          <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
+            <div className="text-center mb-16">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
+                Why You'll{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3c9aec] to-[#b37bef]">
+                  Love
+                </span>{" "}
+                Using ADULTING
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                We've designed ADULTING to make your life easier, more organized, and less stressful.
+              </p>
+            </div>
 
-          {isMobile ? (
-            <div className="relative max-w-md mx-auto">
-              <div className="relative min-h-[620px] flex items-center justify-center">
-                <div key={activeBenefit} className="w-full animate-fade-in">
-                  <div className="group relative">
+            {isMobile ? (
+              <div className="relative max-w-md mx-auto">
+                <div className="relative min-h-[620px] flex items-center justify-center">
+                  <div key={activeBenefit} className="w-full animate-fade-in">
+                    <div className="group relative">
+                      <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
+                        <div className="mb-6 flex justify-center">
+                          <Image
+                            src={benefits[activeBenefit].icon}
+                            alt={benefits[activeBenefit].title}
+                            width={256}
+                            height={256}
+                            className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                          />
+                        </div>
+                        <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
+                          {benefits[activeBenefit].title}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{benefits[activeBenefit].description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-center items-center gap-6 mt-8">
+                  <Button onClick={() => handleBenefitChange("prev")} variant="outline" size="icon" className="rounded-full shadow-md">
+                    <ChevronLeft className="h-5 w-5" />
+                  </Button>
+                  <div className="flex gap-3">
+                    {benefits.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveBenefit(i)}
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                          i === activeBenefit ? "bg-blue-500 scale-125" : "bg-gray-300 hover:bg-gray-400"
+                        }`}
+                        aria-label={`Go to slide ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <Button onClick={() => handleBenefitChange("next")} variant="outline" size="icon" className="rounded-full shadow-md">
+                    <ChevronRight className="h-5 w-5" />
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="group relative" style={{ animationDelay: `${index * 150}ms` }}>
+                    {/* Subtle hover effect */}
                     <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
                     <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
                       <div className="mb-6 flex justify-center">
                         <Image
-                          src={benefits[activeBenefit].icon}
-                          alt={benefits[activeBenefit].title}
+                          src={benefit.icon}
+                          alt={benefit.title}
                           width={256}
                           height={256}
                           className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
                         />
                       </div>
                       <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
-                        {benefits[activeBenefit].title}
+                        {benefit.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">{benefits[activeBenefit].description}</p>
+                      <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-              <div className="flex justify-center items-center gap-6 mt-8">
-                <Button onClick={() => handleBenefitChange("prev")} variant="outline" size="icon" className="rounded-full shadow-md">
-                  <ChevronLeft className="h-5 w-5" />
-                </Button>
-                <div className="flex gap-3">
-                  {benefits.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setActiveBenefit(i)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                        i === activeBenefit ? "bg-blue-500 scale-125" : "bg-gray-300 hover:bg-gray-400"
-                      }`}
-                      aria-label={`Go to slide ${i + 1}`}
-                    />
-                  ))}
-                </div>
-                <Button onClick={() => handleBenefitChange("next")} variant="outline" size="icon" className="rounded-full shadow-md">
-                  <ChevronRight className="h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="group relative" style={{ animationDelay: `${index * 150}ms` }}>
-                  {/* Subtle hover effect */}
-                  <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            )}
+          </div>
+        </div>
 
-                  <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
-                    <div className="mb-6 flex justify-center">
-                      <Image
-                        src={benefit.icon}
-                        alt={benefit.title}
-                        width={256}
-                        height={256}
-                        className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
-                      />
+        {/* Features Section */}
+        <div className="relative">
+          {/* Soft gradient overlay */}
+          <div className="absolute -inset-4 bg-gradient-to-br from-indigo-200/20 via-[#3c9aec]/40 to-[#b37bef]/20 rounded-[2rem] blur-sm opacity-60"></div>
+          
+          <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3c9aec] to-[#b37bef]">
+                  8 Core Modules
+                </span>{" "}
+                to Cover Your Most Essential Needs
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                ADULTING brings together all the tools you need to manage your adult responsibilities in one simple app.
+              </p>
+            </div>
+
+            {/* Feature Cards */}
+            <div className="space-y-6 max-w-5xl mx-auto">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-700/40 rounded-2xl p-6 transition-all duration-300 hover:bg-gray-700/60 border border-gray-600/80 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div className="flex-shrink-0 p-4 bg-gray-700/60 rounded-xl group-hover:bg-gray-700/80 transition-colors duration-300">
+                      {feature.icon}
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                    <div className="flex-grow">
+                      <h3 className="text-2xl font-bold text-white mb-2">{feature.title}</h3>
+                      <p className="text-gray-200 leading-relaxed">{feature.description}</p>
+                    </div>
+                    <Button
+                      onClick={() => toggleExpand(index)}
+                      variant="outline"
+                      className="border-gray-400/50 text-gray-200 hover:text-white hover:bg-gray-700/50 hover:border-gray-300 flex-shrink-0 relative overflow-hidden group bg-transparent"
+                    >
+                      <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
+                      <span className="absolute inset-0 bg-gray-700/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </Button>
                   </div>
+
+                  {expandedFeature === index && (
+                    <div className="mt-6 p-6 bg-gray-800/80 rounded-2xl animate-fade-in border border-gray-700/60">
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        {/* Image Section - Left Side */}
+                        <div className="relative order-2 md:order-1 md:w-1/2">
+                          {feature.expandedContent.images.length > 1 ? (
+                            // Carousel for multiple images
+                            <div className="relative rounded-3xl overflow-hidden">
+                              <div
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{
+                                  transform: `translateX(-${
+                                    carouselIndices[feature.title.split(" ")[0]] * 100
+                                  }%)`,
+                                }}
+                              >
+                                {feature.expandedContent.images.map((img, imgIndex) => (
+                                  <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
+                                    <div className="rounded-image-container">
+                                      <Image
+                                        src={img}
+                                        alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                        width={300}
+                                        height={600}
+                                        className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                                      />
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                              {/* Carousel Controls */}
+                              <button
+                                onClick={() =>
+                                  handleCarouselNav(
+                                    feature.title.split(" ")[0],
+                                    "prev",
+                                    feature.expandedContent.images.length
+                                  )
+                                }
+                                className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                              >
+                                <ChevronLeft className="h-5 w-5" />
+                              </button>
+                              <button
+                                onClick={() =>
+                                  handleCarouselNav(
+                                    feature.title.split(" ")[0],
+                                    "next",
+                                    feature.expandedContent.images.length
+                                  )
+                                }
+                                className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                              >
+                                <ChevronRight className="h-5 w-5" />
+                              </button>
+
+                              {/* Carousel Indicators */}
+                              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                                {feature.expandedContent.images.map((_, imgIndex) => (
+                                  <button
+                                    key={imgIndex}
+                                    onClick={() => setCarouselIndex(feature.title.split(" ")[0], imgIndex)}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                      (carouselIndices[feature.title.split(" ")[0]] || 0) === imgIndex
+                                        ? "bg-white"
+                                        : "bg-white/50 hover:bg-white/75"
+                                    }`}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            // Single image
+                            <div className="overflow-hidden text-center">
+                              <div className="rounded-image-container">
+                                <Image
+                                  src={feature.expandedContent.images[0]}
+                                  alt={`${feature.title} screenshot`}
+                                  width={300}
+                                  height={600}
+                                  className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Content Section - Right Side */}
+                        <div className="flex-1 order-1 md:order-2 md:w-1/2">
+                          <p className="text-gray-200 mb-6 leading-relaxed break-words">{feature.expandedContent.description}</p>
+                          <h4 className="font-bold mb-4 text-white">Key Features:</h4>
+                          <ul className="space-y-3 text-gray-200">
+                            {feature.expandedContent.bulletPoints.map((point, i) => (
+                              <li key={i} className="flex items-start">
+                                <span className="inline-flex items-center justify-center w-5 h-5 bg-gray-700/60 rounded-full mr-3 mt-0.5 text-white text-xs flex-shrink-0">
+                                  ✓
+                                </span>
+                                <span className="leading-relaxed break-words">{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
-          )}
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="relative">
-        {/* Soft gradient overlay */}
-        <div className="absolute -inset-4 bg-gradient-to-br from-indigo-200/20 via-[#3c9aec]/40 to-[#b37bef]/20 rounded-[2rem] blur-sm opacity-60"></div>
-        
-        <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3c9aec] to-[#b37bef]">
-                8 Core Modules
-              </span>{" "}
-              to Cover Your Most Essential Needs
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              ADULTING brings together all the tools you need to manage your adult responsibilities in one simple app.
-            </p>
-          </div>
-
-          {/* Feature Cards */}
-          <div className="space-y-6 max-w-5xl mx-auto">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-gray-700/40 rounded-2xl p-6 transition-all duration-300 hover:bg-gray-700/60 border border-gray-600/80 animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                  <div className="flex-shrink-0 p-4 bg-gray-700/60 rounded-xl group-hover:bg-gray-700/80 transition-colors duration-300">
-                    {feature.icon}
-                  </div>
-                  <div className="flex-grow">
-                    <h3 className="text-2xl font-bold text-white mb-2">{feature.title}</h3>
-                    <p className="text-gray-200 leading-relaxed">{feature.description}</p>
-                  </div>
-                  <Button
-                    onClick={() => toggleExpand(index)}
-                    variant="outline"
-                    className="border-gray-400/50 text-gray-200 hover:text-white hover:bg-gray-700/50 hover:border-gray-300 flex-shrink-0 relative overflow-hidden group bg-transparent"
-                  >
-                    <span className="relative z-10">{expandedFeature === index ? "See Less" : "See More"}</span>
-                    <span className="absolute inset-0 bg-gray-700/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                  </Button>
-                </div>
-
-                {expandedFeature === index && (
-                  <div className="mt-6 p-6 bg-gray-800/80 rounded-2xl animate-fade-in border border-gray-700/60">
-                    <div className="flex flex-col md:flex-row gap-8 items-start">
-                      {/* Image Section - Left Side */}
-                      <div className="relative order-2 md:order-1 md:w-1/2">
-                        {feature.expandedContent.images.length > 1 ? (
-                          // Carousel for multiple images
-                          <div className="relative rounded-3xl overflow-hidden">
-                            <div
-                              className="flex transition-transform duration-500 ease-in-out"
-                              style={{
-                                transform: `translateX(-${
-                                  carouselIndices[feature.title.split(" ")[0]] * 100
-                                }%)`,
-                              }}
-                            >
-                              {feature.expandedContent.images.map((img, imgIndex) => (
-                                <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
-                                  <div className="rounded-image-container">
-                                    <Image
-                                      src={img}
-                                      alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                      width={300}
-                                      height={600}
-                                      className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
-                                    />
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                            {/* Carousel Controls */}
-                            <button
-                              onClick={() =>
-                                handleCarouselNav(
-                                  feature.title.split(" ")[0],
-                                  "prev",
-                                  feature.expandedContent.images.length
-                                )
-                              }
-                              className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
-                            >
-                              <ChevronLeft className="h-5 w-5" />
-                            </button>
-                            <button
-                              onClick={() =>
-                                handleCarouselNav(
-                                  feature.title.split(" ")[0],
-                                  "next",
-                                  feature.expandedContent.images.length
-                                )
-                              }
-                              className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
-                            >
-                              <ChevronRight className="h-5 w-5" />
-                            </button>
-
-                            {/* Carousel Indicators */}
-                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
-                              {feature.expandedContent.images.map((_, imgIndex) => (
-                                <button
-                                  key={imgIndex}
-                                  onClick={() => setCarouselIndex(feature.title.split(" ")[0], imgIndex)}
-                                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                    (carouselIndices[feature.title.split(" ")[0]] || 0) === imgIndex
-                                      ? "bg-white"
-                                      : "bg-white/50 hover:bg-white/75"
-                                  }`}
-                                />
-                              ))}
-                            </div>
-                          </div>
-                        ) : (
-                          // Single image
-                          <div className="overflow-hidden text-center">
-                            <div className="rounded-image-container">
-                              <Image
-                                src={feature.expandedContent.images[0]}
-                                alt={`${feature.title} screenshot`}
-                                width={300}
-                                height={600}
-                                className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
-                              />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      
-                      {/* Content Section - Right Side */}
-                      <div className="flex-1 order-1 md:order-2 md:w-1/2">
-                        <p className="text-gray-200 mb-6 leading-relaxed break-words">{feature.expandedContent.description}</p>
-                        <h4 className="font-bold mb-4 text-white">Key Features:</h4>
-                        <ul className="space-y-3 text-gray-200">
-                          {feature.expandedContent.bulletPoints.map((point, i) => (
-                            <li key={i} className="flex items-start">
-                              <span className="inline-flex items-center justify-center w-5 h-5 bg-gray-700/60 rounded-full mr-3 mt-0.5 text-white text-xs flex-shrink-0">
-                                ✓
-                              </span>
-                              <span className="leading-relaxed break-words">{point}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
           </div>
         </div>
       </div>
