@@ -736,13 +736,13 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                 >
                                   {feature.expandedContent.images.map((img, imgIndex) => (
                                     <div key={imgIndex} className="min-w-full flex-shrink-0">
-                                      <div className="overflow-hidden">
+                                      <div className="overflow-hidden flex justify-center">
                                         <Image
                                           src={img}
                                           alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                          width={300}
-                                          height={600}
-                                          className="w-full h-auto object-contain rounded-[24px]"
+                                          width={240}
+                                          height={480}
+                                          className="w-auto h-[480px] object-contain rounded-[24px]"
                                         />
                                       </div>
                                     </div>
@@ -792,13 +792,13 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                             </div>
                           ) : (
                             // Single image
-                            <div>
+                            <div className="flex justify-center">
                               <Image
                                 src={feature.expandedContent.images[0]}
                                 alt={`${feature.title} screenshot`}
-                                width={300}
-                                height={600}
-                                className="w-full h-auto object-contain rounded-[24px]"
+                                width={240}
+                                height={480}
+                                className="w-auto h-[480px] object-contain rounded-[24px]"
                               />
                             </div>
                           )}
