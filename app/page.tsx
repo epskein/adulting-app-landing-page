@@ -452,10 +452,11 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
   const [activeBenefit, setActiveBenefit] = useState(0)
   const isMobile = useIsMobile()
 
-  const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({
-    mealprep: 0,
-    travel: 0,
-  })
+  const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
+
+  const getFeatureKey = (title: string) => {
+    return title.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -476,6 +477,10 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
       setExpandedFeature(null)
     } else {
       setExpandedFeature(index)
+      const featureKey = getFeatureKey(features[index].title);
+      if (carouselIndices[featureKey] === undefined) {
+        setCarouselIndices(prev => ({ ...prev, [featureKey]: 0 }));
+      }
     }
   }
 
@@ -654,21 +659,19 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                 className="flex transition-transform duration-500 ease-in-out"
                                 style={{
                                   transform: `translateX(-${
-                                    (carouselIndices[feature.title.split(" ")[0]] || 0) * 100
+                                    (carouselIndices[getFeatureKey(feature.title)] || 0) * 100
                                   }%)`,
                                 }}
                               >
                                 {feature.expandedContent.images.map((img, imgIndex) => (
-                                  <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
-                                    <div className="rounded-image-container">
-                                      <Image
-                                        src={img}
-                                        alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                        width={300}
-                                        height={600}
-                                        className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
-                                      />
-                                    </div>
+                                  <div key={imgIndex} className="min-w-full flex-shrink-0">
+                                    <Image
+                                      src={img}
+                                      alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                      width={300}
+                                      height={600}
+                                      className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                                    />
                                   </div>
                                 ))}
                               </div>
@@ -676,7 +679,7 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                               <button
                                 onClick={() =>
                                   handleCarouselNav(
-                                    feature.title.split(" ")[0],
+                                    getFeatureKey(feature.title),
                                     "prev",
                                     feature.expandedContent.images.length
                                   )
@@ -688,7 +691,7 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                               <button
                                 onClick={() =>
                                   handleCarouselNav(
-                                    feature.title.split(" ")[0],
+                                    getFeatureKey(feature.title),
                                     "next",
                                     feature.expandedContent.images.length
                                   )
@@ -703,9 +706,9 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                 {feature.expandedContent.images.map((_, imgIndex) => (
                                   <button
                                     key={imgIndex}
-                                    onClick={() => setCarouselIndex(feature.title.split(" ")[0], imgIndex)}
+                                    onClick={() => setCarouselIndex(getFeatureKey(feature.title), imgIndex)}
                                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                      (carouselIndices[feature.title.split(" ")[0]] || 0) === imgIndex
+                                      (carouselIndices[getFeatureKey(feature.title)] || 0) === imgIndex
                                         ? "bg-white"
                                         : "bg-white/50 hover:bg-white/75"
                                     }`}
@@ -715,16 +718,14 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                             </div>
                           ) : (
                             // Single image
-                            <div className="overflow-hidden text-center">
-                              <div className="rounded-image-container">
-                                <Image
-                                  src={feature.expandedContent.images[0]}
-                                  alt={`${feature.title} screenshot`}
-                                  width={300}
-                                  height={600}
-                                  className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
-                                />
-                              </div>
+                            <div className="overflow-hidden">
+                              <Image
+                                src={feature.expandedContent.images[0]}
+                                alt={`${feature.title} screenshot`}
+                                width={300}
+                                height={600}
+                                className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                              />
                             </div>
                           )}
                         </div>
