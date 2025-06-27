@@ -736,13 +736,15 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                 >
                                   {feature.expandedContent.images.map((img, imgIndex) => (
                                     <div key={imgIndex} className="min-w-full flex-shrink-0">
-                                      <Image
-                                        src={img}
-                                        alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                        width={300}
-                                        height={600}
-                                        className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px] rounded-2xl"
-                                      />
+                                      <div className="overflow-hidden">
+                                        <Image
+                                          src={img}
+                                          alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                          width={300}
+                                          height={600}
+                                          className="w-full h-auto object-contain rounded-[24px]"
+                                        />
+                                      </div>
                                     </div>
                                   ))}
                                 </div>
@@ -790,13 +792,13 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                             </div>
                           ) : (
                             // Single image
-                            <div className="overflow-hidden rounded-2xl">
+                            <div>
                               <Image
                                 src={feature.expandedContent.images[0]}
                                 alt={`${feature.title} screenshot`}
                                 width={300}
                                 height={600}
-                                className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px] rounded-2xl"
+                                className="w-full h-auto object-contain rounded-[24px]"
                               />
                             </div>
                           )}
