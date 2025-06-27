@@ -95,8 +95,9 @@
 .rounded-image-container {
   border-radius: 1.5rem;
   overflow: hidden;
-  display: inline-block;
+  display: block;
   margin: 0 auto;
+  max-width: 300px;
 }
 
 .rounded-image-container img {

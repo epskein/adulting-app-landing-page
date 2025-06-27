@@ -666,7 +666,7 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                         alt={`${feature.title} screenshot ${imgIndex + 1}`}
                                         width={300}
                                         height={600}
-                                        className="h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                                        className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
                                       />
                                     </div>
                                   </div>
@@ -722,7 +722,7 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                                   alt={`${feature.title} screenshot`}
                                   width={300}
                                   height={600}
-                                  className="h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                                  className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
                                 />
                               </div>
                             </div>
@@ -753,7 +753,7 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
               {/* New Subheading Section */}
               <div className="text-center pt-10">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                  Full Control/Customizability
+                  Full Control
                 </h3>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                   Don't want to use/see modules? Simply hide them in Settings!
