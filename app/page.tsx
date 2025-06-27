@@ -791,16 +791,32 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                               </div>
                             </div>
                           ) : (
-                            // Single image
-                            <div className="flex justify-center">
-                              <Image
-                                src={feature.expandedContent.images[0]}
-                                alt={`${feature.title} screenshot`}
-                                width={240}
-                                height={480}
-                                className="w-auto h-[480px] object-contain rounded-[24px]"
-                              />
-                            </div>
+                            <>
+                              {/* Mobile single image view */}
+                              <div className="md:hidden">
+                                <div className="relative w-full max-w-[280px] mx-auto">
+                                  <div className="overflow-hidden rounded-2xl">
+                                    <Image
+                                      src={feature.expandedContent.images[0]}
+                                      alt={`${feature.title} screenshot`}
+                                      width={280}
+                                      height={560}
+                                      className="w-full h-auto object-contain"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              {/* Desktop single image view (unchanged) */}
+                              <div className="hidden md:flex justify-center">
+                                <Image
+                                  src={feature.expandedContent.images[0]}
+                                  alt={`${feature.title} screenshot`}
+                                  width={240}
+                                  height={480}
+                                  className="w-auto h-[480px] object-contain rounded-[24px]"
+                                />
+                              </div>
+                            </>
                           )}
                         </div>
                         
