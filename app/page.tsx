@@ -452,10 +452,11 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
   const [activeBenefit, setActiveBenefit] = useState(0)
   const isMobile = useIsMobile()
 
-  const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({
-    mealprep: 0,
-    travel: 0,
-  })
+  const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
+
+  const getFeatureKey = (title: string) => {
+    return title.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -476,6 +477,10 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
       setExpandedFeature(null)
     } else {
       setExpandedFeature(index)
+      const featureKey = getFeatureKey(features[index].title);
+      if (carouselIndices[featureKey] === undefined) {
+        setCarouselIndices(prev => ({ ...prev, [featureKey]: 0 }));
+      }
     }
   }
 
@@ -650,82 +655,168 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                           {feature.expandedContent.images.length > 1 ? (
                             // Carousel for multiple images
                             <div className="relative rounded-3xl overflow-hidden">
-                              <div
-                                className="flex transition-transform duration-500 ease-in-out"
-                                style={{
-                                  transform: `translateX(-${
-                                    (carouselIndices[feature.title.split(" ")[0]] || 0) * 100
-                                  }%)`,
-                                }}
-                              >
-                                {feature.expandedContent.images.map((img, imgIndex) => (
-                                  <div key={imgIndex} className="min-w-full flex-shrink-0 text-center">
-                                    <div className="rounded-image-container">
-                                      <Image
-                                        src={img}
-                                        alt={`${feature.title} screenshot ${imgIndex + 1}`}
-                                        width={300}
-                                        height={600}
-                                        className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
-                                      />
+                              {/* Mobile optimized carousel */}
+                              <div className="md:hidden">
+                                <div className="relative w-full max-w-[280px] mx-auto">
+                                  <div className="overflow-hidden rounded-2xl">
+                                    <div
+                                      className="flex transition-transform duration-500 ease-in-out"
+                                      style={{
+                                        transform: `translateX(-${
+                                          (carouselIndices[getFeatureKey(feature.title)] || 0) * 100
+                                        }%)`,
+                                      }}
+                                    >
+                                      {feature.expandedContent.images.map((img, imgIndex) => (
+                                        <div key={imgIndex} className="w-full flex-shrink-0">
+                                          <Image
+                                            src={img}
+                                            alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                            width={280}
+                                            height={560}
+                                            className="w-full h-auto object-contain rounded-2xl"
+                                          />
+                                        </div>
+                                      ))}
                                     </div>
                                   </div>
-                                ))}
-                              </div>
-                              {/* Carousel Controls */}
-                              <button
-                                onClick={() =>
-                                  handleCarouselNav(
-                                    feature.title.split(" ")[0],
-                                    "prev",
-                                    feature.expandedContent.images.length
-                                  )
-                                }
-                                className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
-                              >
-                                <ChevronLeft className="h-5 w-5" />
-                              </button>
-                              <button
-                                onClick={() =>
-                                  handleCarouselNav(
-                                    feature.title.split(" ")[0],
-                                    "next",
-                                    feature.expandedContent.images.length
-                                  )
-                                }
-                                className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
-                              >
-                                <ChevronRight className="h-5 w-5" />
-                              </button>
-
-                              {/* Carousel Indicators */}
-                              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
-                                {feature.expandedContent.images.map((_, imgIndex) => (
+                                  
+                                  {/* Mobile Carousel Controls */}
                                   <button
-                                    key={imgIndex}
-                                    onClick={() => setCarouselIndex(feature.title.split(" ")[0], imgIndex)}
-                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                      (carouselIndices[feature.title.split(" ")[0]] || 0) === imgIndex
-                                        ? "bg-white"
-                                        : "bg-white/50 hover:bg-white/75"
-                                    }`}
-                                  />
-                                ))}
+                                    onClick={() =>
+                                      handleCarouselNav(
+                                        getFeatureKey(feature.title),
+                                        "prev",
+                                        feature.expandedContent.images.length
+                                      )
+                                    }
+                                    className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                                  >
+                                    <ChevronLeft className="h-4 w-4" />
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      handleCarouselNav(
+                                        getFeatureKey(feature.title),
+                                        "next",
+                                        feature.expandedContent.images.length
+                                      )
+                                    }
+                                    className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                                  >
+                                    <ChevronRight className="h-4 w-4" />
+                                  </button>
+
+                                  {/* Mobile Carousel Indicators */}
+                                  <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-1">
+                                    {feature.expandedContent.images.map((_, imgIndex) => (
+                                      <button
+                                        key={imgIndex}
+                                        onClick={() => setCarouselIndex(getFeatureKey(feature.title), imgIndex)}
+                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                          (carouselIndices[getFeatureKey(feature.title)] || 0) === imgIndex
+                                            ? "bg-white"
+                                            : "bg-white/50 hover:bg-white/75"
+                                        }`}
+                                      />
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Desktop carousel (unchanged) */}
+                              <div className="hidden md:block">
+                                <div
+                                  className="flex transition-transform duration-500 ease-in-out"
+                                  style={{
+                                    transform: `translateX(-${
+                                      (carouselIndices[getFeatureKey(feature.title)] || 0) * 100
+                                    }%)`,
+                                  }}
+                                >
+                                  {feature.expandedContent.images.map((img, imgIndex) => (
+                                    <div key={imgIndex} className="min-w-full flex-shrink-0">
+                                      <div className="overflow-hidden flex justify-center">
+                                        <Image
+                                          src={img}
+                                          alt={`${feature.title} screenshot ${imgIndex + 1}`}
+                                          width={240}
+                                          height={480}
+                                          className="w-auto h-[480px] object-contain rounded-[24px]"
+                                        />
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                                {/* Desktop Carousel Controls */}
+                                <button
+                                  onClick={() =>
+                                    handleCarouselNav(
+                                      getFeatureKey(feature.title),
+                                      "prev",
+                                      feature.expandedContent.images.length
+                                    )
+                                  }
+                                  className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                                >
+                                  <ChevronLeft className="h-5 w-5" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    handleCarouselNav(
+                                      getFeatureKey(feature.title),
+                                      "next",
+                                      feature.expandedContent.images.length
+                                    )
+                                  }
+                                  className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-gray-800/70 hover:bg-gray-700/90 rounded-full flex items-center justify-center text-white transition-all duration-300 z-10"
+                                >
+                                  <ChevronRight className="h-5 w-5" />
+                                </button>
+
+                                {/* Desktop Carousel Indicators */}
+                                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                                  {feature.expandedContent.images.map((_, imgIndex) => (
+                                    <button
+                                      key={imgIndex}
+                                      onClick={() => setCarouselIndex(getFeatureKey(feature.title), imgIndex)}
+                                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                        (carouselIndices[getFeatureKey(feature.title)] || 0) === imgIndex
+                                          ? "bg-white"
+                                          : "bg-white/50 hover:bg-white/75"
+                                      }`}
+                                    />
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           ) : (
-                            // Single image
-                            <div className="overflow-hidden text-center">
-                              <div className="rounded-image-container">
+                            <>
+                              {/* Mobile single image view */}
+                              <div className="md:hidden">
+                                <div className="relative w-full max-w-[280px] mx-auto">
+                                  <div className="overflow-hidden rounded-2xl">
+                                    <Image
+                                      src={feature.expandedContent.images[0]}
+                                      alt={`${feature.title} screenshot`}
+                                      width={280}
+                                      height={560}
+                                      className="w-full h-auto object-contain"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              {/* Desktop single image view (unchanged) */}
+                              <div className="hidden md:flex justify-center">
                                 <Image
                                   src={feature.expandedContent.images[0]}
                                   alt={`${feature.title} screenshot`}
-                                  width={300}
-                                  height={600}
-                                  className="w-full h-auto object-contain max-h-[400px] md:max-h-[480px]"
+                                  width={240}
+                                  height={480}
+                                  className="w-auto h-[480px] object-contain rounded-[24px]"
                                 />
                               </div>
-                            </div>
+                            </>
                           )}
                         </div>
                         
