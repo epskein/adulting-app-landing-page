@@ -70,7 +70,7 @@ export default function Home() {
       expandedContent: {
         description:
           "Keep all your important documents in one secure, easily accessible place. Never search through multiple digital folders, stacks of paper or store files in your emails again.",
-        images: ["/images/app-screenshots/documents.png"],
+        images: ["/images/app-screenshots/documents-new.png"],
         bulletPoints: [
           "Categorized storage system",
           "Secure encryption for sensitive documents",
@@ -95,7 +95,7 @@ export default function Home() {
       expandedContent: {
         description:
           "Quick access to all your critical emergency contacts when you need it most. Store the contact details and additional information of your local Fire Services, Police, Ambulance or family all in one secure place.",
-        images: ["/images/app-screenshots/emergency-safety.png"],
+        images: ["/images/app-screenshots/emergency-safety-new.png"],
         bulletPoints: [
           "One-tap emergency contacts - just the press of a button away!",
           "Store additional information for each contact",
@@ -108,8 +108,8 @@ export default function Home() {
       description: "Plan meals with ease - Save your favorite recipes and create your grocery list in one dedicated place.",
       expandedContent: {
         description:
-          "Stop wondering what to make for dinner - Save your favorite recipes, add recipe ingredients to your shopping list, and share your grocery list with anyone. MealPrep makes cooking at home easier and more organized.",
-        images: ["/images/app-screenshots/mealprep.png", "/images/app-screenshots/grocery-list.png" , "/images/app-screenshots/recipe-details.png"],
+          "Stop wondering what to make for dinner - Save your favorite recipes, add recipe ingredients to your shopping list, and share your grocery list with anyone. ADULTING makes cooking at home easier and more organized.",
+        images: ["/images/app-screenshots/mealprep-new.png", "/images/app-screenshots/grocery-list-new.png" , "/images/app-screenshots/recipe-details-new.png"],
         bulletPoints: [
           "Recipe collection with categorisation & search functionality",
           "Automatically add ingredients to your grocery list",
@@ -130,9 +130,9 @@ export default function Home() {
           "Make travel planning stress-free with our comprehensive travel assistant. Store all your bookings, create packing lists, and get timely reminders for check-ins and departures.",
         images: [
           "/images/app-screenshots/travel-assistant.png",
-          "/images/app-screenshots/travel-documents.png",
-          "/images/app-screenshots/trip-details.png",
-          "/images/app-screenshots/packing-list.png"
+          "/images/app-screenshots/travel-documents-new.png",
+          "/images/app-screenshots/trip-details-new.png",
+          "/images/app-screenshots/packing-list-new.png"
         ],
         bulletPoints: [
           "Keep track of all your upcoming trips",
@@ -157,7 +157,7 @@ export default function Home() {
       expandedContent: {
         description:
           "Ensure your loved ones have access to important information if something happens to you. Create a comprehensive digital will that can be accessed in the event of an emergency.",
-        images: ["/images/app-screenshots/digital-will.png"],
+        images: ["/images/app-screenshots/digital-will-new.png"],
         bulletPoints: [
           "Secure storage of sensitive information",
           "Leave emergency instructions with ease",
@@ -179,7 +179,7 @@ export default function Home() {
       expandedContent: {
         description:
           "Never miss an important chore or neglect critical recurring appointments again. Set up custom reminders for everything from annual car registrations to quarterly dental checkups.",
-        images: ["/images/app-screenshots/reminders.png"],
+        images: ["/images/app-screenshots/reminders-new.png"],
         bulletPoints: [
           "Custom recurring reminder schedules",
           "Calendar integration",
@@ -201,7 +201,7 @@ export default function Home() {
       expandedContent: {
         description:
           "Keep track of all your pet's health information in one place. Monitor vaccinations, medications, vet visits, and more to ensure your furry friends stay healthy.",
-        images: ["/images/app-screenshots/pet-tracker.png"],
+        images: ["/images/app-screenshots/pet-tracker-new.png"],
         bulletPoints: [
           "All your pets information in one place - Vaccination history, age, birthday etc.",
           "View active treatments",
