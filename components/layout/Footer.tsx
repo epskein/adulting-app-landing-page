@@ -9,6 +9,12 @@ export function Footer() {
     { href: "/contact", label: "Contact" },
   ]
 
+  const socialLinks: Record<"linkedin" | "instagram" | "tiktok", string> = {
+    linkedin: "https://www.linkedin.com/company/adulting-mobile",
+    instagram: "https://www.instagram.com/_adulting_app_/",
+    tiktok: "https://www.tiktok.com/@_adulting_app_",
+  }
+
   return (
     <footer className="bg-black/90 text-white py-16 relative overflow-hidden mt-20">
       <div className="container mx-auto px-4 relative z-10">
@@ -70,10 +76,14 @@ export function Footer() {
           <p className="text-gray-400 text-base">&copy; {new Date().getFullYear()} ADULTING. All rights reserved.</p>
 
           <div className="flex space-x-6 mt-6 md:mt-0">
-            {["linkedin", "instagram", "twitter"].map((social, i) => (
+            {["linkedin", "instagram", "tiktok"].map((social, i) => (
               <Link
                 key={i}
-                href="#"
+                href={socialLinks[social as keyof typeof socialLinks]}
+                aria-label={social}
+                title={social}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-gray-200 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
               >
                 <svg
@@ -101,7 +111,12 @@ export function Footer() {
                       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                     </>
                   ) : (
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4z" />
+                    // TikTok (monochrome)
+                    <path
+                      d="M12 2v11.5c0 2.33-1.9 4.22-4.22 4.22S3.56 15.83 3.56 13.5 5.45 9.28 7.78 9.28c.27 0 .54.02.8.06V7.02c-.26-.03-.53-.04-.8-.04-3.39 0-6.14 2.75-6.14 6.14s2.75 6.14 6.14 6.14 6.14-2.75 6.14-6.14V6.2c1.38 1.05 3.1 1.68 4.96 1.68V5.1c-1.72 0-3.3-.56-4.58-1.5V2H12z"
+                      fill="currentColor"
+                      stroke="none"
+                    />
                   )}
                 </svg>
                 <span className="sr-only">{social}</span>
