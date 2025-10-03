@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics"
+import { Suspense } from "react"
 
 const plusJakartaSans = Plus_Jakarta_Sans({ 
   subsets: ["latin"], 
@@ -46,7 +47,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
           <Toaster />
-          <GoogleAnalytics />
+          <Suspense>
+            <GoogleAnalytics />
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>
