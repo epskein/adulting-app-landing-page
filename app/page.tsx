@@ -64,8 +64,8 @@ export default function Home() {
   const features: Feature[] = [
     {
       icon: <Icon icon="mdi:file-document" width={28} className="text-white" />,
-      title: "My Documents",
-      description: "Securely store important docs (lease, ID, medical aid card) for quick access anytime.",
+      title: "Documents",
+      description: "Securely store important docs (lease, ID, medical aid card, CV, etc.) for quick access anytime.",
       expandedContent: {
         description:
           "Keep all your important documents in one secure, easily accessible place. Never search through multiple digital folders, stacks of paper or store files in your emails again.",
@@ -84,7 +84,7 @@ export default function Home() {
       description: "Store emergency contacts details — ready when it matters.",
       expandedContent: {
         description:
-          "Quick access to all your critical emergency contacts when you need it most. Store the contact details and additional information of your local Fire Services, Police, Ambulance or family all in one secure place.",
+          "Quick access to all your critical emergency contacts when you need it most. You don't have time to scroll through your contacts list during an emergency. Store the contact details and additional information of your local Fire Services, Police, Ambulance, friends or family all in a dedicated place.",
         images: ["/images/app-screenshots/emergency-safety-new.png"],
         bulletPoints: [
           "One-tap emergency contacts - just the press of a button away!",
@@ -94,7 +94,7 @@ export default function Home() {
     },
     {
       icon: <Icon icon="mdi:silverware-fork-knife" width={28} className="text-white" />,
-      title: "Mealprep, Recipes and Grocery List",
+      title: "Mealprep - Recipes & Grocery List",
       description: "Plan meals with ease - Save your favorite recipes and create your grocery list in one dedicated place.",
       expandedContent: {
         description:
@@ -110,10 +110,10 @@ export default function Home() {
     {
       icon: <Icon icon="mdi:bag-suitcase" width={28} className="text-white" />,
       title: "Travel Assistant",
-      description: "Organize your trips with itineraries, tickets, bookings, packing lists, and travel reminders",
+      description: "A better way to organize your trips - destinations, tickets, bookings and packing lists.",
       expandedContent: {
         description:
-          "Make travel planning stress-free with our comprehensive travel assistant. Store all your bookings, create packing lists, and get timely reminders for check-ins and departures.",
+          "Make travel planning stress-free with our comprehensive travel assistant. Store all your tickets/bookings, create packing lists, and get timely reminders.",
         images: [
           "/images/app-screenshots/travel-assistant-new.png",
           "/images/app-screenshots/travel-documents-new.png",
@@ -131,30 +131,30 @@ export default function Home() {
     {
       icon: <Icon icon="mdi:court-hammer" width={28} className="text-white" />,
       title: "Digital Will/Emergency Instructions",
-      description: "Leave critical info for your loved ones in case of emergencies — easily editable.",
+      description: "Ensure your loved ones know what your final wishes are. ",
       expandedContent: {
         description:
-          "Ensure your loved ones have access to important information if something happens to you. Create a comprehensive digital will that can be accessed in the event of an emergency.",
+          "Few people are prepared for the unexpected, but the Digital Will-module helps. Leave critical info for your loved ones in case of emergencies, or make notes of things to add to your official will — easily editable.",
         images: ["/images/app-screenshots/digital-will-new.png"],
         bulletPoints: [
-          "Secure storage of sensitive information",
+          "Dedicated place to note down details to add to your official will",
           "Leave emergency instructions with ease",
-          "Regular update reminders",
         ],
       },
     },
     {
       icon: <Icon icon="mdi:alarm" width={28} className="text-white" />,
       title: "Smart Reminders",
-      description: "Set custom recurring reminders — like car registration, dentist visits, and more.",
+      description: "Set custom recurring reminders for all aspects of your adult life — like home, car, health, and more.",
       expandedContent: {
         description:
-          "Never miss an important chore or neglect critical recurring appointments again. Set up custom reminders for everything from annual car registrations to quarterly dental checkups.",
+          "Never miss an important chore or neglect critical recurring appointments again. Set up custom reminders for everything from annual car registrations to medical checkups, data backups, and more. Our suggestions makes getting set up quick and easy.",
         images: ["/images/app-screenshots/reminders-new.png"],
         bulletPoints: [
           "Custom recurring reminder schedules",
-          "Calendar integration",
+          "Calendar integration (coming soon)",
           "Control when you are notified about upcoming reminders",
+          "Personal dashboard to track your progress",
         ],
       },
     },
@@ -176,7 +176,7 @@ export default function Home() {
     {
       icon: <Icon icon="mdi:shield-half-full" width={28} className="text-white" />,
       title: "Vault",
-      description: "Securely store passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
+      description: "Securely store sensitive documents, passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
       expandedContent: {
         description:
           "Behind an extra layer of security, you can safely store sensitive bits of information such as Account Passwords, Banking Login/payment details, app/card pincodes, tax numbers etc.",
