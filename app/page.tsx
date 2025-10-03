@@ -8,14 +8,13 @@ import {
   ChevronLeft,
   ChevronRight,
   AlertCircle,
-  FileText,
-  Utensils,
   Plane,
   FileSignature,
   Bell,
   PawPrint,
   ShieldCheck,
 } from "lucide-react"
+import { Icon } from "@iconify/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -64,7 +63,7 @@ export default function Home() {
 
   const features: Feature[] = [
     {
-      icon: <FileText size={28} className="text-white" />,
+      icon: <Icon icon="mdi:file-document" width={28} className="text-white" />,
       title: "My Documents",
       description: "Securely store important docs (lease, ID, medical aid card) for quick access anytime.",
       expandedContent: {
@@ -80,16 +79,7 @@ export default function Home() {
       },
     },
     {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <rect width="16" height="16" x="4" y="4" rx="2"></rect>
-          <path d="M9 10h6"></path>
-          <path d="M12 7v6"></path>
-          <path d="M9 17v4"></path>
-          <path d="M15 17v4"></path>
-          <path d="M12 21v-4"></path>
-        </svg>
-      ),
+      icon: <Icon icon="mdi:medical-bag" width={28} className="text-white" />,
       title: "Emergency & Safety",
       description: "Store emergency contacts details — ready when it matters.",
       expandedContent: {
@@ -103,7 +93,7 @@ export default function Home() {
       },
     },
     {
-      icon: <Utensils size={28} className="text-white" />,
+      icon: <Icon icon="mdi:silverware-fork-knife" width={28} className="text-white" />,
       title: "Mealprep, Recipes and Grocery List",
       description: "Plan meals with ease - Save your favorite recipes and create your grocery list in one dedicated place.",
       expandedContent: {
@@ -118,18 +108,14 @@ export default function Home() {
       },
     },
     {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
-        </svg>
-      ),
+      icon: <Icon icon="mdi:bag-suitcase" width={28} className="text-white" />,
       title: "Travel Assistant",
       description: "Organize your trips with itineraries, tickets, bookings, packing lists, and travel reminders",
       expandedContent: {
         description:
           "Make travel planning stress-free with our comprehensive travel assistant. Store all your bookings, create packing lists, and get timely reminders for check-ins and departures.",
         images: [
-          "/images/app-screenshots/travel-assistant.png",
+          "/images/app-screenshots/travel-assistant-new.png",
           "/images/app-screenshots/travel-documents-new.png",
           "/images/app-screenshots/trip-details-new.png",
           "/images/app-screenshots/packing-list-new.png"
@@ -143,15 +129,7 @@ export default function Home() {
       },
     },
     {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <path d="M20 11.08V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h6"></path>
-          <path d="M14 3v5h5"></path>
-          <circle cx="16" cy="16" r="6"></circle>
-          <path d="M16 14v4"></path>
-          <path d="M16 22v-1"></path>
-        </svg>
-      ),
+      icon: <Icon icon="mdi:court-hammer" width={28} className="text-white" />,
       title: "Digital Will/Emergency Instructions",
       description: "Leave critical info for your loved ones in case of emergencies — easily editable.",
       expandedContent: {
@@ -166,14 +144,7 @@ export default function Home() {
       },
     },
     {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <circle cx="11" cy="4" r="2"></circle>
-          <circle cx="18" cy="8" r="2"></circle>
-          <circle cx="20" cy="16" r="2"></circle>
-          <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"></path>
-        </svg>
-      ),
+      icon: <Icon icon="mdi:alarm" width={28} className="text-white" />,
       title: "Smart Reminders",
       description: "Set custom recurring reminders — like car registration, dentist visits, and more.",
       expandedContent: {
@@ -188,14 +159,7 @@ export default function Home() {
       },
     },
     {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <circle cx="11" cy="4" r="2"></circle>
-          <circle cx="18" cy="8" r="2"></circle>
-          <circle cx="20" cy="16" r="2"></circle>
-          <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"></path>
-        </svg>
-      ),
+      icon: <Icon icon="mdi:pets" width={28} className="text-white" />,
       title: "Pet Tracker",
       description: "Add your pets, track vaccines, vet visits, active treatments, and more.",
       expandedContent: {
@@ -210,12 +174,7 @@ export default function Home() {
       },
     },
     {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-        </svg>
-      ),
+      icon: <Icon icon="mdi:shield-half-full" width={28} className="text-white" />,
       title: "Vault",
       description: "Securely store passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
       expandedContent: {
