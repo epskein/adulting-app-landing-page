@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics"
 
 const plusJakartaSans = Plus_Jakarta_Sans({ 
   subsets: ["latin"], 
@@ -45,6 +46,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
           <Toaster />
+          <GoogleAnalytics />
         </ThemeProvider>
       </body>
     </html>

@@ -379,7 +379,7 @@ function EmailSignupSection() {
         <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl border-4 border-black p-8 md:p-12 shadow-xl max-w-4xl mx-auto">
           <div className="text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
-              We're now in Beta testing! Want to be the first to try?
+              We're now in beta testing! Want to be the first to try?
             </h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
               Enter your email here and we'll send you a special link to download the app!
@@ -873,7 +873,7 @@ function FaqSection() {
     {
       question: "Do I need an internet connection to access my info?",
       answer:
-        "Core features work offline. Some syncing requires a connection, but you'll always have access to your essential information.",
+        "All core features work offline so you'll always have access to your essential information.",
     },
     {
       question: "Is ADULTING free?",
@@ -883,7 +883,7 @@ function FaqSection() {
     {
       question: "Can I use ADULTING on multiple devices?",
       answer:
-        "Yes — just log in with the same account on any device. Your data will sync automatically across all your devices.",
+        "Currently, no. All data is stored locally on each device for security reasons. In a future update we will introduce cloud syncing for paying customers, this will allow you to back up your data and log in with the same account on any device. Your data will sync automatically across all your devices.",
     },
     {
       question: "How do I suggest new features?",
