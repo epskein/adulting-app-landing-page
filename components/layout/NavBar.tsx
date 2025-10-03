@@ -54,10 +54,10 @@ export function NavBar() {
           {["Home", "Benefits", "Features", "FAQ"].map((item) => (
             <Link key={item} href={`/#${item.toLowerCase()}`} className="text-sm font-medium relative group text-gray-300 hover:text-white transition-colors">
               {item}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#609bf0] via-[#609bf0] to-[#ad31f3] group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#2d72f0] via-[#4892f9] to-[#ad31f3] group-hover:w-full transition-all duration-300"></span>
             </Link>
           ))}
-          <Button className="bg-gradient-to-r from-[#609bf0] via-[#609bf0] to-[#ad31f3] text-white hover:opacity-90 rounded-full relative overflow-hidden group border-0 font-semibold shadow-lg">
+          <Button className="bg-gradient-to-r from-[#2d72f0] via-[#4892f9] to-[#ad31f3] text-white hover:opacity-90 rounded-full relative overflow-hidden group border-0 font-semibold shadow-lg">
             <span className="relative z-10">Coming Soon</span>
           </Button>
         </nav>

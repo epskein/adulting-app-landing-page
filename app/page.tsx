@@ -320,7 +320,7 @@ function HeroSection() {
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
               Your Daily Admin.{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#3c9aec] via-[#58a6f8] to-[#b37bef]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#2d72f0] via-[#4892f9] to-[#8c2eef]">
                 Sorted.
               </span>
             </h1>
@@ -343,7 +343,7 @@ function HeroSection() {
               </a>
               
               {/* Modern Google Play Button */}
-              <a href="#" className="app-store-button-google mx-auto sm:mx-0">
+              <a href="#" className="hidden app-store-button-google mx-auto sm:mx-0" style={{ display: 'none' }}>
                 <div className="icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
@@ -359,7 +359,7 @@ function HeroSection() {
           <div className="flex justify-center animate-fade-in relative z-40 order-1 lg:order-2">
             <div className="relative w-[350px] lg:w-[450px] h-full transform hover:scale-105 transition-all duration-700">
               {/* Subtle gradient background for iPhone */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#3c9aec]/30 via-[#b37bef]/10 to-cyan-200/20 rounded-[40px] blur-xl opacity-60 animate-pulse-slow"></div>
+              <div className="absolute -inset-4 bg-gradient-to-br from-[#2d72f0]/30 via-[#b37bef]/10 to-cyan-200/20 rounded-[40px] blur-xl opacity-60 animate-pulse-slow"></div>
               
               {/* iPhone mockup */}
               <div className="relative w-full h-full z-10">
@@ -420,10 +420,10 @@ function EmailSignupSection() {
         <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl border-4 border-black p-8 md:p-12 shadow-xl max-w-4xl mx-auto">
           <div className="text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
-              Want us to notify you when the app is released?
+              We're now in Beta testing! Want to be the first to try?
             </h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-              Enter your email here and we'll send you a message as soon as it's available!
+              Enter your email here and we'll send you a special link to download the app!
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input
@@ -436,7 +436,7 @@ function EmailSignupSection() {
                 required
               />
               <Button type="submit" className="bg-black text-white hover:bg-gray-800" disabled={loading}>
-                {loading ? "Submitting..." : "Notify Me"}
+                {loading ? "Submitting..." : "Submit"}
               </Button>
             </form>
           </div>
@@ -508,13 +508,13 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
         {/* Benefits Section */}
         <div id="benefits" className="relative mb-32">
           {/* Soft gradient overlay */}
-          <div className="absolute -inset-4 bg-gradient-to-br from-[#3c9aec]/40 via-[#b37bef]/20 to-indigo-200/20 rounded-[2rem] blur-sm opacity-60"></div>
+          <div className="absolute -inset-4 bg-gradient-to-br from-[#5083e2]/40 via-[#b37bef]/20 to-indigo-200/20 rounded-[2rem] blur-sm opacity-60"></div>
           
           <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
             <div className="text-center mb-16">
               <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
                 Why You'll{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3c9aec] to-[#b37bef]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5083e2] to-[#b37bef]">
                   Love
                 </span>{" "}
                 Using ADULTING
@@ -606,12 +606,12 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
         {/* Features Section */}
         <div id="features" className="relative">
           {/* Soft gradient overlay */}
-          <div className="absolute -inset-4 bg-gradient-to-br from-indigo-200/20 via-[#3c9aec]/40 to-[#b37bef]/20 rounded-[2rem] blur-sm opacity-60"></div>
+          <div className="absolute -inset-4 bg-gradient-to-br from-indigo-200/20 via-[#5083e2]/40 to-[#b37bef]/20 rounded-[2rem] blur-sm opacity-60"></div>
           
           <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3c9aec] to-[#b37bef]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5083e2] to-[#b37bef]">
                   8 Core Modules
                 </span>{" "}
                 to Cover Your Most Essential Needs
@@ -863,14 +863,14 @@ function IPhoneShowcaseSection() {
     <section className="container mx-auto px-4 relative z-10">
       <div className="relative">
         {/* Soft gradient overlay */}
-        <div className="absolute -inset-4 bg-gradient-to-br from-cyan-200/20 via-[#3c9aec]/30 to-[#b37bef]/20 rounded-[2rem] blur-sm opacity-60"></div>
+        <div className="absolute -inset-4 bg-gradient-to-br from-cyan-200/20 via-[#5083e2]/30 to-[#b37bef]/20 rounded-[2rem] blur-sm opacity-60"></div>
         
         <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 shadow-xl">
           {/* iPhone Showcase */}
           <div className="relative z-10 flex justify-center max-w-4xl mx-auto">
             <div className="relative group">
               {/* Subtle gradient glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#3c9aec]/50 via-[#b37bef]/30 to-cyan-200/20 rounded-3xl blur-2xl transform group-hover:scale-110 transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#5083e2]/50 via-[#b37bef]/30 to-cyan-200/20 rounded-3xl blur-2xl transform group-hover:scale-110 transition-transform duration-700"></div>
               
               {/* iPhone Frame */}
               <Image
@@ -979,7 +979,7 @@ function CtaSection() {
     <section className="container mx-auto px-4 relative z-10">
       <div className="relative max-w-5xl mx-auto">
         {/* Soft gradient overlay */}
-        <div className="absolute -inset-4 bg-gradient-to-br from-purple-300/20 via-cyan-200/20 to-[#3c9aec]/30 rounded-[2rem] blur-sm opacity-60"></div>
+        <div className="absolute -inset-4 bg-gradient-to-br from-purple-300/20 via-cyan-200/20 to-[#2d72f0]/30 rounded-[2rem] blur-sm opacity-60"></div>
 
         <div className="relative bg-gray-100/95 backdrop-blur-xl rounded-3xl border border-gray-200 p-8 md:p-16 text-center shadow-xl">
           <div className="inline-block px-6 py-2 rounded-full bg-white/80 text-gray-600 text-sm font-semibold mb-6 border border-gray-200 shadow-sm">
@@ -988,7 +988,7 @@ function CtaSection() {
 
           <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
             Ready to finally feel{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3c9aec] to-[#b37bef]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2d72f0] to-[#b37bef]">
               organized
             </span>
             ?
@@ -1013,7 +1013,7 @@ function CtaSection() {
             </a>
             
             {/* Modern Google Play Button */}
-            <a href="#" className="app-store-button-google mx-auto sm:mx-0">
+            <a href="#" className="hidden app-store-button-google mx-auto sm:mx-0" style={{ display: 'none' }}>
               <div className="icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />

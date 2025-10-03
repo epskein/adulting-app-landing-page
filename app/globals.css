@@ -239,7 +239,7 @@
 .app-store-button-new:hover {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 16px 32px -4px rgba(47, 119, 228, 0.4), 0 8px 16px -2px rgba(47, 119, 228, 0.15);
-  background: linear-gradient(135deg, #2f77e4, #5894f5);
+  background: linear-gradient(135deg, #2d72f0, #5894f5);
   border-color: rgba(99, 102, 241, 0.5);
 }
 
