@@ -180,7 +180,7 @@ export default function Home() {
       expandedContent: {
         description:
           "Behind an extra layer of security, you can safely store sensitive bits of information such as Account Passwords, Banking Login/payment details, app/card pincodes, tax numbers etc.",
-        images: ["/images/app-screenshots/vault.png"],
+        images: ["/images/app-screenshots/vault-new.png"],
         bulletPoints: [
           "Secure encryption of content with pincode access.",
           "Categorized storage system",
