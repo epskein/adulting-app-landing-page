@@ -5,6 +5,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics"
+import ImagePreloader from "@/components/ImagePreloader"
+import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration"
 import { Suspense } from "react"
 
 const plusJakartaSans = Plus_Jakarta_Sans({ 
@@ -42,11 +44,20 @@ export default function RootLayout({
           type="font/woff"
           crossOrigin="anonymous"
         />
+        {/* Preload critical images */}
+        <link rel="preload" href="/images/iPhone-Vectors-1.png" as="image" />
+        <link rel="preload" href="/images/Benefits-Icon-1.png" as="image" />
+        <link rel="preload" href="/images/Benefits-Icon-2.png" as="image" />
+        <link rel="preload" href="/images/Benefits-Icon-3.png" as="image" />
+        <link rel="preload" href="/images/iphone-frame-x3.png" as="image" />
       </head>
       <body className={plusJakartaSans.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
+          <ImagePreloader>
+            {children}
+          </ImagePreloader>
           <Toaster />
+          <ServiceWorkerRegistration />
           <Suspense>
             <GoogleAnalytics />
           </Suspense>

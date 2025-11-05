@@ -491,13 +491,14 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
                       <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full min-h-[620px] flex flex-col items-center justify-center">
                         <div className="mb-6 flex justify-center">
-                          <Image
-                            src={benefit.icon}
-                            alt={benefit.title}
-                            width={256}
-                            height={256}
-                            className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
-                          />
+                        <Image
+                          src={benefit.icon}
+                          alt={benefit.title}
+                          width={256}
+                          height={256}
+                          className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                          priority
+                        />
                         </div>
                         <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
                           {benefit.title}
@@ -539,13 +540,14 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
 
                   <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
                     <div className="mb-6 flex justify-center">
-                      <Image
-                        src={benefit.icon}
-                        alt={benefit.title}
-                        width={256}
-                        height={256}
-                        className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
-                      />
+                        <Image
+                          src={benefit.icon}
+                          alt={benefit.title}
+                          width={256}
+                          height={256}
+                          className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                          priority
+                        />
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
                       {benefit.title}
