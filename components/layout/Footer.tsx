@@ -73,7 +73,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-base">&copy; {new Date().getFullYear()} ADULTING. All rights reserved.</p>
+          <p className="text-gray-400 text-base">&copy; <span suppressHydrationWarning>{new Date().getFullYear()}</span> ADULTING. All rights reserved.</p>
 
           <div className="flex space-x-6 mt-6 md:mt-0">
             {["linkedin", "instagram", "tiktok"].map((social, i) => (

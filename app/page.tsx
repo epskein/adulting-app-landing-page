@@ -19,10 +19,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useState, useEffect } from "react"
-import { useIsMobile } from "@/hooks/use-mobile"
 import { toast } from "sonner"
-import Head from "next/head"
-import { NavBar } from "@/components/layout/NavBar"
+import dynamic from "next/dynamic"
+const NavBar = dynamic(() => import("@/components/layout/NavBar").then(m => m.NavBar), { ssr: false })
 import { Footer } from "@/components/layout/Footer"
 
 type Benefit = {
@@ -191,24 +190,22 @@ export default function Home() {
     },
   ]
 
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  if (!mounted) {
+    return null
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 relative overflow-hidden">
-      <Head>
-        <link rel="preload" as="image" href="/images/iPhone-Vectors-1.png" />
-        <link rel="preload" as="image" href="/images/iphone-frame-x3.png" />
-        {benefits.map((benefit) => (
-          <link key={`preload-benefit-${benefit.title}`} rel="preload" as="image" href={benefit.icon} />
-        ))}
-        {features.flatMap((feature) =>
-          feature.expandedContent.images.map((image) => (
-            <link key={`preload-feature-${image}`} rel="preload" as="image" href={image} />
-          ))
-        )}
-      </Head>
       <NavBar />
       <HeroSection />
       <EmailSignupSection />
@@ -325,8 +322,8 @@ function HeroSection() {
                 <Image
                   src="/images/iPhone-Vectors-1.png"
                   alt="ADULTING app interface mockup"
-                  width={450}
-                  height={900}
+                  width={600}
+                  height={1200}
                   className="w-full h-auto drop-shadow-2xl"
                   priority
                 />
@@ -409,7 +406,6 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
   const [expandedFeature, setExpandedFeature] = useState<number | null>(null)
   const [scrollY, setScrollY] = useState(0)
   const [activeBenefit, setActiveBenefit] = useState(0)
-  const isMobile = useIsMobile()
 
   const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({})
 
@@ -483,82 +479,82 @@ function UnifiedBenefitsFeaturesSection({ benefits, features }: { benefits: Bene
               </p>
             </div>
 
-            {isMobile ? (
-              <div className="relative max-w-md mx-auto overflow-hidden">
-                <div
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${activeBenefit * 100}%)` }}
-                >
-                  {benefits.map((benefit, index) => (
-                    <div key={index} className="w-full flex-shrink-0">
-                      <div className="group relative">
-                        <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full min-h-[620px] flex flex-col items-center justify-center">
-                          <div className="mb-6 flex justify-center">
-                            <Image
-                              src={benefit.icon}
-                              alt={benefit.title}
-                              width={256}
-                              height={256}
-                              className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
-                            />
-                          </div>
-                          <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
-                            {benefit.title}
-                          </h3>
-                          <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex justify-center items-center gap-6 mt-8">
-                  <Button onClick={() => handleBenefitChange("prev")} variant="outline" size="icon" className="rounded-full shadow-md">
-                    <ChevronLeft className="h-5 w-5" />
-                  </Button>
-                  <div className="flex gap-3">
-                    {benefits.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setActiveBenefit(i)}
-                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                          i === activeBenefit ? "bg-blue-500 scale-125" : "bg-gray-300 hover:bg-gray-400"
-                        }`}
-                        aria-label={`Go to slide ${i + 1}`}
-                      />
-                    ))}
-                  </div>
-                  <Button onClick={() => handleBenefitChange("next")} variant="outline" size="icon" className="rounded-full shadow-md">
-                    <ChevronRight className="h-5 w-5" />
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Mobile slider (always rendered, hidden on md and up) */}
+            <div className="relative max-w-md mx-auto overflow-hidden md:hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${activeBenefit * 100}%)` }}
+              >
                 {benefits.map((benefit, index) => (
-                  <div key={index} className="group relative" style={{ animationDelay: `${index * 150}ms` }}>
-                    {/* Subtle hover effect */}
-                    <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
-                      <div className="mb-6 flex justify-center">
-                        <Image
-                          src={benefit.icon}
-                          alt={benefit.title}
-                          width={256}
-                          height={256}
-                          className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
-                        />
+                  <div key={index} className="w-full flex-shrink-0">
+                    <div className="group relative">
+                      <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full min-h-[620px] flex flex-col items-center justify-center">
+                        <div className="mb-6 flex justify-center">
+                          <Image
+                            src={benefit.icon}
+                            alt={benefit.title}
+                            width={256}
+                            height={256}
+                            className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                          />
+                        </div>
+                        <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
+                          {benefit.title}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
-            )}
+              <div className="flex justify-center items-center gap-6 mt-8">
+                <Button onClick={() => handleBenefitChange("prev")} variant="outline" size="icon" className="rounded-full shadow-md">
+                  <ChevronLeft className="h-5 w-5" />
+                </Button>
+                <div className="flex gap-3">
+                  {benefits.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveBenefit(i)}
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                        i === activeBenefit ? "bg-blue-500 scale-125" : "bg-gray-300 hover:bg-gray-400"
+                      }`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+                <Button onClick={() => handleBenefitChange("next")} variant="outline" size="icon" className="rounded-full shadow-md">
+                  <ChevronRight className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Desktop grid (hidden on small screens) */}
+            <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="group relative" style={{ animationDelay: `${index * 150}ms` }}>
+                  {/* Subtle hover effect */}
+                  <div className="absolute -inset-1 bg-gray-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  <div className="relative bg-gray-50/95 backdrop-blur-sm border border-gray-200 p-8 rounded-2xl hover:bg-gray-50 transition-all duration-500 transform hover:-translate-y-2 shadow-lg hover:shadow-xl text-center h-full">
+                    <div className="mb-6 flex justify-center">
+                      <Image
+                        src={benefit.icon}
+                        alt={benefit.title}
+                        width={256}
+                        height={256}
+                        className="h-64 w-auto object-contain transform group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-black transition-colors duration-300">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
