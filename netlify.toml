@@ -8,4 +8,33 @@
 [functions]
   node_bundler = "esbuild"
 
+# Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Strict Transport Security (HSTS) - Only works with valid HTTPS
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    
+    # Additional security headers as backup/reinforcement
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Permissions Policy to restrict access to browser features
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+
+# Force HTTPS redirects
+[[redirects]]
+  from = "http://adulting-app.netlify.app/*"
+  to = "https://adulting-app.netlify.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.adulting-app.netlify.app/*"
+  to = "https://adulting-app.netlify.app/:splat"
+  status = 301
+  force = true
+
 
