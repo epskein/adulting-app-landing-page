@@ -1,0 +1,3 @@
+[submodule "public/verified"]
+	path = public/verified
+	url = https://github.com/epskein/adulting-auth.git
