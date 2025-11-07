@@ -2,6 +2,9 @@
   command = "npm run build"
   publish = ".next"
 
+[build.environment]
+  GIT_SUBMODULES = "true"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
@@ -36,5 +39,17 @@
   to = "https://adulting-app.netlify.app/:splat"
   status = 301
   force = true
+
+
+[[redirects]]
+  from = "/verified"
+  to = "/verified/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/verified/*"
+  to = "/verified/:splat"
+  status = 200
 
 
