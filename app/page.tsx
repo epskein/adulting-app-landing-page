@@ -9,12 +9,13 @@ import {
   ChevronRight,
   AlertCircle,
   Plane,
-  FileSignature,
+  File,
   Bell,
   PawPrint,
   ShieldCheck,
+  Utensils,
+  Gavel,
 } from "lucide-react"
-import { Icon } from "@iconify/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -62,7 +63,7 @@ export default function Home() {
 
   const features: Feature[] = [
     {
-      icon: <Icon icon="mdi:file-document" width={28} className="text-white" />,
+      icon: <File className="w-7 h-7 text-white" />,
       title: "Documents",
       description: "Securely store important docs (lease, ID, medical aid card, CV, etc.) for quick access anytime.",
       expandedContent: {
@@ -78,7 +79,7 @@ export default function Home() {
       },
     },
     {
-      icon: <Icon icon="mdi:medical-bag" width={28} className="text-white" />,
+      icon: <AlertCircle className="w-7 h-7 text-white" />,
       title: "Emergency & Safety",
       description: "Store emergency contacts details — ready when it matters.",
       expandedContent: {
@@ -92,7 +93,7 @@ export default function Home() {
       },
     },
     {
-      icon: <Icon icon="mdi:silverware-fork-knife" width={28} className="text-white" />,
+      icon: <Utensils className="w-7 h-7 text-white" />,
       title: "Mealprep - Recipes & Grocery List",
       description: "Plan meals with ease - Save your favorite recipes and create your grocery list in one dedicated place.",
       expandedContent: {
@@ -107,7 +108,7 @@ export default function Home() {
       },
     },
     {
-      icon: <Icon icon="mdi:bag-suitcase" width={28} className="text-white" />,
+      icon: <Plane className="w-7 h-7 text-white" />,
       title: "Travel Assistant",
       description: "A better way to organize your trips - destinations, tickets, bookings and packing lists.",
       expandedContent: {
@@ -128,7 +129,7 @@ export default function Home() {
       },
     },
     {
-      icon: <Icon icon="mdi:court-hammer" width={28} className="text-white" />,
+      icon: <Gavel className="w-7 h-7 text-white" />,
       title: "Digital Will/Emergency Instructions",
       description: "Ensure your loved ones know what your final wishes are. ",
       expandedContent: {
@@ -142,7 +143,7 @@ export default function Home() {
       },
     },
     {
-      icon: <Icon icon="mdi:alarm" width={28} className="text-white" />,
+      icon: <Bell className="w-7 h-7 text-white" />,
       title: "Smart Reminders",
       description: "Set custom recurring reminders for all aspects of your adult life — like home, car, health, and more.",
       expandedContent: {
@@ -158,7 +159,7 @@ export default function Home() {
       },
     },
     {
-      icon: <Icon icon="mdi:pets" width={28} className="text-white" />,
+      icon: <PawPrint className="w-7 h-7 text-white" />,
       title: "Pet Tracker",
       description: "Add your pets, track vaccines, vet visits, active treatments, and more.",
       expandedContent: {
@@ -173,7 +174,7 @@ export default function Home() {
       },
     },
     {
-      icon: <Icon icon="mdi:shield-half-full" width={28} className="text-white" />,
+      icon: <ShieldCheck className="w-7 h-7 text-white" />,
       title: "Vault",
       description: "Securely store sensitive documents, passwords, banking details, Tax information, receipts and Proof of Purchase Slips.",
       expandedContent: {
